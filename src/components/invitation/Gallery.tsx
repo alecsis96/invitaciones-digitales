@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { GalleryPhoto } from "@/types/invitation";
 import { SectionTitle } from "./EventLocation";
 
@@ -12,12 +13,15 @@ export function Gallery({ photos }: { photos?: GalleryPhoto[] }) {
 
 function GalleryContent({ photos }: { photos: GalleryPhoto[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const hasNavigation = photos.length > 1;
   const activePhoto = activeIndex === null ? null : photos[activeIndex];
   const shownIndex = activeIndex ?? 0;
+
+  useEffect(() => { setMounted(true); }, []);
 
   const close = useCallback(() => setActiveIndex(null), []);
   const showPrevious = useCallback(() => setActiveIndex(index => index === null ? null : (index - 1 + photos.length) % photos.length), [photos.length]);
@@ -56,7 +60,9 @@ function GalleryContent({ photos }: { photos: GalleryPhoto[] }) {
     if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   };
 
-  return <section className={`gallery-section gallery-count-${photos.length}`}><SectionTitle icon="▣" title="Galería" /><div className="gallery-grid">{photos.map((photo, index) => <button className="gallery-trigger" type="button" key={`${photo.src}-${index}`} onClick={event => { previousFocusRef.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Ver imagen ${index + 1}: ${photo.alt}`}><Image src={photo.src} alt={photo.alt} width={700} height={700} sizes="(max-width: 700px) 50vw, 280px" /></button>)}</div>{activePhoto && <div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label={`Imagen ${shownIndex + 1} de ${photos.length}`} onClick={event => { if (event.target === event.currentTarget) close(); }} onKeyDown={trapFocus}><div className="gallery-lightbox-content" onPointerDown={event => { touchStartX.current = event.clientX; }} onPointerUp={event => { if (!hasNavigation || touchStartX.current === null) return; const distance = event.clientX - touchStartX.current; touchStartX.current = null; if (Math.abs(distance) < 40) return; if (distance > 0) showPrevious(); else showNext(); }}><button className="lightbox-close" type="button" ref={closeButtonRef} onClick={close} aria-label="Cerrar galería"><CloseIcon /></button><Image className="lightbox-image" src={activePhoto.src} alt={activePhoto.alt} fill sizes="100vw" priority />{hasNavigation && <><button className="lightbox-control lightbox-previous" type="button" onClick={showPrevious} aria-label="Imagen anterior"><ChevronIcon direction="previous" /></button><button className="lightbox-control lightbox-next" type="button" onClick={showNext} aria-label="Imagen siguiente"><ChevronIcon direction="next" /></button><span className="lightbox-counter" aria-live="polite">{shownIndex + 1} / {photos.length}</span></>}</div></div>}</section>;
+  const lightbox = activePhoto ? <div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label={`Imagen ${shownIndex + 1} de ${photos.length}`} onClick={close} onKeyDown={trapFocus}><div className="gallery-lightbox-content" onClick={event => event.stopPropagation()} onPointerDown={event => { touchStartX.current = event.clientX; }} onPointerUp={event => { if (!hasNavigation || touchStartX.current === null) return; const distance = event.clientX - touchStartX.current; touchStartX.current = null; if (Math.abs(distance) < 40) return; if (distance > 0) showPrevious(); else showNext(); }}><Image className="lightbox-image" src={activePhoto.src} alt={activePhoto.alt} fill sizes="100vw" priority /></div><button className="lightbox-close" type="button" ref={closeButtonRef} onClick={close} aria-label="Cerrar galería"><CloseIcon /></button>{hasNavigation && <><button className="lightbox-control lightbox-previous" type="button" onClick={showPrevious} aria-label="Imagen anterior"><ChevronIcon direction="previous" /></button><button className="lightbox-control lightbox-next" type="button" onClick={showNext} aria-label="Imagen siguiente"><ChevronIcon direction="next" /></button><span className="lightbox-counter" aria-live="polite">{shownIndex + 1} / {photos.length}</span></>}</div> : null;
+
+  return <><section className={`gallery-section gallery-count-${photos.length}`}><SectionTitle icon="▣" title="Galería" /><div className="gallery-grid">{photos.map((photo, index) => <button className="gallery-trigger" type="button" key={`${photo.src}-${index}`} onClick={event => { previousFocusRef.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Ver imagen ${index + 1}: ${photo.alt}`}><Image src={photo.src} alt={photo.alt} width={700} height={700} sizes="(max-width: 700px) 50vw, 280px" /></button>)}</div></section>{mounted && lightbox ? createPortal(lightbox, document.body) : null}</>;
 }
 
 function CloseIcon() { return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18" /></svg>; }
