@@ -1,7 +1,8 @@
 export type EventLocation = { label: string; time: string; venue: string; address: string; mapUrl: string; image?: string; imageAlt?: string };
 export type TimelineItem = { time: string; title: string; icon?: string };
 export type GalleryPhoto = { src: string; alt: string };
-export type DressCode = { title: string; description: string; reservedColors?: string[]; image?: string };
+export type DressCodeGroup = { label?: string; description?: string };
+export type DressCode = { style?: string; description?: string; groups?: DressCodeGroup[]; reservedColors?: string[]; notes?: string[]; image?: string };
 export type GiftRegistry = { title?: string; description?: string; url?: string; buttonLabel?: string };
 
 export type InvitationEvent = {

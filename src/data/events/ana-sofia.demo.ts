@@ -12,7 +12,7 @@ export const anaSofiaDemo: InvitationEvent = {
   reception: { label: "Recepción", time: "7:00 PM", venue: "Salón Las Tejas", address: "Barranca Navil, 29930 Yajalón, Chis.", mapUrl: "https://maps.app.goo.gl/bSesnj7fdbd2a6R96?g_st=ac", image: receptionImage, imageAlt: "Exterior del Salón Las Tejas" },
   itinerary: [{ time: "5:00 PM", title: "Ceremonia", icon: "♧" }, { time: "7:00 PM", title: "Recepción", icon: "♜" }, { time: "8:00 PM", title: "Presentación", icon: "♕" }, { time: "8:30 PM", title: "Vals", icon: "♫" }, { time: "9:00 PM", title: "Cena", icon: "♜" }, { time: "10:00 PM", title: "Fiesta", icon: "✦" }],
   gallery: [{ src: "/images/ana-sofia-gallery-portrait.jpg", alt: "Retrato de Ana Sofía con vestido rosa" }, { src: "/images/ana-sofia-gallery-full-length.jpg", alt: "Ana Sofía de cuerpo completo con vestido de quince años" }, { src: "/images/ana-sofia-gallery-seated.jpg", alt: "Ana Sofía en una pose alternativa" }],
-  dressCode: { title: "Formal", description: "Tu presencia es lo más importante para mí. Si deseas seguir un código de color, te invito a evitar el rosa.", reservedColors: ["#d9b7b0"] },
+  dressCode: { style: "Formal", description: "Tu presencia es lo más importante para mí. Si deseas seguir un código de color, te invito a evitar el rosa.", reservedColors: ["#d9b7b0"] },
   giftRegistry: { description: "Tu compañía es el mejor regalo, pero si deseas tener un detalle conmigo, te comparto algunas opciones." },
   rsvp: { phone: "529191565865", message: "Hola, confirmo mi asistencia a los XV de Ana Sofía. Asistiremos ___ personas." }, closingImage: portrait, closingImageAlt: "Ana Sofía en su celebración"
 };
