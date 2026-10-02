@@ -33,3 +33,104 @@
 .glam-dress,.glam-gifts { padding:60px 24px; text-align:center; background:linear-gradient(160deg,#1a1d36,#090e1f); } .glam-fashion-icons { display:flex; justify-content:center; gap:17px; margin:25px 0 12px; color:#e3ba7d; font-size:48px; } .glam-dress h2 { margin-bottom:15px; color:#f3d3a1; } .glam-dress p { font-size:18px; } .glam-dress p b { color:#e8ba7c; } .glam-dress>div:last-child { margin-top:18px; } .glam-dress span { display:inline-block; width:18px; height:18px; margin-left:9px; border-radius:50%; border:2px solid #fff0db; } .glam-gifts span { display:block; max-width:360px; margin:0 auto 24px; font-size:18px; line-height:1.45; }
 .glam-rsvp,.glam-closing { min-height:480px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:35px 24px; text-align:center; background-size:cover; background-position:center; } .glam-rsvp h2 { margin:0; font-size:48px; line-height:.9; letter-spacing:.04em; } .glam-rsvp span { max-width:250px; font-size:19px; line-height:1.35; } .glam-rsvp a { margin-top:15px; } .glam-closing h2 { margin:0; color:#f2cf9d; font:400 62px/.9 var(--font-script),cursive; } .glam-closing p { max-width:270px; font-size:19px; line-height:1.35; } .glam-music { z-index:40; background:rgba(16,22,44,.9); }
 @media (min-width:700px) { .glam-locations { grid-template-columns:1fr 1fr; padding:70px; } .glam-agenda,.glam-date,.glam-dress,.glam-gifts { padding-left:12%; padding-right:12%; } .glam-gallery { padding-left:10%; padding-right:10%; } .glam-main-photo { max-width:480px; justify-self:center; width:100%; } }
+
+/* XV-02 Glam Nocturna: deliberately scoped overrides, kept independent from XV-01. */
+.glam-opening { z-index:200; width:100%; height:100dvh; min-height:100dvh; background-position:center; }
+.glam-opening:after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(4,8,19,.28),rgba(4,8,19,.78)); pointer-events:none; }
+.glam-opening button { z-index:1; }
+.glam-opening button:focus-visible { outline:2px solid #f2cf9d; outline-offset:-10px; }
+.glam-opening b { text-shadow:0 0 38px rgba(232,190,122,.24); }
+.glam-opening.is-opening button { animation:glam-opening-copy-out 1.12s cubic-bezier(.22,.61,.36,1) both; }
+.glam-opening.is-opening:before { animation:glam-opening-brighten .62s ease both; }
+@keyframes glam-opening-copy-out { 50% { opacity:1; transform:translateY(-5px); } to { opacity:0; transform:translateY(-20px); } }
+@keyframes glam-opening-brighten { to { opacity:.45; } }
+.glam-opening ~ .glam-music { visibility:hidden; pointer-events:none; }
+
+.glam-hero { min-height:100dvh; padding:52px 28px calc(44px + env(safe-area-inset-bottom)); background-position:center; }
+.glam-hero>div { display:grid; gap:13px; max-width:430px; }
+.glam-hero h1 { margin:0; text-shadow:0 3px 24px rgba(0,0,0,.3); }
+.glam-hero strong { color:#efc78f; font:600 11px var(--font-sans); letter-spacing:.21em; text-transform:uppercase; }
+.glam-hero span { margin-top:8px; max-width:300px; font-size:20px; line-height:1.32; }
+
+.glam-date { padding:64px 24px 60px; }
+.glam-date-display { padding:0 14px; }
+.glam-date .countdown { width:100%; gap:9px; margin:39px auto 25px; }
+.glam-date .countdown-unit { min-width:0; min-height:102px; }
+.glam-date .countdown-unit strong { font-size:clamp(29px,8.5vw,42px); }
+.glam-date .countdown-unit span { font-size:12px; }
+.glam-date .calendar-actions { width:100%; }
+
+.glam-agenda { padding:66px 24px; background:radial-gradient(circle at 88% 10%,rgba(154,102,120,.18),transparent 29%),#0d1429; }
+.glam-agenda h2 { margin-bottom:27px; }
+.glam-agenda-grid { display:grid; gap:12px; }
+.glam-agenda>div.glam-agenda-grid { grid-template-columns:1fr; padding:0; border:0; }
+.glam-agenda-grid article { position:relative; min-height:90px; display:grid; overflow:hidden; padding:0; border:1px solid rgba(232,190,122,.2); background:rgba(255,255,255,.035); }
+.glam-agenda-grid article>img { object-fit:cover; opacity:.55; }
+.glam-agenda-grid article.with-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(7,12,27,.93),rgba(7,12,27,.35)); }
+.glam-agenda-grid article>div { position:relative; z-index:1; display:grid; grid-template-columns:100px 1fr; align-items:center; gap:13px; padding:19px 17px; }
+.glam-agenda-grid article time { color:#e9bf82; font:600 15px var(--font-sans); }
+.glam-agenda-grid article strong { display:block; font-size:23px; font-weight:500; }
+.glam-agenda-grid article span { grid-column:2; color:#d8c8cf; font-size:14px; }
+.glam-agenda-grid article:not(.with-photo) { border-left:2px solid var(--glam-mauve); }
+
+.glam-locations { display:block; padding:66px 18px; background:#080d1c; }
+.glam-locations>p,.glam-locations>h2 { margin-left:6px; }
+.glam-locations>h2 { margin-top:9px; margin-bottom:29px; font-size:40px; font-weight:400; }
+.glam-locations>div { display:grid; gap:28px; }
+.glam-locations article { min-height:0; display:grid; grid-template-rows:250px auto; overflow:hidden; border:1px solid rgba(209,167,109,.25); background:#121a31; }
+.glam-location-media { position:relative; min-height:250px; overflow:hidden; background:radial-gradient(circle at 50% 25%,#273155,#10182e); }
+.glam-location-media img { object-fit:cover; }
+.glam-location-media span { display:grid; height:100%; place-items:center; color:var(--glam-gold); font-size:48px; }
+.glam-location-content { position:static !important; display:grid !important; gap:8px; padding:23px 20px 24px; background:linear-gradient(145deg,#151d36,#0b1123); }
+.glam-location-content h3 { margin:0; font-size:30px; font-weight:500; line-height:1.04; }
+.glam-location-content span { font-size:16px; line-height:1.38; }
+.glam-location-content a { margin-top:10px; }
+
+.glam-gallery { padding:66px 0; overflow:hidden; }
+.glam-gallery>p,.glam-gallery>h2 { margin-left:24px; margin-right:24px; }
+.glam-gallery h2 { margin-bottom:30px; text-align:left; }
+.glam-carousel { position:relative; display:grid; grid-template-columns:minmax(0,.22fr) minmax(0,.78fr) minmax(0,.22fr); align-items:center; gap:8px; width:118%; margin-left:-9%; touch-action:pan-y; }
+.glam-preview,.glam-main-photo { position:relative; overflow:hidden; background:#121a31; }
+.glam-preview { height:252px; opacity:.45; transform:scale(.91); border:1px solid rgba(209,167,109,.18); }
+.glam-preview img,.glam-main-photo img { object-fit:cover; }
+.glam-main-photo { height:min(108vw,450px); border:1px solid rgba(232,190,122,.52); box-shadow:0 16px 42px rgba(0,0,0,.35); }
+.glam-gallery-prev,.glam-gallery-next { position:absolute; z-index:2; top:50%; width:44px; height:44px; padding:0; transform:translateY(-50%); border:1px solid rgba(245,216,171,.65); border-radius:50%; background:rgba(7,12,27,.68); color:#f0c88e; font:38px/.85 var(--font-editorial); cursor:pointer; }
+.glam-gallery-prev { left:calc(9% + 8px); }
+.glam-gallery-next { right:calc(9% + 8px); }
+.glam-gallery-prev:focus-visible,.glam-gallery-next:focus-visible,.glam-dots button:focus-visible,.glam-thumbnails button:focus-visible { outline:2px solid #f4d7ac; outline-offset:3px; }
+.glam-dots { margin-top:22px; }
+.glam-thumbnails { display:flex; justify-content:center; gap:8px; margin:18px 24px 0; overflow-x:auto; padding-bottom:2px; }
+.glam-thumbnails button { position:relative; flex:0 0 54px; height:64px; overflow:hidden; padding:0; border:1px solid transparent; background:#121a31; cursor:pointer; opacity:.55; }
+.glam-thumbnails button.active { border-color:#e2b879; opacity:1; }
+.glam-thumbnails img { object-fit:cover; }
+
+.glam-dress { padding:66px 24px; text-align:left; background:linear-gradient(145deg,#1d203b,#090e1f); }
+.glam-dress h2 { color:#f3d3a1; font-size:42px; margin:8px 0 26px; }
+.glam-fashion-instructions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.glam-fashion-instructions p { display:grid; gap:5px; margin:0; padding:16px 13px; border:1px solid rgba(209,167,109,.24); background:rgba(255,255,255,.035); }
+.glam-fashion-instructions p b { color:#e8ba7c; font-size:18px; }
+.glam-fashion-instructions p span { font-size:16px; }
+.glam-palette,.glam-reserved { margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,.14); }
+.glam-palette strong,.glam-reserved strong { display:block; color:#e7bd80; font:600 10px var(--font-sans); letter-spacing:.14em; text-transform:uppercase; }
+.glam-palette>div,.glam-reserved>div { display:flex; flex-wrap:wrap; gap:12px 16px; margin-top:13px; }
+.glam-palette span,.glam-reserved span { display:inline-flex; align-items:center; gap:7px; font-size:16px; }
+.glam-palette i,.glam-reserved i { display:block; width:18px; height:18px; border:1px solid rgba(255,255,255,.58); border-radius:50%; }
+.glam-reserved { border-color:rgba(209,167,109,.46); }
+.glam-reserved strong { color:#f1d0b4; }
+
+.glam-gifts { padding:66px 24px; background:radial-gradient(circle at 5% 5%,rgba(168,117,130,.17),transparent 32%),#111833; }
+.glam-gifts h2 { color:#f3d3a1; }
+.glam-gifts>div { display:grid; gap:11px; max-width:360px; margin:0 auto; }
+.glam-gifts button { min-height:48px; border:1px solid rgba(232,190,122,.55); background:transparent; color:#f3d3a1; cursor:pointer; font:600 10px var(--font-sans); letter-spacing:.1em; text-transform:uppercase; }
+.glam-gifts button:hover { background:rgba(232,190,122,.1); }
+.glam-gifts button:focus-visible { outline:2px solid #f3d3a1; outline-offset:3px; }
+.glam-gifts small { display:block; max-width:360px; margin:17px auto 0; color:#e6d7d2; font-size:15px; line-height:1.42; }
+
+.glam-rsvp { min-height:540px; padding:48px 24px; }
+.glam-rsvp h2 { max-width:360px; font-size:52px; }
+.glam-rsvp a { min-height:54px; padding:18px 24px; }
+.glam-rsvp a:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+.glam-closing { min-height:470px; }
+.glam-music { z-index:40; }
+
+@media (min-width:700px) { .glam-locations { padding:74px; } .glam-locations>div { grid-template-columns:repeat(2,minmax(0,1fr)); } .glam-locations article { grid-template-rows:280px auto; } .glam-location-media { min-height:280px; } .glam-carousel { width:100%; margin:0; grid-template-columns:minmax(0,.26fr) minmax(0,.74fr) minmax(0,.26fr); } .glam-main-photo { height:540px; } .glam-preview { height:340px; } .glam-gallery-prev { left:calc(13% + 8px); } .glam-gallery-next { right:calc(13% + 8px); } }
