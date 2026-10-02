@@ -134,3 +134,27 @@
 .glam-music { z-index:40; }
 
 @media (min-width:700px) { .glam-locations { padding:74px; } .glam-locations>div { grid-template-columns:repeat(2,minmax(0,1fr)); } .glam-locations article { grid-template-rows:280px auto; } .glam-location-media { min-height:280px; } .glam-carousel { width:100%; margin:0; grid-template-columns:minmax(0,.26fr) minmax(0,.74fr) minmax(0,.26fr); } .glam-main-photo { height:540px; } .glam-preview { height:340px; } .glam-gallery-prev { left:calc(13% + 8px); } .glam-gallery-next { right:calc(13% + 8px); } }
+
+/* XV-02 Agenda Nocturna — iconographic sequence, intentionally independent of XV-01. */
+.glam-agenda { overflow:hidden; padding:70px 24px; background:radial-gradient(circle at 88% 13%,rgba(185,135,148,.17),transparent 27%),radial-gradient(circle at 8% 88%,rgba(211,167,109,.12),transparent 25%),linear-gradient(150deg,#101832,#080d1c); }
+.glam-agenda:after { content:""; position:absolute; right:24px; top:146px; width:42px; height:1px; background:rgba(227,186,125,.55); box-shadow:10px 10px 0 -1px rgba(227,186,125,.35); }
+.glam-agenda h2 { position:relative; z-index:1; margin-bottom:31px; }
+.glam-agenda-grid { position:relative; z-index:1; gap:13px; }
+.glam-agenda>div.glam-agenda-grid { display:grid; grid-template-columns:1fr; padding:0; border:0; }
+.glam-agenda-grid .glam-agenda-moment { min-height:95px; display:grid; grid-template-columns:68px minmax(0,1fr); align-items:center; gap:15px; padding:17px 17px 17px 14px; border:1px solid rgba(232,190,122,.23); border-left-color:rgba(232,190,122,.52); background:linear-gradient(105deg,rgba(255,255,255,.065),rgba(255,255,255,.025)); box-shadow:0 10px 24px rgba(0,0,0,.16); }
+.glam-agenda-grid .glam-agenda-moment:nth-child(2n) { margin-left:13px; background:linear-gradient(105deg,rgba(178,120,137,.14),rgba(255,255,255,.025)); border-left-color:rgba(206,151,166,.65); }
+.glam-agenda-grid .glam-agenda-moment:nth-child(3n) { margin-right:9px; }
+.glam-agenda-grid .glam-agenda-moment>svg { width:50px; height:50px; padding:9px; color:#e7bd80; border:1px solid rgba(232,190,122,.37); background:rgba(7,12,27,.36); }
+.glam-agenda-grid .glam-agenda-moment>div { display:grid; grid-template-columns:1fr; gap:5px; padding:0; }
+.glam-agenda-grid .glam-agenda-moment time { color:#f0c78d; font:600 14px var(--font-sans); letter-spacing:.05em; }
+.glam-agenda-grid .glam-agenda-moment strong { color:#fff3e7; font-size:22px; font-weight:500; line-height:1.1; }
+.glam-reveal.is-visible .glam-agenda-moment { animation:glam-agenda-in .56s cubic-bezier(.22,.61,.36,1) both; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(1) { animation-delay:.04s; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(2) { animation-delay:.13s; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(3) { animation-delay:.22s; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(4) { animation-delay:.31s; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(5) { animation-delay:.4s; }
+.glam-reveal.is-visible .glam-agenda-moment:nth-child(6) { animation-delay:.49s; }
+@keyframes glam-agenda-in { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+@media (min-width:700px) { .glam-agenda { padding-left:12%; padding-right:12%; } .glam-agenda-grid .glam-agenda-moment { grid-template-columns:76px minmax(0,1fr); min-height:104px; } }
+@media (prefers-reduced-motion:reduce) { .glam-reveal.is-visible .glam-agenda-moment { animation:none !important; } }

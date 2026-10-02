@@ -74,16 +74,24 @@ function GlamDate({ event }: { event: InvitationEvent }) {
 }
 
 function GlamAgenda({ event }: { event: InvitationEvent }) {
-  const visuals = [event.ceremony?.image, event.reception?.image];
   return <section className="glam-agenda"><p>LA NOCHE</p><h2>Agenda nocturna</h2><div className="glam-agenda-grid">
-    {event.itinerary?.map((item, index) => {
-      const image = index < 2 ? visuals[index] : undefined;
-      return <article key={`${item.time}-${item.title}`} className={image ? "with-photo" : ""}>
-        {image && <Image src={image} alt="" fill sizes="(max-width: 700px) 90vw, 420px" />}
-        <div><time>{item.time}</time><strong>{item.title}</strong><span>{index < 2 ? (index === 0 ? "El comienzo de una noche inolvidable" : "Celebremos juntos") : "✦"}</span></div>
-      </article>;
-    })}
+    {event.itinerary?.map((item, index) => <article key={`${item.time}-${item.title}`} className={`glam-agenda-moment glam-agenda-moment-${index + 1}`}>
+      <GlamAgendaIcon name={item.icon} /><div><time>{item.time}</time><strong>{item.title}</strong></div>
+    </article>)}
   </div></section>;
+}
+
+function GlamAgendaIcon({ name }: { name?: string }) {
+  const shared = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  switch (name) {
+    case "church": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M8 40h32M12 40V22l12-10 12 10v18M20 40V29h8v11M24 7v10M20 12h8" /><path {...shared} d="M9 22h30" /></svg>;
+    case "toast": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M13 10h10l-2 21a5 5 0 0 1-10 0L9 10h4Z M25 10h10l-2 21a5 5 0 0 1-10 0l-2-21h4Z" /><path {...shared} d="m10 6 29 36M24 40h7" /></svg>;
+    case "crown": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="m8 15 8 8 8-14 8 14 8-8-4 22H12L8 15Z M12 41h24" /></svg>;
+    case "dance": return <svg viewBox="0 0 48 48" aria-hidden="true"><circle {...shared} cx="18" cy="10" r="4" /><circle {...shared} cx="32" cy="12" r="4" /><path {...shared} d="m18 14 5 9 8-5m-8 5-7 6-3 10m10-16 8 8 7 3m-7-3-3 10m-13-3h8m7 3h8" /></svg>;
+    case "dinner": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M11 7v14m-5-14v8c0 3 2 6 5 6s5-3 5-6V7m-5 14v20M31 7v34m0-34c6 4 7 13 0 17" /></svg>;
+    case "disco": return <svg viewBox="0 0 48 48" aria-hidden="true"><circle {...shared} cx="24" cy="25" r="13" /><path {...shared} d="m15 16 18 18m0-18L15 34M24 12v26M11 25h26M24 4v4m0 34v2M5 9l3 3m32 24 3 3M43 9l-3 3M8 39l-3 3" /></svg>;
+    default: return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="m24 6 4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z" /></svg>;
+  }
 }
 
 function GlamLocations({ event }: { event: InvitationEvent }) {
