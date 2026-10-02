@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { EventMusic as Music } from "@/types/invitation";
 
-export function EventMusic({ music }: { music?: Music }) {
+export function EventMusic({ music, className = "" }: { music?: Music; className?: string }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const isAvailable = Boolean(music?.src?.trim() && music.enabled !== false);
@@ -59,5 +59,5 @@ export function EventMusic({ music }: { music?: Music }) {
   const action = isPlaying ? "Pausar" : "Reproducir";
   const title = music?.title?.trim() ? `${action} ${music.title}` : `${action} música`;
 
-  return <button className={`music-control ${isPlaying ? "is-playing" : ""}`} type="button" onClick={togglePlayback} aria-label={title} aria-pressed={isPlaying} title={title}><span aria-hidden="true">{isPlaying ? "Ⅱ" : "▶"}</span><small>{isPlaying ? "Pausar" : "Música"}</small></button>;
+  return <button className={`music-control ${isPlaying ? "is-playing" : ""} ${className}`.trim()} type="button" onClick={togglePlayback} aria-label={title} aria-pressed={isPlaying} title={title}><span aria-hidden="true">{isPlaying ? "Ⅱ" : "▶"}</span><small>{isPlaying ? "Pausar" : "Música"}</small></button>;
 }

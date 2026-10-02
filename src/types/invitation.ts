@@ -8,7 +8,7 @@ export type GiftRegistry = { title?: string; description?: string; url?: string;
 export type EventMusic = { src: string; title?: string; enabled?: boolean };
 export type EventCalendar = { title: string; start: string; end?: string; location?: string; description?: string };
 export type EventFamily = { parents?: string[]; godparents?: Array<{ role?: string; names: string[] }> };
-export type OpeningExperience = { enabled: boolean; type: "envelope"; monogram?: string; eyebrow?: string; prompt?: string; skipLabel?: string; playMusicOnOpen?: boolean };
+export type OpeningExperience = { enabled: boolean; type: "envelope" | "cinematic-reveal"; monogram?: string; eyebrow?: string; prompt?: string; skipLabel?: string; playMusicOnOpen?: boolean };
 
 export type InvitationEvent = {
   honoreeName: string; eventLabel: string; date: string; displayDate: string; heroImage?: string; heroImageAlt?: string;
