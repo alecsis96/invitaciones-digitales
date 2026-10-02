@@ -8,9 +8,10 @@ export type GiftRegistry = { title?: string; description?: string; url?: string;
 export type EventMusic = { src: string; title?: string; enabled?: boolean };
 export type EventCalendar = { title: string; start: string; end?: string; location?: string; description?: string };
 export type EventFamily = { parents?: string[]; godparents?: Array<{ role?: string; names: string[] }> };
+export type OpeningExperience = { enabled: boolean; type: "envelope"; monogram?: string; eyebrow?: string; prompt?: string; skipLabel?: string; playMusicOnOpen?: boolean };
 
 export type InvitationEvent = {
   honoreeName: string; eventLabel: string; date: string; displayDate: string; heroImage?: string; heroImageAlt?: string;
   introText: string; parents?: string[]; family?: EventFamily; ceremony?: EventLocation; reception?: EventLocation; itinerary?: TimelineItem[];
-  gallery?: GalleryPhoto[]; dressCode?: DressCode; giftRegistry?: GiftRegistry; music?: EventMusic; calendar?: EventCalendar; rsvp: { phone: string; message: string }; closingImage?: string; closingImageAlt?: string;
+  gallery?: GalleryPhoto[]; dressCode?: DressCode; giftRegistry?: GiftRegistry; music?: EventMusic; calendar?: EventCalendar; openingExperience?: OpeningExperience; rsvp: { phone: string; message: string }; closingImage?: string; closingImageAlt?: string;
 };

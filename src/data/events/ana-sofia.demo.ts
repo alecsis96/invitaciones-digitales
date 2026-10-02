@@ -14,6 +14,7 @@ export const anaSofiaDemo: InvitationEvent = {
   gallery: [{ src: "/images/ana-sofia-gallery-portrait.jpg", alt: "Retrato de Ana Sofía con vestido rosa" }, { src: "/images/ana-sofia-gallery-full-length.jpg", alt: "Ana Sofía de cuerpo completo con vestido de quince años" }, { src: "/images/ana-sofia-gallery-seated.jpg", alt: "Ana Sofía en una pose alternativa" }],
   dressCode: { style: "Formal", description: "Tu presencia es lo más importante para mí. Si deseas seguir un código de color, te invito a evitar el rosa.", reservedColors: [{ value: "#d9b7b0", label: "Rosa" }] },
   calendar: { title: "XV de Ana Sofía", start: "2026-11-14T19:00:00-06:00", location: "Salón Las Tejas, Barranca Navil, 29930 Yajalón, Chis." },
+  openingExperience: { enabled: true, type: "envelope", monogram: "AS", eyebrow: "Mis XV años", prompt: "Toca para abrir", skipLabel: "Omitir", playMusicOnOpen: true },
   giftRegistry: { description: "Tu compañía es el mejor regalo, pero si deseas tener un detalle conmigo, te comparto algunas opciones." },
   rsvp: { phone: "529191565865", message: "Hola, confirmo mi asistencia a los XV de Ana Sofía. Asistiremos ___ personas." }, closingImage: portrait, closingImageAlt: "Ana Sofía en su celebración"
 };

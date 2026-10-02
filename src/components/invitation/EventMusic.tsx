@@ -17,15 +17,20 @@ export function EventMusic({ music }: { music?: Music }) {
 
     const markPlaying = () => setIsPlaying(true);
     const markPaused = () => setIsPlaying(false);
+    const playFromOpening = () => {
+      void audio.play().catch(() => setIsPlaying(false));
+    };
     audio.addEventListener("play", markPlaying);
     audio.addEventListener("pause", markPaused);
     audio.addEventListener("ended", markPaused);
+    window.addEventListener("invitation:play-music", playFromOpening);
 
     return () => {
       audio.pause();
       audio.removeEventListener("play", markPlaying);
       audio.removeEventListener("pause", markPaused);
       audio.removeEventListener("ended", markPaused);
+      window.removeEventListener("invitation:play-music", playFromOpening);
       audio.src = "";
       audioRef.current = null;
     };
