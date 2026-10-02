@@ -13,6 +13,8 @@ export function EventMusic({ music }: { music?: Music }) {
 
     const audio = new Audio(music.src);
     audio.preload = "metadata";
+    audio.volume = 0.4;
+    audio.loop = true;
     audioRef.current = audio;
 
     const markPlaying = () => setIsPlaying(true);
