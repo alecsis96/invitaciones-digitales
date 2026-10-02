@@ -27,12 +27,12 @@ export function XVGlamInvitation({ event }: { event: InvitationEvent }) {
 }
 
 function GlamOpening({ event }: { event: InvitationEvent }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() => Boolean(event.openingExperience?.enabled && event.openingExperience.type === "cinematic-reveal"));
   const [opening, setOpening] = useState(false);
   const key = `glam-opening:${event.eventLabel}-${event.honoreeName}-${event.date}`;
 
   useEffect(() => {
-    if (event.openingExperience?.enabled && event.openingExperience.type === "cinematic-reveal" && !sessionStorage.getItem(key)) setVisible(true);
+    if (sessionStorage.getItem(key)) setVisible(false);
   }, [event.openingExperience, key]);
 
   useEffect(() => {
@@ -69,8 +69,13 @@ function GlamDate({ event }: { event: InvitationEvent }) {
   return <section className="glam-date">
     <div className="glam-date-display"><strong>{String(date.getDate()).padStart(2, "0")}</strong><p>{date.toLocaleDateString("es-MX", { month: "long" }).toUpperCase()}<br />{date.getFullYear()}</p></div>
     <Countdown date={event.date} />
-    {event.calendar && <AddToCalendar calendar={event.calendar} compact />}
+    {event.calendar && <GlamCalendarAction calendar={event.calendar} />}
   </section>;
+}
+
+function GlamCalendarAction({ calendar }: { calendar: NonNullable<InvitationEvent["calendar"]> }) {
+  const [expanded, setExpanded] = useState(false);
+  return <div className="glam-calendar"><button type="button" aria-expanded={expanded} onClick={() => setExpanded(current => !current)}>Agregar al calendario</button>{expanded && <AddToCalendar calendar={calendar} compact />}</div>;
 }
 
 function GlamAgenda({ event }: { event: InvitationEvent }) {
@@ -98,7 +103,7 @@ function GlamLocations({ event }: { event: InvitationEvent }) {
   const locations = [event.ceremony, event.reception].filter((location): location is NonNullable<typeof location> => Boolean(location));
   return <section className="glam-locations"><p>UBICACIONES</p><h2>Donde comienza la noche</h2><div>
     {locations.map(location => <article key={location.label}>
-      <div className="glam-location-media">{location.image ? <Image src={location.image} alt={location.imageAlt ?? location.venue} fill sizes="(max-width:700px) 100vw, 50vw" /> : <span>✦</span>}</div>
+      <div className="glam-location-media">{location.image ? <Image src={location.image} alt={location.imageAlt ?? location.venue} fill sizes="(max-width:700px) 100vw, 50vw" /> : <GlamLocationFallback />}</div>
       <div className="glam-location-content"><p>{location.label}</p><time>{location.time}</time><h3>{location.venue}</h3><span>{location.address}</span><a href={location.mapUrl} target="_blank" rel="noreferrer">Ver en Maps</a></div>
     </article>)}
   </div></section>;
@@ -118,7 +123,7 @@ function GlamGallery({ photos }: { photos: GalleryPhoto[] }) {
       <div className="glam-preview"><Image src={photos[next].src} alt="" fill sizes="20vw" /></div>
       {photos.length > 1 && <><button className="glam-gallery-prev" aria-label="Foto anterior" onClick={() => move(-1)}>‹</button><button className="glam-gallery-next" aria-label="Foto siguiente" onClick={() => move(1)}>›</button></>}
     </div>
-    {photos.length > 1 && <><div className="glam-dots">{photos.map((_, index) => <button key={index} aria-label={`Ver foto ${index + 1}`} className={index === active ? "active" : ""} onClick={() => setActive(index)} />)}</div><div className="glam-thumbnails">{photos.map((photo, index) => <button key={photo.src} className={index === active ? "active" : ""} aria-label={`Seleccionar foto ${index + 1}`} onClick={() => setActive(index)}><Image src={photo.src} alt="" fill sizes="72px" /></button>)}</div></>}
+    {photos.length > 1 && <div className="glam-dots">{photos.map((_, index) => <button key={index} aria-label={`Ver foto ${index + 1}`} className={index === active ? "active" : ""} onClick={() => setActive(index)} />)}</div>}
   </section>;
 }
 
@@ -126,16 +131,24 @@ function colorName(color: ReservedColor) { return typeof color === "string" ? co
 function colorValue(color: ReservedColor) { return typeof color === "string" ? color : color.value; }
 function GlamDress({ dress }: { dress?: InvitationEvent["dressCode"] }) {
   if (!dress) return null;
-  return <section className="glam-dress"><p>FASHION NOTE</p><h2>{dress.style}</h2><div className="glam-fashion-instructions">{dress.groups?.map(group => <p key={group.label}><b>{group.label}</b><span>{group.description}</span></p>)}</div>
+  return <section className="glam-dress"><p>FASHION NOTE</p><h2>{dress.style}</h2><div className="glam-fashion-instructions">{dress.groups?.map((group, index) => <div key={group.label}><GlamFashionSketch variant={index === 0 ? "dress" : "suit"} /><p><b>{group.label}</b><span>{group.description}</span></p></div>)}</div>
     {dress.suggestedColors?.length ? <div className="glam-palette"><strong>Paleta sugerida</strong><div>{dress.suggestedColors.map(color => <span key={colorValue(color)}><i style={{ background: colorValue(color) }} />{colorName(color)}</span>)}</div></div> : null}
-    {dress.reservedColors?.length ? <div className="glam-reserved"><strong>Color reservado para la quinceañera</strong><div>{dress.reservedColors.map(color => <span key={colorValue(color)}><i style={{ background: colorValue(color) }} />{colorName(color)}</span>)}</div></div> : null}
+    {dress.reservedColors?.length ? <div className="glam-reserved"><strong>Color reservado para la quinceañera</strong><div>{dress.reservedColors.map(color => <span key={colorValue(color)}><i style={{ background: colorValue(color) }} /><b aria-hidden="true">♛</b>{colorName(color)}</span>)}</div></div> : null}
   </section>;
+}
+
+function GlamFashionSketch({ variant }: { variant: "dress" | "suit" }) {
+  const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 1.35, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  return variant === "dress" ? <svg className="glam-fashion-sketch" viewBox="0 0 84 130" aria-hidden="true"><circle {...stroke} cx="42" cy="12" r="7" /><path {...stroke} d="M35 22h14l5 22 19 60H11l19-60 5-22Zm-5 22 12 14 12-14M28 83h28M22 104h40" /></svg> : <svg className="glam-fashion-sketch" viewBox="0 0 84 130" aria-hidden="true"><circle {...stroke} cx="42" cy="12" r="7" /><path {...stroke} d="M30 23 42 31 54 23l13 24-8 11 6 50H19l6-50-8-11 13-24Zm12 8v27m0-27-9 16m9-16 9 16m-9 27 8 34m-8-34-8 34M25 108h12m10 0h12" /></svg>;
 }
 
 function GlamGifts({ event }: { event: InvitationEvent }) {
   const [selected, setSelected] = useState<"registry" | "envelopes" | null>(null);
-  return <section className="glam-gifts"><p>DETALLES</p><h2>{event.giftRegistry?.title ?? "Un detalle especial"}</h2><span>{event.giftRegistry?.description}</span><div><button onClick={() => setSelected("registry")}>Mesa de regalos · Demo</button><button onClick={() => setSelected("envelopes")}>Lluvia de sobres · Demo</button></div>{selected && <small>{selected === "registry" ? "Demo: esta sección puede enlazar a Liverpool, Amazon u otra mesa de regalos." : "Tu presencia es nuestro mejor regalo. Si deseas tener un detalle, tendremos lluvia de sobres durante la recepción."}</small>}</section>;
+  const choose = (option: "registry" | "envelopes") => setSelected(current => current === option ? null : option);
+  return <section className="glam-gifts"><p>DETALLES</p><h2>{event.giftRegistry?.title ?? "Un detalle especial"}</h2><span>{event.giftRegistry?.description}</span><div><button aria-expanded={selected === "registry"} onClick={() => choose("registry")}>Mesa de regalos</button><button aria-expanded={selected === "envelopes"} onClick={() => choose("envelopes")}>Lluvia de sobres</button></div>{selected && <small>{selected === "registry" ? <>Mesa de regalos disponible en:<br /><b>Liverpool</b><br /><b>Amazon</b></> : <>Tu presencia es nuestro mejor regalo.<br />Si deseas tener un detalle con nosotros, contaremos con lluvia de sobres durante la recepción.</>}</small>}</section>;
 }
+
+function GlamLocationFallback() { return <span className="glam-location-fallback" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 42s13-12 13-23a13 13 0 1 0-26 0c0 11 13 23 13 23Z" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="24" cy="19" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>; }
 
 function GlamRSVP({ event }: { event: InvitationEvent }) {
   const href = `https://wa.me/${event.rsvp.phone.replace(/\D/g, "")}?text=${encodeURIComponent(event.rsvp.message)}`;

@@ -158,3 +158,81 @@
 @keyframes glam-agenda-in { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 @media (min-width:700px) { .glam-agenda { padding-left:12%; padding-right:12%; } .glam-agenda-grid .glam-agenda-moment { grid-template-columns:76px minmax(0,1fr); min-height:104px; } }
 @media (prefers-reduced-motion:reduce) { .glam-reveal.is-visible .glam-agenda-moment { animation:none !important; } }
+
+/* XV-02 visual atmosphere outside of the independently maintained night agenda. */
+.glam-02 { background:radial-gradient(circle at 80% 8%,rgba(193,141,152,.09),transparent 24%),radial-gradient(circle at 14% 40%,rgba(219,180,112,.06),transparent 25%),linear-gradient(180deg,#080d1c,#0b1021 47%,#070b16); }
+.glam-02 section:not(.glam-agenda) { isolation:isolate; }
+.glam-opening { background-color:#070b16; }
+.glam-opening:before { background:radial-gradient(circle at 52% 42%,rgba(218,177,110,.28),transparent 30%),linear-gradient(180deg,rgba(3,7,17,.38),rgba(3,7,17,.86)); }
+.glam-opening:after { background:radial-gradient(circle at 76% 20%,rgba(210,162,115,.13),transparent 3px),radial-gradient(circle at 16% 72%,rgba(213,161,176,.12),transparent 4px),linear-gradient(180deg,transparent,rgba(3,7,17,.48)); }
+.glam-hero { background-position:center; }
+.glam-hero:before,.glam-date:before,.glam-rsvp:before { content:""; position:absolute; z-index:-1; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(231,190,123,.13),transparent 68%); pointer-events:none; }
+.glam-hero:before { right:-60px; bottom:12%; }
+.glam-date { padding:72px 24px 65px; background:radial-gradient(circle at 50% 35%,rgba(223,180,111,.13),transparent 28%),linear-gradient(150deg,#111a36,#080d1c); }
+.glam-date:before { top:30%; left:50%; transform:translateX(-50%); }
+.glam-date-display { position:relative; z-index:1; }
+.glam-date strong { font-size:clamp(118px,33vw,150px); text-shadow:0 0 28px rgba(229,181,110,.18); }
+.glam-date .countdown { position:relative; z-index:1; gap:10px; margin:43px auto 28px; padding:0 2px; }
+.glam-date .countdown-unit { min-height:116px; background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.035)); border-color:rgba(232,190,122,.38); box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 25px rgba(0,0,0,.18); }
+.glam-date .countdown-unit strong { font-size:clamp(32px,9.5vw,45px); }
+.glam-date .countdown-unit span { color:#f2e5db; font-size:12px; }
+.glam-calendar { position:relative; z-index:2; width:min(100%,340px); margin:auto; }
+.glam-calendar>button { min-height:44px; width:100%; border:1px solid rgba(232,190,122,.48); background:rgba(8,13,28,.22); color:#efd2a2; cursor:pointer; font:600 10px var(--font-sans); letter-spacing:.12em; text-transform:uppercase; }
+.glam-calendar>button:hover { background:rgba(232,190,122,.1); }
+.glam-calendar>button:focus-visible { outline:2px solid #f1c886; outline-offset:3px; }
+.glam-calendar .calendar-actions { margin-top:10px; }
+.glam-calendar .calendar-button { background:rgba(255,255,255,.05); font-size:9px; }
+
+.glam-locations { background:radial-gradient(circle at 88% 10%,rgba(168,117,130,.13),transparent 28%),#080d1c; }
+.glam-locations>div { gap:32px; }
+.glam-locations article { box-shadow:0 18px 40px rgba(0,0,0,.25); }
+.glam-location-media { min-height:270px; }
+.glam-location-content { padding:25px 21px 27px; background:linear-gradient(145deg,#17203a,#0a1021); }
+.glam-location-content:before { content:""; width:44px; height:1px; background:#d7ad72; margin-bottom:2px; }
+.glam-location-content a { border:1px solid rgba(232,190,122,.35); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+.glam-location-fallback { display:grid !important; place-items:center; color:#e7bd80; }
+.glam-location-fallback svg { width:56px; height:56px; }
+
+.glam-gallery { background:radial-gradient(circle at 50% 10%,rgba(209,167,109,.12),transparent 26%),linear-gradient(155deg,#090e1e,#11152a); }
+.glam-gallery h2 { color:#f6eadc; }
+.glam-carousel { filter:drop-shadow(0 18px 34px rgba(0,0,0,.3)); }
+.glam-main-photo { border-color:rgba(240,198,136,.66); }
+.glam-preview { opacity:.39; }
+.glam-dots { margin-bottom:0; }
+.glam-thumbnails { display:none !important; }
+
+.glam-dress { padding:70px 24px; background:radial-gradient(circle at 18% 14%,rgba(184,131,143,.16),transparent 27%),linear-gradient(145deg,#20223d,#0a0f20); }
+.glam-dress h2 { font-size:43px; line-height:.96; }
+.glam-dress h2 em { color:#cfa66c; font-family:var(--font-script),cursive; font-size:1.2em; font-weight:400; }
+.glam-fashion-instructions { grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+.glam-fashion-instructions>div { display:grid; place-items:center; gap:11px; min-height:226px; padding:18px 10px 15px; border:1px solid rgba(232,190,122,.28); background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); }
+.glam-fashion-instructions p { display:grid; gap:4px; margin:0; text-align:center; }
+.glam-fashion-instructions p b { font-size:16px; }
+.glam-fashion-instructions p span { font-size:16px; }
+.glam-fashion-sketch { height:126px; width:78px; color:#e8bd7c; }
+.glam-fashion-instructions>div:first-child .glam-fashion-sketch { color:#d5aeb6; }
+.glam-palette,.glam-reserved { padding:21px 0 0; }
+.glam-palette>div,.glam-reserved>div { gap:13px 16px; }
+.glam-palette span,.glam-reserved span { min-width:calc(50% - 16px); }
+.glam-palette i,.glam-reserved i { width:23px; height:23px; box-shadow:inset 0 0 0 3px rgba(255,255,255,.12); }
+.glam-reserved { margin-top:25px; padding:20px 16px 0; border:1px solid rgba(232,190,122,.29); background:rgba(217,183,176,.08); }
+.glam-reserved b { color:#e9bf82; font-size:18px; line-height:1; }
+
+.glam-gifts { background:radial-gradient(circle at 80% 20%,rgba(214,171,105,.12),transparent 28%),linear-gradient(160deg,#121a34,#090e1f); }
+.glam-gifts button { position:relative; overflow:hidden; }
+.glam-gifts button[aria-expanded="true"] { color:#11172d; background:#e5ba7c; }
+.glam-gifts small { padding:17px 18px; border:1px solid rgba(232,190,122,.25); background:rgba(255,255,255,.045); }
+.glam-gifts small b { color:#f1c78c; font-weight:500; }
+
+.glam-rsvp { min-height:560px; background-position:center; }
+.glam-rsvp:before { left:10%; bottom:8%; }
+.glam-rsvp h2 { color:#fff5eb; text-shadow:0 4px 24px rgba(0,0,0,.42); }
+.glam-rsvp a { border:1px solid rgba(255,245,235,.45); box-shadow:0 12px 28px rgba(0,0,0,.25); }
+.glam-closing { min-height:500px; background-position:center; }
+.glam-closing:after { content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 80% 20%,rgba(223,180,111,.16),transparent 22%); }
+.glam-music { right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); min-height:44px; padding:8px 11px; border-color:rgba(232,190,122,.55); background:rgba(8,13,28,.78); backdrop-filter:blur(10px); box-shadow:0 8px 22px rgba(0,0,0,.25); }
+.glam-music.is-playing { background:rgba(27,34,61,.88); }
+
+@media (max-width:370px) { .glam-date { padding-left:19px; padding-right:19px; } .glam-date .countdown { gap:6px; } .glam-date .countdown-unit { min-height:107px; } .glam-date .countdown-unit strong { font-size:31px; } .glam-date .countdown-unit span { font-size:11px; } .glam-fashion-instructions>div { min-height:210px; } }
+@media (min-width:700px) { .glam-location-media { min-height:310px; } .glam-dress,.glam-gifts { padding-left:12%; padding-right:12%; } .glam-fashion-instructions { max-width:560px; margin:auto; } }
+@media (prefers-reduced-motion:no-preference) { .glam-hero:before { animation:glam-halo 8s ease-in-out infinite alternate; } @keyframes glam-halo { to { transform:translate3d(-7px,9px,0); } } }
