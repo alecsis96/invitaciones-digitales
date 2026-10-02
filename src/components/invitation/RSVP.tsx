@@ -1,0 +1,3 @@
+import { SectionTitle } from "./EventLocation";
+import type { InvitationEvent } from "@/types/invitation";
+export function RSVP({ rsvp }: { rsvp: InvitationEvent["rsvp"] }) { const href = `https://wa.me/${rsvp.phone.replace(/\D/g, "")}?text=${encodeURIComponent(rsvp.message)}`; return <section className="rsvp-section"><SectionTitle icon="✉" title="Confirmar asistencia" /><p>¡Me encantará contar contigo!</p><a className="rsvp-button" href={href} target="_blank" rel="noreferrer">◔&nbsp;&nbsp; Confirmar por WhatsApp</a><small>Se abrirá WhatsApp con un mensaje prellenado para confirmar tu asistencia.</small></section>; }

@@ -1,0 +1,3 @@
+import type { DressCode as Dress } from "@/types/invitation";
+import { SectionTitle } from "./EventLocation";
+export function DressCode({ dressCode }: { dressCode?: Dress }) { if (!dressCode) return null; return <section className="detail-section"><SectionTitle icon="♧" title="Código de vestimenta" /><div className="dress-content"><div className="dress-illustration" aria-label="Vestido formal y traje formal"><i className="formal-dress" /><i className="formal-suit" /></div><div><h3>{dressCode.title}</h3><p>{dressCode.description}</p>{dressCode.reservedColors?.length ? <div className="reserved-colors" aria-label="Colores reservados">{dressCode.reservedColors.map(color => <i key={color} style={{ backgroundColor: color }} />)}</div> : null}</div></div></section>; }

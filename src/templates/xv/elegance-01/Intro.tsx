@@ -1,0 +1,2 @@
+import type { InvitationEvent } from "@/types/invitation";
+export function Intro({ event }: { event: InvitationEvent }) { return <section id="intro" className="intro"><span className="botanical top">❧</span><p className="eyebrow">Un momento</p><h2>Muy Especial</h2><i /><p className="intro-copy">{event.introText}</p>{event.parents?.length ? <><i /><p className="parents">Con la bendición de mis padres<br /><strong>{event.parents.join(" & ")}</strong><br />te invito a celebrar<br />mis XV años.</p></> : null}<span className="botanical bottom">❧</span></section>; }

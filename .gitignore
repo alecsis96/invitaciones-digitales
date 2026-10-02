@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# Next.js build output and local caches
+/.next*
+/out
+
+# local environment files
+.env*
+!.env.example
+
+# generated logs and TypeScript cache
+*.log
+*.tsbuildinfo
+
+# Vercel local state
+.vercel
