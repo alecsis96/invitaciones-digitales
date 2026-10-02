@@ -51,7 +51,7 @@ export function buildIcsCalendar(calendar: EventCalendar) {
   return lines.join("\r\n");
 }
 
-export function AddToCalendar({ calendar }: { calendar?: EventCalendar }) {
+export function AddToCalendar({ calendar, compact = false }: { calendar?: EventCalendar; compact?: boolean }) {
   const googleCalendarUrl = calendar ? buildGoogleCalendarUrl(calendar) : null;
   const icsCalendar = calendar ? buildIcsCalendar(calendar) : null;
 
@@ -69,5 +69,7 @@ export function AddToCalendar({ calendar }: { calendar?: EventCalendar }) {
     window.setTimeout(() => URL.revokeObjectURL(href), 0);
   };
 
-  return <section className="calendar-section" aria-label="Agregar al calendario"><p className="eyebrow">Guarda la fecha</p><h2>Agregar al calendario</h2><i /><div className="calendar-actions"><a className="calendar-button" href={googleCalendarUrl} target="_blank" rel="noreferrer">Google Calendar</a><button className="calendar-button calendar-download" type="button" onClick={downloadIcs}>Apple / Outlook</button></div></section>;
+  const actions = <div className="calendar-actions"><a className="calendar-button" href={googleCalendarUrl} target="_blank" rel="noreferrer">{compact ? "Agregar a Google Calendar" : "Google Calendar"}</a><button className="calendar-button calendar-download" type="button" onClick={downloadIcs}>{compact ? "Guardar evento" : "Apple / Outlook"}</button></div>;
+  if (compact) return actions;
+  return <section className="calendar-section" aria-label="Agregar al calendario"><p className="eyebrow">Guarda la fecha</p><h2>Agregar al calendario</h2><i />{actions}</section>;
 }
