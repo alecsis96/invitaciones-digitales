@@ -103,8 +103,10 @@ function GlamGallery({ photos }: { photos: GalleryPhoto[] }) {
   const [interactionPaused, setInteractionPaused] = useState(false);
   const [autoplayEnabled, setAutoplayEnabled] = useState(true);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [isLoopResetting, setIsLoopResetting] = useState(false);
   const startX = useRef<number | null>(null);
   const pauseTimer = useRef<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const trackIndexRef = useRef(1);
   const logicalIndexRef = useRef(0);
   const isTransitioning = useRef(false);
@@ -163,11 +165,17 @@ function GlamGallery({ photos }: { photos: GalleryPhoto[] }) {
     };
     if (snappedTrackIndex !== null) {
       setTransitionEnabled(false);
+      setIsLoopResetting(true);
       syncIndexes(snappedTrackIndex, logicalIndexRef.current);
-      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-        setTransitionEnabled(true);
-        continueWithQueue();
-      }));
+      window.requestAnimationFrame(() => {
+        // Commit the clone-to-real transform without animating either slide.
+        void trackRef.current?.offsetWidth;
+        window.requestAnimationFrame(() => {
+          setIsLoopResetting(false);
+          setTransitionEnabled(true);
+          continueWithQueue();
+        });
+      });
       return;
     }
     continueWithQueue();
@@ -184,9 +192,9 @@ function GlamGallery({ photos }: { photos: GalleryPhoto[] }) {
   };
 
   return <section className="glam-gallery"><p>RECUERDOS</p><h2>Un poco de mi historia</h2>
-    <div className="glam-carousel" onPointerDown={event => { pauseForInteraction(); startX.current = event.clientX; }} onPointerUp={event => { if (startX.current === null) return; const delta = event.clientX - startX.current; startX.current = null; if (Math.abs(delta) > 36) move(delta < 0 ? 1 : -1); }}>
+    <div className={`glam-carousel ${isLoopResetting ? "is-resetting" : ""}`} onPointerDown={event => { pauseForInteraction(); startX.current = event.clientX; }} onPointerUp={event => { if (startX.current === null) return; const delta = event.clientX - startX.current; startX.current = null; if (Math.abs(delta) > 36) move(delta < 0 ? 1 : -1); }}>
       <div className="glam-carousel-viewport">
-        <div className="glam-carousel-track" onTransitionEnd={settleLoop} style={{ transform: `translate3d(calc(10% - ${trackIndex * 82}%), 0, 0)`, transitionDuration: transitionEnabled ? undefined : "0ms" }}>
+        <div className="glam-carousel-track" ref={trackRef} onTransitionEnd={settleLoop} style={{ transform: `translate3d(calc(10% - ${trackIndex * 82}%), 0, 0)`, transitionDuration: transitionEnabled ? undefined : "0ms" }}>
           {slides.map((photo, index) => {
             const isClone = photos.length > 1 && (index === 0 || index === slides.length - 1);
             const isActive = index === trackIndex;
@@ -223,7 +231,7 @@ function GlamLocationFallback() { return <span className="glam-location-fallback
 
 function GlamRSVP({ event }: { event: InvitationEvent }) {
   const href = `https://wa.me/${event.rsvp.phone.replace(/\D/g, "")}?text=${encodeURIComponent(event.rsvp.message)}`;
-  return <section className="glam-rsvp" style={{ backgroundImage: `linear-gradient(0deg,rgba(5,10,23,.96),rgba(5,10,23,.38)),url(${event.closingImage ?? event.heroImage})` }}><p>CONFIRMA</p><h2>TU ASISTENCIA</h2><span>Será un gusto compartir este día contigo.</span><a href={href} target="_blank" rel="noreferrer">Confirmar en WhatsApp</a></section>;
+  return <section className="glam-rsvp" style={{ backgroundImage: `linear-gradient(0deg,rgba(5,10,23,.96),rgba(5,10,23,.38)),url(${event.heroImage ?? event.closingImage})` }}><p>CONFIRMA</p><h2>TU ASISTENCIA</h2><span>Será un gusto compartir este día contigo.</span><a href={href} target="_blank" rel="noreferrer">Confirmar en WhatsApp</a></section>;
 }
 
 function GlamClosing({ event }: { event: InvitationEvent }) { return <section className="glam-closing" style={{ backgroundImage: `linear-gradient(0deg,rgba(8,13,28,.88),rgba(8,13,28,.2)),url(${event.closingImage ?? event.heroImage})` }}><h2>Nos vemos en mis XV</h2><p>Gracias por ser parte de esta noche tan especial.</p></section>; }
