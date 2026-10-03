@@ -81,22 +81,10 @@ function GlamCalendarAction({ calendar }: { calendar: NonNullable<InvitationEven
 function GlamAgenda({ event }: { event: InvitationEvent }) {
   return <section className="glam-agenda"><p>LA NOCHE</p><h2>Agenda nocturna</h2><div className="glam-agenda-grid">
     {event.itinerary?.map((item, index) => <article key={`${item.time}-${item.title}`} className={`glam-agenda-moment glam-agenda-moment-${index + 1}`}>
-      <GlamAgendaIcon name={item.icon} /><div><time>{item.time}</time><strong>{item.title}</strong></div>
+      {item.image ? <div className="glam-agenda-media" aria-hidden="true"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 600px" /></div> : null}
+      <div className="glam-agenda-content"><time>{item.time}</time><strong>{item.title}</strong></div>
     </article>)}
   </div></section>;
-}
-
-function GlamAgendaIcon({ name }: { name?: string }) {
-  const shared = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  switch (name) {
-    case "church": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M8 40h32M12 40V22l12-10 12 10v18M20 40V29h8v11M24 7v10M20 12h8" /><path {...shared} d="M9 22h30" /></svg>;
-    case "toast": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M13 10h10l-2 21a5 5 0 0 1-10 0L9 10h4Z M25 10h10l-2 21a5 5 0 0 1-10 0l-2-21h4Z" /><path {...shared} d="m10 6 29 36M24 40h7" /></svg>;
-    case "crown": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="m8 15 8 8 8-14 8 14 8-8-4 22H12L8 15Z M12 41h24" /></svg>;
-    case "dance": return <svg viewBox="0 0 48 48" aria-hidden="true"><circle {...shared} cx="18" cy="10" r="4" /><circle {...shared} cx="32" cy="12" r="4" /><path {...shared} d="m18 14 5 9 8-5m-8 5-7 6-3 10m10-16 8 8 7 3m-7-3-3 10m-13-3h8m7 3h8" /></svg>;
-    case "dinner": return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="M11 7v14m-5-14v8c0 3 2 6 5 6s5-3 5-6V7m-5 14v20M31 7v34m0-34c6 4 7 13 0 17" /></svg>;
-    case "disco": return <svg viewBox="0 0 48 48" aria-hidden="true"><circle {...shared} cx="24" cy="25" r="13" /><path {...shared} d="m15 16 18 18m0-18L15 34M24 12v26M11 25h26M24 4v4m0 34v2M5 9l3 3m32 24 3 3M43 9l-3 3M8 39l-3 3" /></svg>;
-    default: return <svg viewBox="0 0 48 48" aria-hidden="true"><path {...shared} d="m24 6 4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z" /></svg>;
-  }
 }
 
 function GlamLocations({ event }: { event: InvitationEvent }) {
@@ -131,21 +119,19 @@ function colorName(color: ReservedColor) { return typeof color === "string" ? co
 function colorValue(color: ReservedColor) { return typeof color === "string" ? color : color.value; }
 function GlamDress({ dress }: { dress?: InvitationEvent["dressCode"] }) {
   if (!dress) return null;
-  return <section className="glam-dress"><p>FASHION NOTE</p><h2>{dress.style}</h2><div className="glam-fashion-instructions">{dress.groups?.map((group, index) => <div key={group.label}><GlamFashionSketch variant={index === 0 ? "dress" : "suit"} /><p><b>{group.label}</b><span>{group.description}</span></p></div>)}</div>
-    {dress.suggestedColors?.length ? <div className="glam-palette"><strong>Paleta sugerida</strong><div>{dress.suggestedColors.map(color => <span key={colorValue(color)}><i style={{ background: colorValue(color) }} />{colorName(color)}</span>)}</div></div> : null}
-    {dress.reservedColors?.length ? <div className="glam-reserved"><strong>Color reservado para la quinceañera</strong><div>{dress.reservedColors.map(color => <span key={colorValue(color)}><i style={{ background: colorValue(color) }} /><b aria-hidden="true">♛</b>{colorName(color)}</span>)}</div></div> : null}
+  const groups = dress.groups?.filter(group => group.label || group.description) ?? [];
+  return <section className="glam-dress">
+    <header className="glam-fashion-header"><p className="glam-fashion-eyebrow">Fashion Note</p><h2>{dress.style}</h2><p className="glam-fashion-caption">Etiqueta formal · tonos sugeridos para la noche</p></header>
+    {groups.length ? <div className="glam-fashion-roles">{groups.map(group => <article key={`${group.label}-${group.description}`} className="glam-fashion-role-card"><span className="glam-fashion-role-label">{group.label}</span><p className="glam-fashion-role-description">{group.description}</p></article>)}</div> : null}
+    {dress.suggestedColors?.length ? <section className="glam-fashion-palette" aria-label="Paleta sugerida"><h3>Paleta sugerida</h3><ul>{dress.suggestedColors.map(color => <li key={colorValue(color)}><i className="glam-palette-swatch" style={{ background: colorValue(color) }} /><span className="glam-palette-name">{colorName(color)}</span></li>)}</ul></section> : null}
+    {dress.reservedColors?.length ? <section className="glam-fashion-reserved" aria-label="Color reservado para la quinceañera"><h3>Color reservado para la quinceañera</h3><ul>{dress.reservedColors.map(color => <li key={colorValue(color)}><i className="glam-reserved-swatch" style={{ background: colorValue(color) }} /><span className="glam-reserved-name">{colorName(color)}</span></li>)}</ul></section> : null}
   </section>;
-}
-
-function GlamFashionSketch({ variant }: { variant: "dress" | "suit" }) {
-  const stroke = { fill: "none", stroke: "currentColor", strokeWidth: 1.35, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  return variant === "dress" ? <svg className="glam-fashion-sketch" viewBox="0 0 84 130" aria-hidden="true"><circle {...stroke} cx="42" cy="12" r="7" /><path {...stroke} d="M35 22h14l5 22 19 60H11l19-60 5-22Zm-5 22 12 14 12-14M28 83h28M22 104h40" /></svg> : <svg className="glam-fashion-sketch" viewBox="0 0 84 130" aria-hidden="true"><circle {...stroke} cx="42" cy="12" r="7" /><path {...stroke} d="M30 23 42 31 54 23l13 24-8 11 6 50H19l6-50-8-11 13-24Zm12 8v27m0-27-9 16m9-16 9 16m-9 27 8 34m-8-34-8 34M25 108h12m10 0h12" /></svg>;
 }
 
 function GlamGifts({ event }: { event: InvitationEvent }) {
   const [selected, setSelected] = useState<"registry" | "envelopes" | null>(null);
   const choose = (option: "registry" | "envelopes") => setSelected(current => current === option ? null : option);
-  return <section className="glam-gifts"><p>DETALLES</p><h2>{event.giftRegistry?.title ?? "Un detalle especial"}</h2><span>{event.giftRegistry?.description}</span><div><button aria-expanded={selected === "registry"} onClick={() => choose("registry")}>Mesa de regalos</button><button aria-expanded={selected === "envelopes"} onClick={() => choose("envelopes")}>Lluvia de sobres</button></div>{selected && <small>{selected === "registry" ? <>Mesa de regalos disponible en:<br /><b>Liverpool</b><br /><b>Amazon</b></> : <>Tu presencia es nuestro mejor regalo.<br />Si deseas tener un detalle con nosotros, contaremos con lluvia de sobres durante la recepción.</>}</small>}</section>;
+  return <section className="glam-gifts"><p>DETALLES</p><h2>{event.giftRegistry?.title ?? "Un detalle especial"}</h2><span>{event.giftRegistry?.description}</span><div><button aria-expanded={selected === "registry"} onClick={() => choose("registry")}>Mesa de regalos</button><button aria-expanded={selected === "envelopes"} onClick={() => choose("envelopes")}>Lluvia de sobres</button></div>{selected && <small>{selected === "registry" ? "Consulta aquí las opciones de mesa de regalos seleccionadas para el evento." : "Tu presencia es nuestro mejor regalo. Si deseas tener un detalle, contaremos con lluvia de sobres durante la recepción."}</small>}</section>;
 }
 
 function GlamLocationFallback() { return <span className="glam-location-fallback" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 42s13-12 13-23a13 13 0 1 0-26 0c0 11 13 23 13 23Z" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="24" cy="19" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>; }

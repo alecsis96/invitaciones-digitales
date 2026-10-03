@@ -1,5 +1,5 @@
 export type EventLocation = { label: string; time: string; venue: string; address: string; mapUrl: string; image?: string; imageAlt?: string };
-export type TimelineItem = { time: string; title: string; icon?: string };
+export type TimelineItem = { time: string; title: string; icon?: string; image?: string; imageAlt?: string };
 export type GalleryPhoto = { src: string; alt: string };
 export type DressCodeGroup = { label?: string; description?: string };
 export type ReservedColor = string | { value: string; label?: string };

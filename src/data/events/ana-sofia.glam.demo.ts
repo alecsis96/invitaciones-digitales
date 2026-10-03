@@ -6,7 +6,14 @@ export const anaSofiaGlamDemo: InvitationEvent = {
   introText: "Hay momentos en la vida que se convierten en para siempre.",
   ceremony: { label: "Ceremonia religiosa", time: "5:00 PM", venue: "Parroquia de Santiago Apóstol", address: "Central 9, Centro, 29930 Yajalón, Chis.", mapUrl: "https://maps.app.goo.gl/iqiYZ2wFWUM3teMK9?g_st=ac", image: "/images/parroquia-santiago-apostol.jpg", imageAlt: "Exterior de la Parroquia de Santiago Apóstol" },
   reception: { label: "Recepción", time: "7:00 PM", venue: "Salón Las Tejas", address: "Barranca Navil, 29930 Yajalón, Chis.", mapUrl: "https://maps.app.goo.gl/bSesnj7fdbd2a6R96?g_st=ac", image: "/images/salon-las-tejas.jpg", imageAlt: "Exterior del Salón Las Tejas" },
-  itinerary: [{ time: "5:00 PM", title: "Ceremonia religiosa", icon: "church" }, { time: "7:00 PM", title: "Recepción", icon: "toast" }, { time: "8:00 PM", title: "Presentación", icon: "crown" }, { time: "8:30 PM", title: "Vals", icon: "dance" }, { time: "9:00 PM", title: "Cena", icon: "dinner" }, { time: "10:00 PM", title: "Fiesta", icon: "disco" }],
+  itinerary: [
+    { time: "5:00 PM", title: "Ceremonia religiosa", image: "/images/xv-02-agenda/ceremonia-religiosa.png", imageAlt: "Iglesia iluminada durante la noche" },
+    { time: "7:00 PM", title: "Recepción", image: "/images/xv-02-agenda/recepcion.png", imageAlt: "Recepción elegante con flores y velas" },
+    { time: "8:00 PM", title: "Presentación", image: "/images/xv-02-agenda/presentacion.png", imageAlt: "Entrada formal iluminada para la presentación" },
+    { time: "8:30 PM", title: "Vals", image: "/images/xv-02-agenda/vals.png", imageAlt: "Vals elegante bajo candelabros" },
+    { time: "9:00 PM", title: "Cena", image: "/images/xv-02-agenda/cena.png", imageAlt: "Mesa formal de cena con velas" },
+    { time: "10:00 PM", title: "Fiesta", image: "/images/xv-02-agenda/fiesta.png", imageAlt: "Pista de baile glam con iluminación nocturna" }
+  ],
   gallery: [{ src: "/images/ana-sofia-gallery-portrait.jpg", alt: "Retrato de Ana Sofía" }, { src: "/images/ana-sofia-gallery-full-length.jpg", alt: "Ana Sofía de cuerpo completo" }, { src: "/images/ana-sofia-gallery-seated.jpg", alt: "Ana Sofía en pose editorial" }],
   dressCode: { style: "Formal & Elegant", groups: [{ label: "Ellas", description: "Vestido largo" }, { label: "Ellos", description: "Traje formal" }], suggestedColors: [{ value: "#10182d", label: "Navy" }, { value: "#d1a76d", label: "Champagne" }, { value: "#9a6678", label: "Mauve" }, { value: "#171518", label: "Negro" }], reservedColors: [{ value: "#d9b7b0", label: "Rosa" }] },
   giftRegistry: { title: "Mesa de regalos", description: "Tu presencia es el regalo más especial. Si deseas tener un detalle, será recibido con cariño." },
