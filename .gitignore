@@ -15,3 +15,10 @@
 
 # Vercel local state
 .vercel
+
+# Codex local attachments
+.codex-remote-attachments/
+
+# Local asset bundles / extraction folders
+/public/images/xv-02/camila/XV-02_Glam_Nocturna_6_imagenes_webp.zip
+/public/images/xv-02/camila/XV-02_Glam_Nocturna_6_imagenes_webp/
