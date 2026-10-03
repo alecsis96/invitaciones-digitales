@@ -184,7 +184,7 @@
 .glam-dots { display:flex; gap:9px; margin:0; }
 .glam-dots button { width:7px; height:7px; padding:0; border:0; border-radius:999px; background:#76687a; cursor:pointer; transition:width .28s ease,background .28s ease; }
 .glam-dots .active { width:27px; background:#e3ba7d; }
-.glam-gallery-autoplay { width:32px; height:32px; display:grid; place-items:center; flex:0 0 auto; padding:0; border:1px solid rgba(232,190,122,.42); border-radius:50%; background:rgba(255,255,255,.035); color:#eec58b; cursor:pointer; }
+.glam-gallery-autoplay { width:44px; height:44px; display:grid; place-items:center; flex:0 0 auto; padding:0; border:1px solid rgba(232,190,122,.42); border-radius:50%; background:rgba(255,255,255,.035); color:#eec58b; cursor:pointer; }
 .glam-gallery-autoplay svg { display:block; width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .glam-gallery-autoplay:hover { background:rgba(232,190,122,.12); }
 
