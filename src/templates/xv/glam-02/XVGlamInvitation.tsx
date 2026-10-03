@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { AddToCalendar } from "@/components/invitation/AddToCalendar";
 import { Countdown } from "@/components/invitation/Countdown";
 import { EventMusic } from "@/components/invitation/EventMusic";
+import { useOpeningSession } from "@/hooks/useOpeningSession";
+import { normalizeFamily } from "@/lib/invitation/family";
+import { buildWhatsAppUrl } from "@/lib/invitation/rsvp";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import type { GalleryPhoto, InvitationEvent, ReservedColor } from "@/types/invitation";
 
@@ -28,28 +31,18 @@ export function XVGlamInvitation({ event }: { event: InvitationEvent }) {
 }
 
 function GlamOpening({ event }: { event: InvitationEvent }) {
-  const [visible, setVisible] = useState(() => Boolean(event.openingExperience?.enabled && event.openingExperience.type === "cinematic-reveal"));
   const [opening, setOpening] = useState(false);
   const key = `glam-opening:${event.eventLabel}-${event.honoreeName}-${event.date}`;
-
-  useEffect(() => {
-    if (sessionStorage.getItem(key)) setVisible(false);
-  }, [event.openingExperience, key]);
-
-  useEffect(() => {
-    if (!visible) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = previousOverflow; };
-  }, [visible]);
+  const enabled = Boolean(event.openingExperience?.enabled && event.openingExperience.type === "cinematic-reveal");
+  const { visible, markComplete, dismiss } = useOpeningSession({ enabled, storageKey: key, completionValue: "done", initiallyVisible: true });
 
   if (!visible) return null;
   const reveal = () => {
     if (event.openingExperience?.playMusicOnOpen && event.music?.src && event.music.enabled !== false) window.dispatchEvent(new Event("invitation:play-music"));
-    sessionStorage.setItem(key, "done");
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return setVisible(false);
+    markComplete();
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return dismiss();
     setOpening(true);
-    window.setTimeout(() => setVisible(false), 1350);
+    window.setTimeout(dismiss, 1350);
   };
 
   return <section className={`glam-opening ${opening ? "is-opening" : ""}`} style={{ backgroundImage: `url(${event.openingExperience?.image ?? event.heroImage})` }}>
@@ -66,8 +59,7 @@ function GlamHero({ event }: { event: InvitationEvent }) {
 }
 
 function GlamFamily({ family, parentsFallback }: { family?: InvitationEvent["family"]; parentsFallback?: string[] }) {
-  const parents = (family?.parents ?? parentsFallback)?.filter(name => name.trim()) ?? [];
-  const godparents = family?.godparents?.map(group => ({ role: group.role?.trim(), names: group.names.filter(name => name.trim()) })).filter(group => group.names.length) ?? [];
+  const { parents, godparents } = normalizeFamily(family, parentsFallback);
 
   if (!parents.length && !godparents.length) return null;
 
@@ -243,7 +235,7 @@ function GlamGifts({ event }: { event: InvitationEvent }) {
 function GlamLocationFallback() { return <span className="glam-location-fallback" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 42s13-12 13-23a13 13 0 1 0-26 0c0 11 13 23 13 23Z" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="24" cy="19" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg></span>; }
 
 function GlamRSVP({ event }: { event: InvitationEvent }) {
-  const href = `https://wa.me/${event.rsvp.phone.replace(/\D/g, "")}?text=${encodeURIComponent(event.rsvp.message)}`;
+  const href = buildWhatsAppUrl(event.rsvp.phone, event.rsvp.message);
   return <section className="glam-rsvp" style={{ backgroundImage: `linear-gradient(0deg,rgba(5,10,23,.96),rgba(5,10,23,.38)),url(${event.heroImage ?? event.closingImage})` }}><p>CONFIRMA</p><h2>TU ASISTENCIA</h2><span>Será un gusto compartir este día contigo.</span><a href={href} target="_blank" rel="noreferrer">Confirmar en WhatsApp</a></section>;
 }
 

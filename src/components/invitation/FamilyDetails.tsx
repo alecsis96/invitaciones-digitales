@@ -1,8 +1,8 @@
 import type { EventFamily } from "@/types/invitation";
+import { normalizeFamily } from "@/lib/invitation/family";
 
 export function FamilyDetails({ family, parentsFallback }: { family?: EventFamily; parentsFallback?: string[] }) {
-  const parents = (family?.parents ?? parentsFallback)?.filter(name => name.trim()) ?? [];
-  const godparents = family?.godparents?.map(group => ({ role: group.role?.trim(), names: group.names.filter(name => name.trim()) })).filter(group => group.names.length) ?? [];
+  const { parents, godparents } = normalizeFamily(family, parentsFallback);
 
   if (!parents.length && !godparents.length) return null;
 

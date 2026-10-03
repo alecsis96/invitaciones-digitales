@@ -1,41 +1,34 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useOpeningSession } from "@/hooks/useOpeningSession";
 import type { EventMusic, OpeningExperience as OpeningConfig } from "@/types/invitation";
 
 type OpeningExperienceProps = { experience?: OpeningConfig; music?: EventMusic; storageKey: string };
 
 export function OpeningExperience({ experience, music, storageKey }: OpeningExperienceProps) {
-  const [visible, setVisible] = useState(false);
   const [opening, setOpening] = useState(false);
   const envelopeRef = useRef<HTMLButtonElement>(null);
   const reducedMotionRef = useRef(false);
   const sessionKey = `invitation-opening:${storageKey}`;
   const enabled = experience?.enabled && experience.type === "envelope";
 
-  useEffect(() => {
-    if (!enabled || window.sessionStorage.getItem(sessionKey)) return;
-    reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setVisible(true);
-  }, [enabled, sessionKey]);
+  const { visible, markComplete, dismiss } = useOpeningSession({ enabled: Boolean(enabled), storageKey: sessionKey, completionValue: "complete" });
 
   useEffect(() => {
     if (!visible) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     envelopeRef.current?.focus();
-    return () => { document.body.style.overflow = previousOverflow; };
   }, [visible]);
 
   if (!enabled || !visible) return null;
 
-  const markComplete = () => window.sessionStorage.setItem(sessionKey, "complete");
   const startMusic = () => {
     if (experience.playMusicOnOpen && music?.src?.trim() && music.enabled !== false) window.dispatchEvent(new Event("invitation:play-music"));
   };
   const finish = () => {
     markComplete();
-    setVisible(false);
+    dismiss();
     window.scrollTo({ top: 0, behavior: "auto" });
   };
   const open = () => {
