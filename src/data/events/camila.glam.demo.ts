@@ -4,6 +4,7 @@ export const camilaGlamDemo: InvitationEvent = {
   honoreeName: "Camila", eventLabel: "Mis XV", date: "2026-11-14T17:00:00-06:00", displayDate: "14 · 11 · 26",
   heroImage: "/images/xv-02/camila/camila-azul-01.webp", heroImageAlt: "Camila con vestido azul rey en una escena editorial nocturna",
   introText: "Hay momentos en la vida que se convierten en para siempre.",
+  family: { parents: ["Carlos Hernández", "Mariana López"], godparents: [{ names: ["José Martínez", "Laura Gómez"] }] },
   ceremony: { label: "Ceremonia religiosa", time: "5:00 PM", venue: "Parroquia de Santiago Apóstol", address: "Central 9, Centro, 29930 Yajalón, Chis.", mapUrl: "https://maps.app.goo.gl/iqiYZ2wFWUM3teMK9?g_st=ac", image: "/images/parroquia-santiago-apostol.jpg", imageAlt: "Exterior de la Parroquia de Santiago Apóstol" },
   reception: { label: "Recepción", time: "7:00 PM", venue: "Salón Las Tejas", address: "Barranca Navil, 29930 Yajalón, Chis.", mapUrl: "https://maps.app.goo.gl/bSesnj7fdbd2a6R96?g_st=ac", image: "/images/salon-las-tejas.jpg", imageAlt: "Exterior del Salón Las Tejas" },
   itinerary: [

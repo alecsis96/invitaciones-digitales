@@ -50,6 +50,14 @@
 .glam-hero h1 { margin:0; text-shadow:0 3px 24px rgba(0,0,0,.3); }
 .glam-hero strong { color:#efc78f; font:600 11px var(--font-sans); letter-spacing:.21em; text-transform:uppercase; }
 .glam-hero span { margin-top:8px; max-width:300px; font-size:20px; line-height:1.32; }
+.glam-family { display:grid; gap:24px; padding:58px 28px 51px; text-align:center; background:radial-gradient(circle at 50% 0,rgba(220,174,111,.1),transparent 38%),#0a1022; }
+.glam-family-group { display:grid; gap:10px; }
+.glam-family-group>p,.glam-family-godparents>span { margin:0; color:var(--glam-gold); font:600 10px/1.45 var(--font-sans); letter-spacing:.17em; text-transform:uppercase; }
+.glam-family-group>strong,.glam-family-godparents>strong { color:#fff3e7; font:400 clamp(24px,6vw,31px)/1.16 var(--font-editorial); }
+.glam-family-names { display:grid; gap:4px; }
+.glam-family-names strong { overflow-wrap:anywhere; }
+.glam-family-godparents { display:grid; gap:7px; }
+.glam-family-godparents + .glam-family-godparents { margin-top:14px; }
 
 .glam-locations { display:block; padding:66px 18px; background:#080d1c; }
 .glam-locations>p,.glam-locations>h2 { margin-left:6px; }

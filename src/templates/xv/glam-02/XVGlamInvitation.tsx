@@ -14,6 +14,7 @@ export function XVGlamInvitation({ event }: { event: InvitationEvent }) {
       <GlamOpening event={event} />
       <EventMusic music={event.music} className="glam-music" />
       <GlamHero event={event} />
+      <GlamFamily family={event.family} parentsFallback={event.parents} />
       <ScrollReveal className="glam-reveal"><GlamDate event={event} /></ScrollReveal>
       <ScrollReveal className="glam-reveal"><GlamAgenda event={event} /></ScrollReveal>
       <ScrollReveal className="glam-reveal"><GlamLocations event={event} /></ScrollReveal>
@@ -62,6 +63,18 @@ function GlamHero({ event }: { event: InvitationEvent }) {
   return <section className="glam-hero" style={{ backgroundImage: `linear-gradient(0deg,rgba(8,13,28,.96),rgba(8,13,28,.14)),url(${event.heroImage})` }}>
     <div><p>MIS XV</p><h1>{event.honoreeName}</h1><strong>Glam Nocturna</strong><span>Hay momentos en la vida que se convierten en para siempre.</span></div>
   </section>;
+}
+
+function GlamFamily({ family, parentsFallback }: { family?: InvitationEvent["family"]; parentsFallback?: string[] }) {
+  const parents = (family?.parents ?? parentsFallback)?.filter(name => name.trim()) ?? [];
+  const godparents = family?.godparents?.map(group => ({ role: group.role?.trim(), names: group.names.filter(name => name.trim()) })).filter(group => group.names.length) ?? [];
+
+  if (!parents.length && !godparents.length) return null;
+
+  return <ScrollReveal className="glam-reveal"><section className="glam-family">
+    {parents.length ? <div className="glam-family-group"><p>Con la bendición de mis padres</p><div className="glam-family-names">{parents.map(name => <strong key={name}>{name}</strong>)}</div></div> : null}
+    {godparents.length ? <div className="glam-family-group"><p>Y acompañada por mis padrinos</p>{godparents.map((group, index) => <div className="glam-family-godparents" key={`${group.role ?? "padrinos"}-${index}`}>{group.role ? <span>{group.role}</span> : null}<div className="glam-family-names">{group.names.map(name => <strong key={name}>{name}</strong>)}</div></div>)}</div> : null}
+  </section></ScrollReveal>;
 }
 
 function GlamDate({ event }: { event: InvitationEvent }) {
