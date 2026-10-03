@@ -15,7 +15,7 @@ export const anaSofiaGlamDemo: InvitationEvent = {
     { time: "10:00 PM", title: "Fiesta", image: "/images/xv-02-agenda/fiesta.png", imageAlt: "Pista de baile glam con iluminación nocturna" }
   ],
   gallery: [{ src: "/images/ana-sofia-gallery-portrait.jpg", alt: "Retrato de Ana Sofía" }, { src: "/images/ana-sofia-gallery-full-length.jpg", alt: "Ana Sofía de cuerpo completo" }, { src: "/images/ana-sofia-gallery-seated.jpg", alt: "Ana Sofía en pose editorial" }],
-  dressCode: { style: "Formal & Elegant", groups: [{ label: "Ellas", description: "Vestido largo" }, { label: "Ellos", description: "Traje formal" }], suggestedColors: [{ value: "#10182d", label: "Navy" }, { value: "#d1a76d", label: "Champagne" }, { value: "#9a6678", label: "Mauve" }, { value: "#171518", label: "Negro" }], reservedColors: [{ value: "#d9b7b0", label: "Rosa" }] },
+  dressCode: { style: "Formal y elegante", groups: [{ label: "Ellas", description: "Vestido largo" }, { label: "Ellos", description: "Traje formal" }], suggestedColors: [{ value: "#10182d", label: "Navy" }, { value: "#d1a76d", label: "Champagne" }, { value: "#9a6678", label: "Mauve" }, { value: "#171518", label: "Negro" }], reservedColors: [{ value: "#d9b7b0", label: "Rosa" }] },
   giftRegistry: { title: "Mesa de regalos", description: "Tu presencia es el regalo más especial. Si deseas tener un detalle, será recibido con cariño." },
   calendar: { title: "XV de Ana Sofía", start: "2026-11-14T19:00:00-06:00", location: "Salón Las Tejas, Barranca Navil, 29930 Yajalón, Chis." },
   music: { src: "/audio/xv01-elegancia.mp3", title: "Música de la invitación", enabled: true },
