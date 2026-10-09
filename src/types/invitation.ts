@@ -8,10 +8,14 @@ export type GiftRegistry = { title?: string; description?: string; url?: string;
 export type EventMusic = { src: string; title?: string; enabled?: boolean };
 export type EventCalendar = { title: string; start: string; end?: string; location?: string; description?: string };
 export type EventFamily = { parents?: string[]; godparents?: Array<{ role?: string; names: string[] }> };
-export type OpeningExperience = { enabled: boolean; type: "envelope" | "cinematic-reveal"; monogram?: string; eyebrow?: string; prompt?: string; skipLabel?: string; playMusicOnOpen?: boolean; image?: string };
+export type OpeningExperience = { enabled: boolean; type: "envelope" | "cinematic-reveal" | "garden"; monogram?: string; eyebrow?: string; prompt?: string; skipLabel?: string; playMusicOnOpen?: boolean; image?: string };
+export type EventInspiration = { text: string; reference?: string };
+export type GuestPass = { quantity: number; message?: string };
+export type EventPolicy = { text: string; icon?: string };
+export type GardenPhotos = { first?: string; second?: string; portrait?: string };
 
 export type InvitationEvent = {
   honoreeName: string; eventLabel: string; date: string; displayDate: string; heroImage?: string; heroImageAlt?: string;
   introText: string; parents?: string[]; family?: EventFamily; ceremony?: EventLocation; reception?: EventLocation; itinerary?: TimelineItem[];
-  gallery?: GalleryPhoto[]; dressCode?: DressCode; giftRegistry?: GiftRegistry; music?: EventMusic; calendar?: EventCalendar; openingExperience?: OpeningExperience; rsvp: { phone: string; message: string }; closingImage?: string; closingImageAlt?: string;
+  gallery?: GalleryPhoto[]; dressCode?: DressCode; giftRegistry?: GiftRegistry; music?: EventMusic; calendar?: EventCalendar; openingExperience?: OpeningExperience; inspiration?: EventInspiration; gardenPhotos?: GardenPhotos; guestPass?: GuestPass; policies?: EventPolicy[]; rsvp: { phone: string; message: string }; closingImage?: string; closingImageAlt?: string;
 };
