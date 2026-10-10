@@ -26,8 +26,9 @@ No existe una ruta legacy independiente para XV-01: antes ocupaba `/`, que ahora
 ```text
 src/
 ├─ app/
-│  ├─ page.tsx                         # Placeholder SHER
-│  ├─ layout.tsx                       # Fuentes y metadata global
+│  ├─ page.tsx                         # Placeholder SHER con logo de marca
+│  ├─ layout.tsx                       # Fuentes, metadata e iconos globales
+│  ├─ manifest.ts                       # Manifest web de SHER
 │  ├─ xv-02/page.tsx                   # Redirect legacy
 │  ├─ xv-03/page.tsx                   # Redirect legacy
 │  └─ plantillas/xv/*/page.tsx         # Adaptadores de rutas canónicas
@@ -47,6 +48,7 @@ src/
 
 public/
 ├─ audio/                              # Audio opcional de invitaciones
+├─ brand/                              # Assets de producción de SHER
 └─ images/                             # Fotos, assets y recursos por plantilla
 ```
 
@@ -66,9 +68,13 @@ Las rutas son adaptadores delgados: no duplican componentes ni assets. `src/data
 
 La apertura usa `src/hooks/useOpeningSession.ts`; la normalización de familia y la URL de WhatsApp viven en `src/lib/invitation/`.
 
-## Assets y ejecución
+## Assets, marca y ejecución
 
 Los assets se sirven desde `public/` mediante rutas absolutas como `/images/...` y `/audio/...`, por lo que las rutas canónicas no cambian sus ubicaciones. Las imágenes de contenido usan principalmente `next/image`; el audio se crea en el cliente por el componente de música.
+
+El kit maestro de SHER vive en `brand/SHER-brand-kit-v1/` y permanece fuera del control de versiones como fuente original. Solo sus derivados aprobados para producción se copian de forma explícita a `public/brand/`: variantes SVG de logo y wordmark, monograma, avatar e iconos PWA. `src/app/favicon.ico`, `src/app/apple-icon.png` y `src/app/manifest.ts` integran esos recursos con las convenciones de metadata de Next.js.
+
+Los tokens `--sher-*` en `src/app/globals.css` expresan la paleta de SHER sin sustituir ni alterar las variables visuales de las plantillas existentes. Las fuentes actuales se conservan aisladas; la posible incorporación de Manrope para una futura landing se decidirá junto con esa interfaz, no desde la integración del kit.
 
 Scripts disponibles en `package.json`:
 

@@ -29,3 +29,24 @@
 ## Próximos hitos
 
 _Registrar aquí los aprendizajes de futuras fases._
+
+## Hito 2 · Fundación documental
+
+Conceptos:
+
+- especificación vs implementación
+- documentación de arquitectura
+- AGENTS.md
+- fuente de verdad
+- documentación viva
+
+## Hito 3 · Integración de marca
+
+Conceptos:
+
+- asset maestro vs asset de producción
+- public assets
+- favicon
+- metadata
+- design tokens
+- aislamiento de estilos y tipografía

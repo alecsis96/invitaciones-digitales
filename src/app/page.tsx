@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "SHER | Invitaciones digitales",
-  description: "Sitio en preparación.",
-};
+import Image from "next/image";
 
 export default function Page() {
-  return <main><h1>SHER</h1><p>Invitaciones digitales</p><p>Sitio en preparación.</p></main>;
+  return (
+    <main>
+      <Image src="/brand/logo-primary-dark.svg" alt="SHER" width={260} height={195} priority />
+      <p>Invitaciones digitales</p>
+      <p>Sitio en preparación.</p>
+    </main>
+  );
 }
