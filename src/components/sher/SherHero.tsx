@@ -5,6 +5,9 @@ import styles from "./SherHome.module.css";
 export function SherHero() {
   return (
     <section className={styles.hero} aria-labelledby="sher-hero-title">
+      <div className={styles.heroBackdrop} aria-hidden="true">
+        <Image src="/images/xv-01/ana/ana-sofia-03.webp" alt="" fill priority sizes="100vw" />
+      </div>
       <div className={styles.heroGlow} aria-hidden="true" />
       <div className={styles.heroInner}>
         <div className={styles.heroCopy}>
@@ -25,7 +28,7 @@ export function SherHero() {
               alt="Vista previa de la invitación XV Elegancia Contemporánea"
               fill
               priority
-              sizes="(min-width: 1080px) 405px, (min-width: 700px) 39vw, min(78vw, 330px)"
+              sizes="(min-width: 1080px) 360px, (min-width: 700px) 34vw, 43vw"
             />
             <div className={styles.phoneOverlay} aria-hidden="true">
               <span>Mis XV años</span>

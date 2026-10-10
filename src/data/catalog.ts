@@ -35,7 +35,13 @@ export const invitationCatalog = [
 ] as const;
 
 export const catalogCategories = [
-  { id: "xv", label: "XV años", available: true },
+  {
+    id: "xv",
+    label: "XV años",
+    available: true,
+    cover: "/images/xv-01/ana/ana-sofia-02.webp",
+    coverAlt: "Ana Sofía con vestido rosa en una escalera al atardecer",
+  },
   { id: "infantiles", label: "Infantiles", available: false },
   { id: "bodas", label: "Bodas", available: false },
 ] as const;

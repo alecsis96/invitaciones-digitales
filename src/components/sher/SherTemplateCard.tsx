@@ -9,7 +9,7 @@ export function SherTemplateCard({ template }: { template: CatalogTemplate }) {
   return (
     <article className={styles.templateCard}>
       <div className={styles.templateCover}>
-        <Image src={template.cover} alt={template.coverAlt} fill sizes="(min-width: 1080px) 360px, (min-width: 700px) calc((100vw - 108px) / 2), calc(100vw - 48px)" />
+        <Image src={template.cover} alt={template.coverAlt} fill sizes="(min-width: 1080px) 360px, (min-width: 700px) calc((100vw - 108px) / 2), 42vw" />
       </div>
       <div className={styles.templateContent}>
         <p className={styles.templateCode}>{template.id.toUpperCase()}</p>
