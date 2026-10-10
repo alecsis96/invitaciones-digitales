@@ -7,8 +7,8 @@ const sans = Montserrat({ subsets: ["latin"], variable: "--font-sans", weight: [
 const script = Pinyon_Script({ subsets: ["latin"], variable: "--font-script", weight: "400" });
 
 export const metadata: Metadata = {
-  title: "XV de Ana Sofía | Invitación Digital",
-  description: "Te invitamos a celebrar los XV años de Ana Sofía.",
+  title: "SHER | Invitaciones digitales",
+  description: "Invitaciones digitales de SHER.",
   robots: { index: false, follow: false },
 };
 

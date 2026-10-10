@@ -1,4 +1,10 @@
-import { anaSofiaDemo } from "@/data/events/ana-sofia.demo";
-import { XVInvitation } from "@/templates/xv/elegance-01/XVInvitation";
+import type { Metadata } from "next";
 
-export default function Page() { return <XVInvitation event={anaSofiaDemo} />; }
+export const metadata: Metadata = {
+  title: "SHER | Invitaciones digitales",
+  description: "Sitio en preparación.",
+};
+
+export default function Page() {
+  return <main><h1>SHER</h1><p>Invitaciones digitales</p><p>Sitio en preparación.</p></main>;
+}
