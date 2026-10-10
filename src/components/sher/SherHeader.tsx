@@ -1,0 +1,19 @@
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./SherHome.module.css";
+
+export function SherHeader() {
+  return (
+    <header className={styles.header}>
+      <a className={styles.skipLink} href="#main-content">Saltar al contenido</a>
+      <div className={styles.headerInner}>
+        <Link className={styles.brand} href="/" aria-label="SHER, inicio">
+          <Image src="/brand/wordmark-dark.svg" alt="SHER Invitaciones digitales" width={156} height={54} priority />
+        </Link>
+        <nav aria-label="Navegación principal">
+          <Link className={styles.headerLink} href="/plantillas/xv/elegancia-contemporanea">Plantillas</Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
