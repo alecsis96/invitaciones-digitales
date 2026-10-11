@@ -32,9 +32,9 @@
 .headerInner {
   display: grid;
   max-width: 1240px;
-  min-height: 90px;
+  min-height: 70px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 6px 20px;
   grid-template-columns: 44px minmax(0, 1fr) 44px;
   align-items: center;
 }
@@ -54,7 +54,7 @@
 
 .brand img {
   display: block;
-  width: 154px;
+  width: 128px;
   height: auto;
 }
 
@@ -91,32 +91,36 @@
   outline-offset: 4px;
 }
 
-.heroExperience { background: #30251f; }
+.heroExperience {
+  position: relative;
+  isolation: isolate;
+  background: #30251f;
+}
+
+.heroExperience::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url("/images/xv-01/ana/ana-sofia-03.webp") center 38% / cover no-repeat;
+  opacity: .55;
+  content: "";
+}
 
 .hero {
   position: relative;
   min-height: 598px;
   overflow: clip;
   isolation: isolate;
-  background: #30251f;
+  z-index: 1;
+  background: transparent;
   color: var(--sher-warm-white);
 }
 
-.heroBackdrop {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  opacity: .55;
-}
-
-.heroBackdrop img {
-  object-fit: cover;
-  object-position: center 38%;
-}
+.heroBackdrop { display: none; }
 
 .hero::after {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0;
   background:
     linear-gradient(98deg, rgba(29, 21, 18, .94) 0%, rgba(41, 28, 22, .82) 48%, rgba(42, 28, 21, .33) 100%),
@@ -138,9 +142,9 @@
   position: relative;
   display: grid;
   max-width: 1240px;
-  min-height: 598px;
+  min-height: 580px;
   margin: 0 auto;
-  padding: 50px 24px 28px;
+  padding: 46px 24px 24px;
   align-items: start;
 }
 
@@ -148,7 +152,7 @@
   position: relative;
   z-index: 2;
   display: grid;
-  width: min(56%, 235px);
+  width: min(62%, 236px);
   justify-items: start;
 }
 
@@ -172,9 +176,9 @@
 .hero h1 {
   margin: 0;
   color: var(--sher-warm-white);
-  font-size: clamp(40px, 10.6vw, 67px);
-  line-height: .94;
-  letter-spacing: -.035em;
+  font-size: clamp(35px, 9.8vw, 67px);
+  line-height: .92;
+  letter-spacing: -.04em;
 }
 
 .hero h1 em,
@@ -182,6 +186,8 @@
   color: #e2ad9e;
   font-style: italic;
 }
+
+.hero h1 em { white-space: nowrap; }
 
 .description {
   margin: 18px 0 22px;
@@ -192,8 +198,8 @@
 .primaryAction,
 .bannerAction {
   display: inline-flex;
-  min-height: 46px;
-  padding: 0 19px;
+  min-height: 44px;
+  padding: 0 16px;
   align-items: center;
   gap: 10px;
   border-radius: 999px;
@@ -226,10 +232,10 @@
 .preview {
   position: absolute;
   z-index: 1;
-  right: -18px;
-  bottom: 26px;
+  right: -24px;
+  bottom: 16px;
   display: grid;
-  width: min(53vw, 214px);
+  width: min(48vw, 196px);
   margin: 0;
   gap: 7px;
   justify-items: center;
@@ -291,7 +297,12 @@
 
 .preview figcaption { display: none; }
 
-.benefits { color: var(--sher-warm-white); }
+.benefits {
+  position: relative;
+  z-index: 1;
+  color: var(--sher-warm-white);
+  background: linear-gradient(180deg, rgba(28, 20, 17, .2), rgba(28, 20, 17, .76));
+}
 
 .benefits ul {
   display: grid;
@@ -305,12 +316,12 @@
 .benefits li {
   display: grid;
   min-width: 0;
-  min-height: 112px;
-  padding: 14px 6px 16px;
+  min-height: 102px;
+  padding: 13px 6px 15px;
   place-items: center;
   align-content: center;
   gap: 7px;
-  border-right: 1px solid rgba(214, 192, 165, .28);
+  border-right: 1px solid rgba(214, 192, 165, .12);
   color: rgba(255, 253, 252, .9);
   font: 600 9px/1.35 var(--sher-ui);
   letter-spacing: .005em;
@@ -398,7 +409,7 @@
 }
 
 .categoryUpcoming .categoryShade {
-  background: linear-gradient(0deg, rgba(66, 45, 37, .7), rgba(66, 45, 37, .08) 66%);
+  background: linear-gradient(0deg, rgba(66, 45, 37, .84), rgba(66, 45, 37, .08) 66%);
 }
 
 .categoryFallback {
@@ -430,15 +441,15 @@
 
 .categoryContent strong {
   color: var(--sher-champagne);
-  font: 600 7px/1.15 var(--sher-ui);
-  letter-spacing: .075em;
+  font: 600 8px/1.15 var(--sher-ui);
+  letter-spacing: .065em;
   text-transform: uppercase;
 }
 
 .productBanner {
   position: relative;
   display: grid;
-  min-height: 285px;
+  min-height: 268px;
   overflow: hidden;
   isolation: isolate;
   background: #30251f;
@@ -463,21 +474,21 @@
 .productBannerContent {
   display: grid;
   width: min(100%, 1240px);
-  padding: 39px 24px;
+  padding: 31px 24px;
   align-content: center;
   justify-items: start;
 }
 
 .productBanner h2 {
-  max-width: 340px;
+  max-width: 350px;
   margin: 0;
-  font-size: clamp(36px, 9.4vw, 55px);
+  font-size: clamp(30px, 8vw, 55px);
   line-height: .94;
   letter-spacing: -.03em;
 }
 
 .productBanner p {
-  margin: 14px 0 19px;
+  margin: 12px 0 16px;
   color: rgba(255, 253, 252, .84);
   font: 600 10px/1.4 var(--sher-ui);
   letter-spacing: .12em;
@@ -510,7 +521,7 @@
 .collection h3 {
   max-width: 390px;
   margin: 0;
-  font-size: clamp(32px, 8vw, 45px);
+  font-size: clamp(28px, 7.2vw, 45px);
   line-height: 1;
   letter-spacing: -.025em;
 }
