@@ -3,7 +3,6 @@ import { SherBenefits } from "@/components/sher/SherBenefits";
 import { SherCategories } from "@/components/sher/SherCategories";
 import { SherHeader } from "@/components/sher/SherHeader";
 import { SherHero } from "@/components/sher/SherHero";
-import { SherProductBanner } from "@/components/sher/SherProductBanner";
 import { SherTemplateCollection } from "@/components/sher/SherTemplateCollection";
 import styles from "@/components/sher/SherHome.module.css";
 
@@ -26,10 +25,10 @@ export default function Page() {
     <div className={`${styles.home} ${sherSans.variable} ${sherEditorial.variable}`}>
       <SherHeader />
       <main id="main-content" tabIndex={-1}>
-        <div className={styles.heroExperience}>
+        <section className={styles.heroExperience} aria-labelledby="sher-hero-title">
           <SherHero />
           <SherBenefits />
-        </div>
+        </section>
         <section className={styles.catalog} id="plantillas" aria-labelledby="catalog-title">
           <div className={styles.catalogIntro}>
             <p className={styles.eyebrow}>Nuestras plantillas</p>
@@ -37,7 +36,6 @@ export default function Page() {
           </div>
           <SherCategories />
         </section>
-        <SherProductBanner />
         <SherTemplateCollection />
       </main>
     </div>

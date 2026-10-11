@@ -9,15 +9,13 @@ const benefits = [
 
 export function SherBenefits() {
   return (
-    <section className={styles.benefits} aria-label="Beneficios de SHER">
-      <ul>
-        {benefits.map(({ label, icon }) => (
-          <li key={label}>
-            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">{icon}</svg>
-            <span>{label}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ul className={styles.heroBenefits} aria-label="Beneficios de SHER">
+      {benefits.map(({ label, icon }) => (
+        <li key={label}>
+          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">{icon}</svg>
+          <span>{label}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

@@ -9,9 +9,9 @@ export function SherTemplateCollection() {
     <section className={styles.collection} id="plantillas-destacadas" aria-labelledby="xv-collection-title">
       <div className={styles.collectionHeading}>
         <p className={styles.collectionKicker}>Plantillas destacadas</p>
-        <h3 id="xv-collection-title">Diseños únicos, listos para personalizar</h3>
+        <h3 id="xv-collection-title">Diseños hechos para sentirse tuyos.</h3>
       </div>
-      <div className={styles.templateGrid}>
+      <div className={styles.templateGrid} role="region" aria-label="Plantillas destacadas; desliza horizontalmente para ver más opciones">
         {xvTemplates.map((template) => <SherTemplateCard key={template.id} template={template} />)}
       </div>
     </section>
