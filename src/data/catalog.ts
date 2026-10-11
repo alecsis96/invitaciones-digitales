@@ -34,6 +34,14 @@ export const invitationCatalog = [
   },
 ] as const;
 
+export type CatalogCategory = {
+  id: string;
+  label: string;
+  available: boolean;
+  cover?: string;
+  coverAlt?: string;
+};
+
 export const catalogCategories = [
   {
     id: "xv",
@@ -42,6 +50,18 @@ export const catalogCategories = [
     cover: "/images/xv-01/ana/ana-sofia-02.webp",
     coverAlt: "Ana Sofía con vestido rosa en una escalera al atardecer",
   },
-  { id: "infantiles", label: "Infantiles", available: false },
-  { id: "bodas", label: "Bodas", available: false },
-] as const;
+  {
+    id: "infantiles",
+    label: "Infantiles",
+    available: false,
+    cover: "/images/sher/categories/infantiles.jpg",
+    coverAlt: "Celebración infantil con vestido lila, globos y castillo al fondo",
+  },
+  {
+    id: "bodas",
+    label: "Bodas",
+    available: false,
+    cover: "/images/sher/categories/bodas.jpg",
+    coverAlt: "Pareja de boda con ramo en una celebración al aire libre",
+  },
+] as const satisfies readonly CatalogCategory[];

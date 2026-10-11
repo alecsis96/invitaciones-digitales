@@ -11,7 +11,11 @@ export function SherHeader() {
           <Image src="/brand/wordmark-dark.svg" alt="SHER Invitaciones digitales" width={156} height={54} priority />
         </Link>
         <nav aria-label="Navegación principal">
-          <Link className={styles.headerLink} href="#plantillas">Plantillas</Link>
+          <Link className={styles.headerLink} href="#plantillas" aria-label="Ir a la sección de plantillas">
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </Link>
         </nav>
       </div>
     </header>
