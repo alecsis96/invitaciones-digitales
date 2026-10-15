@@ -3,7 +3,14 @@ import { SherBenefits } from "@/components/sher/SherBenefits";
 import { SherCategories } from "@/components/sher/SherCategories";
 import { SherHeader } from "@/components/sher/SherHeader";
 import { SherHero } from "@/components/sher/SherHero";
+import { SherExperiences } from "@/components/sher/SherExperiences";
+import { SherCelebrationMarquee } from "@/components/sher/SherCelebrationMarquee";
+import { SherInvitationIncludes } from "@/components/sher/SherInvitationIncludes";
+import { SherPricing } from "@/components/sher/SherPricing";
+import { SherProcess } from "@/components/sher/SherProcess";
 import { SherTemplateCollection } from "@/components/sher/SherTemplateCollection";
+import { SherFaq } from "@/components/sher/SherFaq";
+import { SherCommercialClosing } from "@/components/sher/SherCommercialClosing";
 import styles from "@/components/sher/SherHome.module.css";
 
 const sherSans = Manrope({
@@ -37,6 +44,13 @@ export default function Page() {
           <SherCategories />
         </section>
         <SherTemplateCollection />
+        <SherExperiences />
+        <SherInvitationIncludes />
+        <SherCelebrationMarquee />
+        <SherProcess />
+        <SherPricing />
+        <SherFaq />
+        <SherCommercialClosing />
       </main>
     </div>
   );

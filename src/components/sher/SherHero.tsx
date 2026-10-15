@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./SherHome.module.css";
+import { SherHeroPreview } from "./SherHeroPreview";
 
 export function SherHero() {
   return (
@@ -26,20 +27,10 @@ export function SherHero() {
         </div>
 
         <div className={styles.heroDeviceWell}>
-          <figure className={styles.preview}>
+          <figure className={styles.preview} aria-label="Vista previa animada de la invitación XV Elegancia Contemporánea de Ana Sofía">
             <div className={styles.phone}>
               <div className={styles.phoneSpeaker} aria-hidden="true" />
-              <Image
-                src="/images/xv-01/ana/ana-sofia-01.webp"
-                alt="Vista previa de la invitación XV Elegancia Contemporánea"
-                fill
-                priority
-                sizes="(min-width: 1080px) 360px, (min-width: 700px) 34vw, 43vw"
-              />
-              <div className={styles.phoneOverlay} aria-hidden="true">
-                <span>Mis XV años</span>
-                <strong>Ana Sofía</strong>
-              </div>
+              <SherHeroPreview />
             </div>
             <figcaption>XV años · Elegancia Contemporánea</figcaption>
           </figure>
