@@ -42,6 +42,29 @@ export const sofiaDanielBodaDemo: BodaRomanceEditorialData = {
     { time: "20:30 h", title: "Cena", icon: "dinner" },
     { time: "22:00 h", title: "Primer baile", icon: "dance" },
   ],
+  gallery: [
+    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_53-1.png", alt: "Sofía y Daniel caminando juntos en un jardín toscano", orientation: "portrait", objectPosition: "center" },
+    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_55-2.png", alt: "Detalle de las manos de Sofía y Daniel junto al ramo de boda", orientation: "portrait", objectPosition: "center" },
+    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_58-3.png", alt: "Sofía y Daniel abrazados al atardecer", orientation: "portrait", objectPosition: "center" },
+  ],
+  dressCode: {
+    style: "Formal de tarde",
+    description: "Nos encantará celebrar contigo en tonos suaves y una elegancia relajada.",
+    suggestedColors: [
+      { value: "#7b8066", label: "Oliva suave" },
+      { value: "#b89b72", label: "Champagne" },
+      { value: "#c7b29a", label: "Arena" },
+      { value: "#b8897d", label: "Terracota suave" },
+    ],
+    restrictedColors: [
+      { value: "#f8f3e9", label: "Marfil" },
+      { value: "#ffffff", label: "Blanco" },
+    ],
+    examples: [
+      { label: "Para ellas", description: "Vestido largo o midi en tonos cálidos.", image: "/images/boda-01/sofia-daniel/elegancia_mediterrA1nea_al_atardecer.webp", imageAlt: "Invitada con vestido largo verde oliva y sandalias" },
+      { label: "Para ellos", description: "Traje ligero en lino o tonos tierra.", image: "/images/boda-01/sofia-daniel/elegancia_mediterrA1nea_en_traje_de_lino.webp", imageAlt: "Invitado con traje de lino en tono tierra" },
+    ],
+  },
   rsvp: {
     phone: "529191565865",
     message: "Hola, confirmo mi asistencia a la boda de Sofía y Daniel.",

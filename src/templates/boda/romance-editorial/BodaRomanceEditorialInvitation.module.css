@@ -911,6 +911,181 @@
 
 
 
+.gallery,
+.dressCode {
+  padding: clamp(4.75rem, 17vw, 6.75rem) 1.25rem;
+}
+
+.gallery {
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 34%), transparent 42%),
+    var(--boda-paper-deep);
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  max-width: 31rem;
+  margin: 2.5rem auto 0;
+}
+
+.galleryItem {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #dfd3c1;
+  aspect-ratio: 3 / 4;
+}
+
+.galleryItem :global(img),
+.dressExamples :global(img) {
+  object-fit: cover;
+}
+
+.galleryLandscape {
+  aspect-ratio: 4 / 3;
+}
+
+.gallerySquare {
+  aspect-ratio: 1;
+}
+
+.galleryCount1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.galleryItem:first-child,
+.galleryCount2 .galleryItem,
+.galleryCount4 .galleryItem:last-child {
+  grid-column: 1 / -1;
+}
+
+.dressCode {
+  position: relative;
+  background:
+    radial-gradient(circle at 94% 8%, rgb(115 118 96 / 11%), transparent 13rem),
+    var(--boda-paper);
+}
+
+.dressBotanical {
+  display: block;
+  width: clamp(7rem, 32vw, 10rem);
+  height: auto;
+  margin: -2rem auto 1.75rem;
+}
+
+.dressCode .sectionHeader {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.dressDescription {
+  max-width: 25rem;
+  margin: 0.25rem auto 0;
+  color: #706451;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.dressPalettes {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 31rem;
+  margin: 2.25rem auto 0;
+}
+
+.dressPalette {
+  padding: 1.4rem 1.2rem 1.25rem;
+  border-top: 1px solid rgb(115 118 96 / 44%);
+  background: rgb(238 229 214 / 44%);
+}
+
+.dressPaletteRestricted {
+  border-top-color: rgb(184 155 114 / 56%);
+  background: rgb(255 253 248 / 54%);
+}
+
+.dressPalette h3 {
+  margin: 0;
+  color: var(--boda-olive-dark);
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.dressPalette ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 0.8rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dressPalette li {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  min-width: 3.25rem;
+  color: #706451;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.53rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dressPalette li i {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgb(64 56 43 / 18%);
+  border-radius: 50%;
+}
+
+.dressExamples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 31rem;
+  margin: 1.5rem auto 0;
+}
+
+.dressExamples figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.dressExamples figure > div {
+  position: relative;
+  overflow: hidden;
+  background: #dfd3c1;
+  aspect-ratio: 3 / 4;
+}
+
+.dressExamples :global(img) {
+  object-fit: contain;
+}
+
+.dressExamples figcaption {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.8rem 0.1rem 0;
+  color: #706451;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.dressExamples strong {
+  color: #4b4233;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
 @media (min-width: 700px) {
 
   .invitation {
@@ -951,7 +1126,11 @@
 
   .locations,
 
-  .itinerary {
+  .itinerary,
+
+  .gallery,
+
+  .dressCode {
 
     padding-right: 3rem;
 
@@ -995,6 +1174,54 @@
 
     max-width: 43rem;
 
+  }
+
+  .galleryGrid,
+
+  .dressPalettes,
+
+  .dressExamples {
+    max-width: 43rem;
+  }
+
+  .galleryGrid {
+    gap: 0.9rem;
+  }
+
+  .galleryCount3,
+  .galleryCount5 {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  }
+
+  .galleryCount3 .galleryItem:first-child,
+  .galleryCount5 .galleryItem:first-child {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    aspect-ratio: auto;
+  }
+
+  .galleryCount5 {
+    grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+  }
+
+  .galleryCount4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .galleryCount4 .galleryItem:last-child {
+    grid-column: auto;
+  }
+
+  .galleryCount2 .galleryItem {
+    grid-column: auto;
+  }
+
+  .dressPalettes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dressExamples {
+    gap: 1.1rem;
   }
 
 }

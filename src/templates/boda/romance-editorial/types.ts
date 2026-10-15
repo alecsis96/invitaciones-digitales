@@ -7,8 +7,14 @@ export type BodaColor = {
 
 export type BodaDressExample = {
   label: string;
+  description?: string;
   image?: string;
   imageAlt?: string;
+};
+
+export type BodaGalleryPhoto = GalleryPhoto & {
+  orientation?: "portrait" | "landscape" | "square";
+  objectPosition?: string;
 };
 
 export type BodaLocation = {
@@ -31,7 +37,7 @@ export type BodaRomanceEditorialData = {
   story?: { title: string; body: string; image?: string; imageAlt?: string };
   locations?: { ceremony?: BodaLocation; reception?: BodaLocation };
   itinerary?: TimelineItem[];
-  gallery?: GalleryPhoto[];
+  gallery?: BodaGalleryPhoto[];
   dressCode?: {
     style?: string;
     description?: string;

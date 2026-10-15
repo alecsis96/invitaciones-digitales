@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Countdown } from "@/components/invitation/Countdown";
+import { BodaDressCode } from "./BodaDressCode";
+import { BodaGallery } from "./BodaGallery";
 import { BodaItinerary } from "./BodaItinerary";
 import { BodaLocations } from "./BodaLocations";
 import { BodaStory } from "./BodaStory";
@@ -45,6 +47,8 @@ export function BodaRomanceEditorialInvitation({ event }: { event: BodaRomanceEd
       <BodaStory story={event.story} />
       <BodaLocations locations={event.locations} />
       <BodaItinerary itinerary={event.itinerary} />
+      <BodaGallery photos={event.gallery} />
+      <BodaDressCode dressCode={event.dressCode} />
     </main>
   );
 }
