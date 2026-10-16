@@ -1,7 +1,10 @@
 import Image from "next/image";
-import { Countdown } from "@/components/invitation/Countdown";
+import { BodaCountdown } from "./BodaCountdown";
 import { BodaDressCode } from "./BodaDressCode";
 import { BodaGallery } from "./BodaGallery";
+import { BodaGiftRegistry } from "./BodaGiftRegistry";
+import { BodaRSVP } from "./BodaRSVP";
+import { BodaClosing } from "./BodaClosing";
 import { BodaItinerary } from "./BodaItinerary";
 import { BodaLocations } from "./BodaLocations";
 import { BodaStory } from "./BodaStory";
@@ -39,7 +42,7 @@ export function BodaRomanceEditorialInvitation({ event }: { event: BodaRomanceEd
           <span aria-hidden="true" />
         </header>
         <div className={styles.countdownPanel}>
-          <Countdown date={event.date} />
+          <BodaCountdown date={event.date} />
         </div>
         <i className={`${styles.botanical} ${styles.botanicalBottom}`} aria-hidden="true" />
       </section>
@@ -49,6 +52,9 @@ export function BodaRomanceEditorialInvitation({ event }: { event: BodaRomanceEd
       <BodaItinerary itinerary={event.itinerary} />
       <BodaGallery photos={event.gallery} />
       <BodaDressCode dressCode={event.dressCode} />
+      <BodaGiftRegistry giftRegistry={event.giftRegistry} />
+      <BodaRSVP rsvp={event.rsvp} />
+      <BodaClosing closing={event.closing} couple={couple} date={event.date} displayDate={event.displayDate} />
     </main>
   );
 }

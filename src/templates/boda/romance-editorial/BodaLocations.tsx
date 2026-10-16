@@ -3,6 +3,16 @@ import styles from "./BodaRomanceEditorialInvitation.module.css";
 
 type Location = NonNullable<BodaRomanceEditorialData["locations"]>["ceremony"];
 
+function validMapUrl(value?: string) {
+  if (!value || !/^https?:\/\//i.test(value.trim())) return undefined;
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 function LocationIcon({ variant }: { variant: "ceremony" | "reception" }) {
   const common = { fill: "none", stroke: "currentColor", strokeLinecap: "round" as const, strokeLinejoin: "round" as const, strokeWidth: 1.25 };
 
@@ -15,6 +25,7 @@ function LocationIcon({ variant }: { variant: "ceremony" | "reception" }) {
 
 function LocationCard({ location, variant }: { location?: Location; variant: "ceremony" | "reception" }) {
   if (!location) return null;
+  const mapUrl = validMapUrl(location.mapUrl);
 
   return (
     <article className={`${styles.locationCard} ${styles[`locationCard${variant === "ceremony" ? "Ceremony" : "Reception"}`]}`}>
@@ -27,8 +38,8 @@ function LocationCard({ location, variant }: { location?: Location; variant: "ce
           </div>
         </div>
         <h3>{location.venue}</h3>
-        {location.address ? <span>{location.address}</span> : <small>Ubicación demostrativa</small>}
-        {location.mapUrl ? <a href={location.mapUrl} target="_blank" rel="noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a> : null}
+        {location.address?.trim() ? <span>{location.address}</span> : null}
+        {mapUrl ? <a href={mapUrl} target="_blank" rel="noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a> : null}
       </div>
     </article>
   );
@@ -43,7 +54,7 @@ export function BodaLocations({ locations }: { locations?: BodaRomanceEditorialD
         <p className={styles.sectionEyebrow}>El gran día</p>
         <h2 id="boda-locations-title">Ceremonia y recepción</h2>
       </header>
-      <div className={styles.locationsList}>
+      <div className={`${styles.locationsList} ${!locations.ceremony || !locations.reception ? styles.locationsSingle : ""}`}>
         <LocationCard location={locations.ceremony} variant="ceremony" />
         <LocationCard location={locations.reception} variant="reception" />
       </div>

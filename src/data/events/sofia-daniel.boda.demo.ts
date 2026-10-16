@@ -43,11 +43,12 @@ export const sofiaDanielBodaDemo: BodaRomanceEditorialData = {
     { time: "22:00 h", title: "Primer baile", icon: "dance" },
   ],
   gallery: [
-    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_53-1.png", alt: "Sofía y Daniel caminando juntos en un jardín toscano", orientation: "portrait", objectPosition: "center" },
-    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_55-2.png", alt: "Detalle de las manos de Sofía y Daniel junto al ramo de boda", orientation: "portrait", objectPosition: "center" },
-    { src: "/images/boda-01/sofia-daniel/Imagen de ChatGPT 14 oct 2026, 21_38_58-3.png", alt: "Sofía y Daniel abrazados al atardecer", orientation: "portrait", objectPosition: "center" },
+    { src: "/images/boda-01/sofia-daniel/gallery-walking.webp", alt: "Sofía y Daniel caminando juntos en un jardín toscano", orientation: "portrait", objectPosition: "center" },
+    { src: "/images/boda-01/sofia-daniel/gallery-detail.webp", alt: "Detalle de las manos de Sofía y Daniel junto al ramo de boda", orientation: "portrait", objectPosition: "center" },
+    { src: "/images/boda-01/sofia-daniel/gallery-embrace.webp", alt: "Sofía y Daniel abrazados al atardecer", orientation: "portrait", objectPosition: "center" },
   ],
   dressCode: {
+    botanical: { src: "/images/boda-01/sofia-daniel/rama_de_olivo_en_acuarela.webp", width: 1448, height: 1086 },
     style: "Formal de tarde",
     description: "Nos encantará celebrar contigo en tonos suaves y una elegancia relajada.",
     suggestedColors: [
@@ -65,8 +66,24 @@ export const sofiaDanielBodaDemo: BodaRomanceEditorialData = {
       { label: "Para ellos", description: "Traje ligero en lino o tonos tierra.", image: "/images/boda-01/sofia-daniel/elegancia_mediterrA1nea_en_traje_de_lino.webp", imageAlt: "Invitado con traje de lino en tono tierra" },
     ],
   },
+  giftRegistry: {
+    demoMode: true,
+    title: "Tu compañía es nuestro mejor regalo",
+    description: "Lo más especial será compartir este día contigo. Si deseas obsequiarnos un detalle, lo recibiremos con todo nuestro cariño.",
+    image: "/images/boda-01/sofia-daniel/regalo_nupcial_con_lazo_champagne_y_flores.webp",
+    imageAlt: "",
+  },
   rsvp: {
+    title: "Nos encantaría compartir este día contigo",
+    description: "Cada lugar en nuestra mesa guarda una historia especial. Será una alegría saber que estarás con nosotros.",
     phone: "529191565865",
     message: "Hola, confirmo mi asistencia a la boda de Sofía y Daniel.",
+  },
+  closing: {
+    title: "Gracias por acompañarnos",
+    message: "Nuestro para siempre será aún más bonito con ustedes cerca.",
+    image: "/images/boda-01/sofia-daniel/terraza_toscana_al_atardecer.webp",
+    imageAlt: "",
+    objectPosition: "56% center",
   },
 };

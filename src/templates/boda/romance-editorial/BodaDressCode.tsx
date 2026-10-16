@@ -35,7 +35,7 @@ export function BodaDressCode({ dressCode }: { dressCode?: DressCode }) {
 
   return (
     <section className={styles.dressCode} aria-labelledby="boda-dress-title">
-      <Image className={styles.dressBotanical} src="/images/boda-01/sofia-daniel/rama_de_olivo_en_acuarela.webp" alt="" width={1448} height={1086} sizes="160px" />
+      {dressCode?.botanical?.src ? <Image className={styles.dressBotanical} {...dressCode.botanical} alt="" sizes="160px" /> : null}
       <header className={styles.sectionHeader}>
         <p className={styles.sectionEyebrow}>Código de vestimenta</p>
         {dressCode?.style?.trim() ? <h2 id="boda-dress-title">{dressCode.style}</h2> : <h2 id="boda-dress-title">Vestimenta</h2>}

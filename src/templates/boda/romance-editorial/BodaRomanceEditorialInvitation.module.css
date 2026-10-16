@@ -1,6 +1,7 @@
 .invitation {
 
   --boda-ink: #40382b;
+  --boda-secondary: #6a604e;
 
   --boda-olive: #737660;
 
@@ -374,7 +375,7 @@
 
 .countdownHeader p {
 
-  color: #827663;
+  color: var(--boda-secondary);
 
   font-size: 0.55rem;
 
@@ -466,7 +467,7 @@
 
   margin-top: 0.55rem;
 
-  color: #7d715e;
+  color: var(--boda-secondary);
 
   font-family: var(--font-sans), Arial, sans-serif;
 
@@ -742,7 +743,7 @@
 }
 
 .locationCopy time {
-  color: #947b59;
+  color: var(--boda-secondary);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
@@ -845,7 +846,7 @@
 
 .itineraryList time {
 
-  color: #88765e;
+  color: var(--boda-secondary);
 
   font-family: var(--font-sans), Arial, sans-serif;
 
@@ -910,6 +911,238 @@
 }
 
 
+
+.gifts {
+  display: grid;
+  justify-items: center;
+  gap: 1.75rem;
+  padding: clamp(1rem, 4vw, 1.5rem) 1.5rem clamp(4.5rem, 16vw, 6rem);
+  border-top: 1px solid rgb(184 155 114 / 18%);
+  background: var(--boda-paper);
+  text-align: center;
+}
+
+.giftIllustration {
+  display: block;
+  width: 9rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.giftsCopy {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 30rem;
+  min-width: 0;
+}
+
+.gifts h2,
+.rsvp h2,
+.closing h2 {
+  margin: 0;
+  font-size: clamp(2.25rem, 9vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.giftsMessage,
+.rsvpMessage {
+  max-width: 26rem;
+  margin: 0.3rem 0 0;
+  color: #706451;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.giftLink,
+.rsvpLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  max-width: 100%;
+  padding: 0.9rem 1.25rem;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.giftLink {
+  margin-top: 0.5rem;
+  border: 1px solid var(--boda-olive-dark);
+  background: var(--boda-olive-dark);
+  color: var(--boda-paper);
+  cursor: pointer;
+}
+
+.giftDemoAction {
+  max-width: 100%;
+}
+
+.giftDemoNotice {
+  max-width: 26rem;
+  margin: 1rem 0 0;
+  color: var(--boda-olive-dark);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.rsvp {
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+  padding: clamp(4.5rem, 17vw, 6rem) 1.5rem;
+  border-top: 1px solid rgb(184 155 114 / 22%);
+  background: var(--boda-paper-deep);
+  text-align: center;
+}
+
+.rsvp h2 {
+  max-width: 31rem;
+}
+
+.rsvpDeadline {
+  max-width: 26rem;
+  margin: 0;
+  color: var(--boda-olive-dark);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.rsvpLink {
+  margin-top: 0.75rem;
+  border: 1px solid var(--boda-olive-dark);
+  background: var(--boda-olive-dark);
+  color: var(--boda-paper);
+}
+
+.giftLink:focus-visible,
+.rsvpLink:focus-visible {
+  outline: 2px solid var(--boda-ink);
+  outline-offset: 5px;
+}
+
+.giftLink:hover {
+  background: var(--boda-ink);
+}
+
+.rsvpLink:hover {
+  background: var(--boda-ink);
+}
+
+.closing {
+  position: relative;
+  isolation: isolate;
+  padding: 4rem 1.5rem 2.5rem;
+  background: var(--boda-paper);
+  text-align: center;
+}
+
+.closingImage {
+  z-index: -2;
+  object-fit: cover;
+}
+
+.closingWithImage::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, var(--boda-paper) 0%, rgb(248 243 233 / 96%) 22%, var(--closing-paper-transition, rgb(248 243 233 / 72%)) var(--closing-paper-stop, 40%), rgb(34 29 21 / 48%) var(--closing-shadow-stop, 65%), rgb(34 29 21 / 78%) 100%);
+}
+
+.closingCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.closingCopy > p:not(.closingNames) {
+  max-width: 22rem;
+  margin: 0;
+  color: #5b503e;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.closingNames {
+  margin: 2rem 0 0;
+  font-size: clamp(2.75rem, 12vw, 4.25rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+}
+
+.closingWithImage .closingNames {
+  margin-top: clamp(1rem, 4vw, 1.5rem);
+  color: var(--boda-paper);
+}
+
+.closingNames span {
+  font-size: 0.72em;
+  font-style: italic;
+}
+
+.closingCopy time {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  line-height: 1.5;
+}
+
+.closingWithImage time {
+  color: var(--boda-paper);
+}
+
+@media (max-width: 379px) {
+  .closingWithImage {
+    --closing-paper-transition: rgb(248 243 233 / 84%);
+    --closing-paper-stop: 60%;
+    --closing-shadow-stop: 74%;
+  }
+}
+
+@media (min-width: 700px) {
+  .gifts {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: center;
+    gap: 2rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    text-align: left;
+  }
+
+  .giftIllustration {
+    width: 11rem;
+  }
+
+  .giftsCopy {
+    justify-items: start;
+  }
+
+  .rsvp {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+
+  .closing {
+    padding: 4.5rem 3rem 3rem;
+  }
+
+}
 
 .gallery,
 .dressCode {
@@ -1230,10 +1463,81 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .invitation \* {
+  .invitation * {
 
     scroll-behavior: auto;
+    animation: none !important;
+    transition: none !important;
 
   }
 
+}
+
+/* BODA-only robustness: keep approved complete-data layouts unchanged. */
+.countdownFrame {
+  display: grid;
+  align-items: center;
+  min-height: 5.7rem;
+}
+
+.countdownFallback {
+  margin: 0;
+  color: var(--boda-olive-dark);
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.story.storyTextOnly {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.storyTextOnly .storyCopy {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.locationsList.locationsSingle {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 30rem;
+}
+
+.dressPalettes > :only-child,
+.dressExamples > :only-child {
+  grid-column: 1 / -1;
+}
+
+.dressExamples > :only-child {
+  width: min(100%, 20rem);
+  justify-self: center;
+}
+
+.galleryMixed .galleryItem {
+  aspect-ratio: var(--gallery-mobile-ratio);
+}
+
+.openingContent h1 > span {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.openingContent h1 {
+  max-width: min(100%, 28rem);
+}
+
+.closingNames,
+.storyCopy,
+.locationCopy > span {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 700px) {
+  .galleryMixed .galleryItem {
+    aspect-ratio: var(--gallery-desktop-ratio);
+  }
+
+  .galleryMixed.galleryCount3 .galleryItem:first-child,
+  .galleryMixed.galleryCount5 .galleryItem:first-child {
+    aspect-ratio: auto;
+  }
 }

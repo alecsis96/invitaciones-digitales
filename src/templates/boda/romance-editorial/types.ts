@@ -39,14 +39,15 @@ export type BodaRomanceEditorialData = {
   itinerary?: TimelineItem[];
   gallery?: BodaGalleryPhoto[];
   dressCode?: {
+    botanical?: { src: string; width: number; height: number };
     style?: string;
     description?: string;
     suggestedColors?: BodaColor[];
     restrictedColors?: BodaColor[];
     examples?: BodaDressExample[];
   };
-  giftRegistry?: GiftRegistry;
+  giftRegistry?: GiftRegistry & { enabled?: boolean; demoMode?: boolean; image?: string; imageAlt?: string };
   music?: EventMusic;
-  rsvp?: { phone: string; message: string };
-  closing?: { message?: string; image?: string; imageAlt?: string };
+  rsvp?: { phone?: string; message: string; title?: string; description?: string; deadline?: string };
+  closing?: { title?: string; message?: string; image?: string; imageAlt?: string; objectPosition?: string };
 };
