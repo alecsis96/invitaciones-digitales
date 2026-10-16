@@ -89,20 +89,24 @@ export const sherProcessSteps = [
 
 export const sherPricing = {
   interactive: {
-    name: "Invitación interactiva",
-    price: "$249 MXN",
+    name: "Interactiva",
+    price: "$349 MXN",
   },
-  combos: [
-    { name: "Interactiva + Clip", price: "$349 MXN" },
-    { name: "Interactiva + Historia", price: "$399 MXN" },
-    { name: "Interactiva + Protagonista", price: "$499 MXN" },
-  ],
-  audiovisual: [
-    { name: "Clip", price: "$150 MXN" },
-    { name: "Historia", price: "$200 MXN" },
-    { name: "Protagonista", price: "$300 MXN" },
-  ],
-  customNote: "El diseño completamente personalizado se cotiza aparte.",
+  cinematic: {
+    name: "SHER Cinemática",
+    price: "$449 MXN",
+    description: "Invitación interactiva + teaser cinematográfico personalizado de hasta 8 segundos",
+    secondaryDescription: "Una forma de emocionar antes del evento y acompañar el enlace de tu invitación",
+    upgrade: "+$100 respecto a Interactiva",
+    message: "Hola, me interesa SHER Cinemática de $449 MXN: invitación interactiva + teaser fantástico y personalizado con IA de hasta 8 segundos, para compartir por separado. ¿Cómo puedo solicitarla?",
+  },
+  custom: {
+    name: "SHER A Medida",
+    price: "Cotización",
+    description: "Historias audiovisuales, conceptos especiales y producciones personalizadas bajo cotización",
+    message: "Hola, quiero cotizar un proyecto SHER A Medida: una historia audiovisual, escenas o un proyecto especial. ¿Qué información necesitan para preparar la cotización?",
+  },
+  flyer: { name: "Flyer digital opcional", price: "+$50 MXN" },
 } as const;
 
 export type SherFaqItem = {
@@ -128,13 +132,13 @@ export const sherFaqs: readonly SherFaqItem[] = [
   {
     id: "entrega",
     question: "¿Cuánto tarda la entrega?",
-    answer: "El plazo estándar es de 48 horas desde que recibimos la información completa y confirmamos el anticipo. Las revisiones o pedidos especiales pueden requerir más tiempo.",
+    answer: "El plazo estándar es de 48 horas desde que recibimos los materiales y la información completos y confirmamos el anticipo del 50 %. Las revisiones y los proyectos especiales pueden requerir más tiempo.",
     published: true,
   },
   {
     id: "cambios",
     question: "¿Cuántos cambios puedo solicitar?",
-    answer: "Incluimos hasta 5 ajustes para invitaciones interactivas y 2 revisiones para experiencias audiovisuales.",
+    answer: "La invitación interactiva incluye hasta 5 ajustes. Cinemática incluye 2 revisiones del teaser sobre el concepto previamente aprobado: edición, textos, música o montaje, según el material disponible. No incluye dos regeneraciones completas ni cambios sustanciales de concepto, protagonista o escenario; esos cambios se cotizan aparte.",
     published: true,
   },
   {

@@ -41,19 +41,23 @@ export function SherExperienceShowcase() {
         </button>
 
         <div className={styles.cinematicDetails}>
-          <div>
-            <h3>SHER Cinemática</h3>
-            <p>
-              <span className={styles.cinematicMobileCopy}>Un adelanto que emociona. Una invitación que reúne todos los detalles</span>
-              <span className={styles.cinematicDesktopCopy}>El teaser emociona. Tu invitación interactiva reúne todos los detalles de la celebración.</span>
-            </p>
-            <h4 className={styles.cinematicSharingTitle}>
-              <span className={styles.cinematicMobileCopy}>Así se comparte</span>
-              <span className={styles.cinematicDesktopCopy}>Así se comparte tu invitación</span>
-            </h4>
-            <p className={styles.cinematicSharingSubtitle}>Ejemplo ilustrativo en WhatsApp</p>
-            <Link className={styles.cinematicMessageLink} href={demoInvitation.route}>Ver invitación de ejemplo</Link>
-            <p className={styles.cinematicNote}>Personalizaciones bajo cotización.</p>
+          <div className={styles.cinematicCopy}>
+            <div className={styles.cinematicSummary}>
+              <h3>SHER Cinemática</h3>
+              <p>
+                <span className={styles.cinematicMobileCopy}>Un adelanto que emociona. Una invitación que reúne todos los detalles.</span>
+                <span className={styles.cinematicDesktopCopy}>El teaser emociona. Tu invitación interactiva reúne todos los detalles de la celebración.</span>
+              </p>
+            </div>
+            <div>
+              <h4 className={styles.cinematicSharingTitle}>
+                <span className={styles.cinematicMobileCopy}>Así se comparte</span>
+                <span className={styles.cinematicDesktopCopy}>Así se comparte tu invitación</span>
+              </h4>
+              <p className={styles.cinematicSharingSubtitle}>Ejemplo ilustrativo en WhatsApp</p>
+              <Link className={styles.cinematicMessageLink} href={demoInvitation.route}>Ver invitación de ejemplo</Link>
+              <p className={styles.cinematicNote}>Personalizaciones bajo cotización.</p>
+            </div>
           </div>
           <figure className={styles.cinematicMessageExample}>
             <div className={styles.cinematicMessagePhone}>

@@ -23,15 +23,13 @@ Categorías futuras, todavía no disponibles: infantiles, bodas y otros eventos.
 
 | Línea | Producto | Precio |
 | --- | --- | ---: |
-| Video | Clip | $150 MXN |
-| Video | Historia | $200 MXN |
-| Video | Protagonista | $300 MXN |
-| Web | Invitación Interactiva | $249 MXN |
-| Combo | Interactiva + Clip | $349 MXN |
-| Combo | Interactiva + Historia | $399 MXN |
-| Combo | Interactiva + Protagonista | $499 MXN |
+| Web | Interactiva · lanzamiento | $349 MXN |
+| Invitación + video | Cinemática · invitación interactiva + teaser de hasta 8 segundos | $449 MXN |
+| Personalizada | A Medida | Cotización |
 
 Todas las plantillas interactivas existentes del catálogo comparten el mismo precio base. El diseño completamente personalizado se cotiza aparte.
+
+El Home presenta únicamente Interactiva, Cinemática y A Medida; no presenta el flyer como complemento comercial.
 
 ## Principios
 

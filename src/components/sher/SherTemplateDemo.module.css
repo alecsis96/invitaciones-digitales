@@ -1,0 +1,74 @@
+.page {
+  min-width: 0;
+}
+
+.commercial {
+  visibility: hidden;
+  padding: clamp(32px, 6vw, 56px) 20px;
+  /* Preserve a 44px lane for the existing fixed music control, plus the
+     original padding and the device safe area, without moving that control. */
+  padding-bottom: calc(clamp(32px, 6vw, 56px) + 44px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(129, 116, 108, .22);
+  background: var(--sher-ivory);
+  color: var(--sher-charcoal);
+  text-align: center;
+}
+
+/* The opening owns its state. Keep this optional commercial block out of
+   keyboard navigation until the overlay has actually left the DOM.
+   Browsers without :has() retain the safe, hidden default. */
+@supports selector(:has(*)) {
+  .page:not(:has(:global(.opening-experience), :global(.glam-opening), :global(.garden-opening))) .commercial {
+    visibility: visible;
+  }
+}
+
+.inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #754334;
+  font: 600 12px/1.4 var(--font-sans), Arial, sans-serif;
+  letter-spacing: .14em;
+}
+
+.heading {
+  margin: 0;
+  font: 500 clamp(28px, 6vw, 40px)/1.1 var(--font-editorial), Georgia, serif;
+}
+
+.description {
+  margin: 14px 0 0;
+  color: #61534b;
+  font: 400 16px/1.55 var(--font-sans), Arial, sans-serif;
+}
+
+.action {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 12px 20px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--sher-rose-gold);
+  color: #100f10;
+  font: 600 16px/1.4 var(--font-sans), Arial, sans-serif;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.action:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.action:focus-visible {
+  outline: 3px solid var(--sher-charcoal);
+  outline-offset: 4px;
+}

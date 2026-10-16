@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SherTemplateDemo } from "@/components/sher/SherTemplateDemo";
 import { camilaGlamDemo } from "@/data/events/camila.glam.demo";
 import { XVGlamInvitation } from "@/templates/xv/glam-02/XVGlamInvitation";
 
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function GlamNocturnaPage() {
-  return <XVGlamInvitation event={camilaGlamDemo} />;
+  return <SherTemplateDemo templateId="xv-02"><XVGlamInvitation event={camilaGlamDemo} /></SherTemplateDemo>;
 }
