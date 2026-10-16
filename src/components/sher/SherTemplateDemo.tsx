@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { invitationCatalog } from "@/data/catalog";
 import { buildSherWhatsAppHref } from "@/lib/sher/contact";
+import { SherDemoMusicVisibility } from "./SherDemoMusicVisibility";
 import styles from "./SherTemplateDemo.module.css";
 
 type TemplateId = (typeof invitationCatalog)[number]["id"];
@@ -12,11 +13,12 @@ export function SherTemplateDemo({ templateId, children }: { templateId: Templat
 
   const href = buildSherWhatsAppHref(`Hola, me interesa la plantilla ${template.id.toUpperCase()} · ${template.name} de SHER. ¿Cómo puedo solicitarla?`);
   const headingId = `${template.id}-commercial-demo-title`;
+  const commercialId = `${template.id}-commercial-demo`;
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-sher-template-demo="">
       {children}
-      <aside className={styles.commercial} aria-labelledby={headingId}>
+      <aside className={styles.commercial} id={commercialId} tabIndex={-1} aria-labelledby={headingId}>
         <div className={styles.inner}>
           <p className={styles.eyebrow}>DEMOSTRACIÓN · SHER</p>
           <h2 className={styles.heading} id={headingId}>¿Te gustaría esta invitación para tu celebración?</h2>
@@ -24,6 +26,7 @@ export function SherTemplateDemo({ templateId, children }: { templateId: Templat
           {href && <a className={styles.action} href={href} target="_blank" rel="noopener noreferrer">Solicitar esta plantilla</a>}
         </div>
       </aside>
+      <SherDemoMusicVisibility commercialId={commercialId} />
     </div>
   );
 }
