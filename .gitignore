@@ -25,3 +25,7 @@
 
 # Local master brand assets
 /brand/
+
+# Unapproved source/reference media (keep local only)
+/public/images/xv-01/ana/gemini_generated_video_44bf9de4.mp4
+/docs/reference/Experiencias SHER_ Invitaciones que Inspiran.png

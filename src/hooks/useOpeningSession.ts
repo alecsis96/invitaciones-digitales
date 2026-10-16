@@ -7,7 +7,7 @@ type OpeningSessionOptions = {
   storageKey: string;
   completionValue: string;
   initiallyVisible?: boolean;
-  openingRef?: RefObject<HTMLElement>;
+  openingRef?: RefObject<HTMLElement | null>;
 };
 
 export function useOpeningSession({ enabled, storageKey, completionValue, initiallyVisible = false, openingRef }: OpeningSessionOptions) {

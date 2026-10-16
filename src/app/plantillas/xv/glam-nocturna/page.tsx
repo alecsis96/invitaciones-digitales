@@ -4,6 +4,7 @@ import { camilaGlamDemo } from "@/data/events/camila.glam.demo";
 import { XVGlamInvitation } from "@/templates/xv/glam-02/XVGlamInvitation";
 
 export const metadata: Metadata = {
+  robots: { index: true, follow: true },
   title: "Glam Nocturna | SHER",
   description: "Plantilla de XV años Glam Nocturna de SHER.",
 };

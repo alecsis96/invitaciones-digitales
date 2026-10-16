@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { SherBenefits } from "@/components/sher/SherBenefits";
 import { SherCategories } from "@/components/sher/SherCategories";
@@ -12,6 +13,10 @@ import { SherTemplateCollection } from "@/components/sher/SherTemplateCollection
 import { SherFaq } from "@/components/sher/SherFaq";
 import { SherCommercialClosing } from "@/components/sher/SherCommercialClosing";
 import styles from "@/components/sher/SherHome.module.css";
+
+export const metadata: Metadata = {
+  robots: { index: true, follow: true },
+};
 
 const sherSans = Manrope({
   subsets: ["latin"],

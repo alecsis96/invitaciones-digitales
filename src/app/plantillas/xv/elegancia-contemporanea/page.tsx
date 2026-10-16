@@ -4,6 +4,7 @@ import { anaSofiaDemo } from "@/data/events/ana-sofia.demo";
 import { XVInvitation } from "@/templates/xv/elegance-01/XVInvitation";
 
 export const metadata: Metadata = {
+  robots: { index: true, follow: true },
   title: "Elegancia Contemporánea | SHER",
   description: "Plantilla de XV años Elegancia Contemporánea de SHER.",
 };
