@@ -1,5 +1,7 @@
 import type { EventMusic, GalleryPhoto, GiftRegistry, TimelineItem } from "@/types/invitation";
 
+export type BodaMusicConfig = EventMusic & { volume?: number; loop?: boolean };
+
 export type BodaColor = {
   value: string;
   label: string;
@@ -47,7 +49,7 @@ export type BodaRomanceEditorialData = {
     examples?: BodaDressExample[];
   };
   giftRegistry?: GiftRegistry & { enabled?: boolean; demoMode?: boolean; image?: string; imageAlt?: string };
-  music?: EventMusic;
+  music?: BodaMusicConfig;
   rsvp?: { phone?: string; message: string; title?: string; description?: string; deadline?: string };
   closing?: { title?: string; message?: string; image?: string; imageAlt?: string; objectPosition?: string };
 };

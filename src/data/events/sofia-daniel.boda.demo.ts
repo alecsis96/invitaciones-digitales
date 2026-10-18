@@ -3,6 +3,7 @@ import type { BodaRomanceEditorialData } from "@/templates/boda/romance-editoria
 export const sofiaDanielBodaDemo: BodaRomanceEditorialData = {
   couple: { firstName: "Sofía", secondName: "Daniel" },
   eventLabel: "Nuestra boda",
+  music: { src: "/audio/boda-01-romance-editorial.mp3", enabled: true, volume: 0.35, loop: true },
   date: "2026-11-14T17:00:00-06:00",
   displayDate: "14 · 11 · 2026",
   hero: {

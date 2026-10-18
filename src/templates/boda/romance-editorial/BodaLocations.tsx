@@ -28,7 +28,7 @@ function LocationCard({ location, variant }: { location?: Location; variant: "ce
   const mapUrl = validMapUrl(location.mapUrl);
 
   return (
-    <article className={`${styles.locationCard} ${styles[`locationCard${variant === "ceremony" ? "Ceremony" : "Reception"}`]}`}>
+    <article className={`${styles.locationCard} ${styles[`locationCard${variant === "ceremony" ? "Ceremony" : "Reception"}`]}`} data-boda-motion={variant === "ceremony" ? "location-left" : "location-right"}>
       <div className={styles.locationCopy}>
         <div className={styles.locationIdentity}>
           <span className={styles.locationIcon}><LocationIcon variant={variant} /></span>

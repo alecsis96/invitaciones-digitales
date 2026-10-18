@@ -31,7 +31,7 @@ export function BodaItinerary({ itinerary }: { itinerary?: TimelineItem[] }) {
       </header>
       <ol className={styles.itineraryList}>
         {itinerary.map((item, index) => (
-          <li key={`${item.time}-${item.title}`}>
+          <li key={`${item.time}-${item.title}`} data-boda-motion="itinerary">
             <time>{item.time}</time>
             <span className={styles.itineraryMarker}><MomentIcon name={item.icon} /></span>
             <strong>{item.title}</strong>

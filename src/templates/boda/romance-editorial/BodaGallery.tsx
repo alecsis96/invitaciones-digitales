@@ -58,7 +58,7 @@ export function BodaGallery({ photos }: { photos?: BodaGalleryPhoto[] }) {
         {items.map((photo, index) => {
           const orientation = photo.orientation ?? "portrait";
           return (
-            <figure className={`${styles.galleryItem} ${styles[`gallery${orientation[0].toUpperCase()}${orientation.slice(1)}`]}`} style={mixedOrientations ? rowRatios(items, index) : undefined} key={photo.src}>
+            <figure className={`${styles.galleryItem} ${styles[`gallery${orientation[0].toUpperCase()}${orientation.slice(1)}`]}`} style={mixedOrientations ? rowRatios(items, index) : undefined} key={photo.src} data-boda-motion={index === 0 ? "gallery-lead" : "rise"} data-boda-motion-group={index === 0 ? undefined : "gallery-secondary"}>
               <Image
                 src={photo.src}
                 alt={photo.alt}

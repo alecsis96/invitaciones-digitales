@@ -17,25 +17,25 @@ export function BodaRomanceEditorialInvitation({ event }: { event: BodaRomanceEd
   return (
     <main className={styles.invitation}>
       <section className={styles.opening} aria-labelledby="boda-opening-title">
-        <div className={styles.heroMedia}>
+        <div className={styles.heroMedia} data-boda-motion="hero-photo">
           <Image src={event.hero.src} alt={event.hero.alt} fill priority sizes="(max-width: 760px) 100vw, 760px" />
         </div>
         <div className={styles.paperTransition} aria-hidden="true" />
         <div className={styles.openingContent}>
           <p className={styles.eyebrow}>{event.eventLabel}</p>
           <span className={styles.rule} aria-hidden="true" />
-          <h1 id="boda-opening-title">
+          <h1 id="boda-opening-title" data-boda-motion="hero-names">
             <span>{couple.firstName}</span>
             <em>&amp;</em>
             <span>{couple.secondName}</span>
           </h1>
-          <time dateTime={event.date}>{event.displayDate}</time>
+          <time dateTime={event.date} data-boda-motion="hero-date" data-boda-delay="100">{event.displayDate}</time>
           <i className={styles.botanical} aria-hidden="true" />
-          {opening?.message ? <p className={styles.message}>{opening.message}</p> : null}
+          {opening?.message ? <p className={styles.message} data-boda-motion="hero-message" data-boda-delay="200">{opening.message}</p> : null}
         </div>
       </section>
 
-      <section className={styles.countdownSection} aria-label="Cuenta regresiva para la boda">
+      <section className={styles.countdownSection} aria-label="Cuenta regresiva para la boda" data-boda-motion="countdown">
         <header className={styles.countdownHeader}>
           <span aria-hidden="true" />
           <p>{opening?.countdownLabel ?? "Falta muy poco"}</p>

@@ -24,10 +24,10 @@ export function BodaRSVP({ rsvp }: { rsvp?: BodaRomanceEditorialData["rsvp"] }) 
   return (
     <section className={styles.rsvp} aria-labelledby="boda-rsvp-title">
       <p className={styles.sectionEyebrow}>Confirma tu asistencia</p>
-      <h2 id="boda-rsvp-title">{rsvp.title?.trim() || "Nos encantaría compartir este día contigo"}</h2>
-      {rsvp.description?.trim() ? <p className={styles.rsvpMessage}>{rsvp.description}</p> : null}
-      {deadline ? <p className={styles.rsvpDeadline}>Confirma antes del <time dateTime={rsvp.deadline}>{deadline}</time>.</p> : null}
-      <a className={styles.rsvpLink} href={buildWhatsAppUrl(phone, rsvp.message)} target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp<span aria-hidden="true"> ↗</span></a>
+      <h2 id="boda-rsvp-title" data-boda-motion="rise" data-boda-motion-group="rsvp-copy">{rsvp.title?.trim() || "Nos encantaría compartir este día contigo"}</h2>
+      {rsvp.description?.trim() ? <p className={styles.rsvpMessage} data-boda-motion="rise" data-boda-motion-group="rsvp-copy">{rsvp.description}</p> : null}
+      {deadline ? <p className={styles.rsvpDeadline} data-boda-motion="rise" data-boda-motion-group="rsvp-copy">Confirma antes del <time dateTime={rsvp.deadline}>{deadline}</time>.</p> : null}
+      <a className={styles.rsvpLink} href={buildWhatsAppUrl(phone, rsvp.message)} target="_blank" rel="noopener noreferrer" data-boda-motion="rsvp-action" data-boda-motion-group="rsvp-copy">Confirmar por WhatsApp<span aria-hidden="true"> ↗</span></a>
     </section>
   );
 }

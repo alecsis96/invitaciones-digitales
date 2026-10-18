@@ -16,7 +16,7 @@ function Palette({ title, colors, variant }: { title: string; colors: BodaColor[
   if (!colors.length) return null;
 
   return (
-    <section className={`${styles.dressPalette} ${variant === "restricted" ? styles.dressPaletteRestricted : ""}`} aria-label={title}>
+    <section className={`${styles.dressPalette} ${variant === "restricted" ? styles.dressPaletteRestricted : ""}`} aria-label={title} data-boda-motion="rise" data-boda-motion-group="dress-palettes">
       <h3>{title}</h3>
       <ul>
         {colors.map(color => <li key={`${color.value}-${color.label}`}><i style={{ backgroundColor: color.value }} aria-hidden="true" /><span>{color.label}</span></li>)}
@@ -35,14 +35,14 @@ export function BodaDressCode({ dressCode }: { dressCode?: DressCode }) {
 
   return (
     <section className={styles.dressCode} aria-labelledby="boda-dress-title">
-      {dressCode?.botanical?.src ? <Image className={styles.dressBotanical} {...dressCode.botanical} alt="" sizes="160px" /> : null}
+      {dressCode?.botanical?.src ? <Image className={styles.dressBotanical} {...dressCode.botanical} alt="" sizes="160px" data-boda-motion="botanical" /> : null}
       <header className={styles.sectionHeader}>
         <p className={styles.sectionEyebrow}>Código de vestimenta</p>
-        {dressCode?.style?.trim() ? <h2 id="boda-dress-title">{dressCode.style}</h2> : <h2 id="boda-dress-title">Vestimenta</h2>}
-        {dressCode?.description?.trim() ? <p className={styles.dressDescription}>{dressCode.description}</p> : null}
+        {dressCode?.style?.trim() ? <h2 id="boda-dress-title" data-boda-motion="rise" data-boda-motion-group="dress-intro">{dressCode.style}</h2> : <h2 id="boda-dress-title" data-boda-motion="rise" data-boda-motion-group="dress-intro">Vestimenta</h2>}
+        {dressCode?.description?.trim() ? <p className={styles.dressDescription} data-boda-motion="rise" data-boda-motion-group="dress-intro">{dressCode.description}</p> : null}
       </header>
       {suggested.length || restricted.length ? <div className={styles.dressPalettes}><Palette title="Colores sugeridos" colors={suggested} variant="suggested" /><Palette title="Colores reservados" colors={restricted} variant="restricted" /></div> : null}
-      {examples.length ? <div className={styles.dressExamples}>{examples.map(example => <figure key={`${example.label}-${example.image}`}><div><Image src={example.image!} alt={example.imageAlt ?? example.label} fill sizes="(max-width: 699px) 50vw, 280px" /></div><figcaption><strong>{example.label}</strong>{example.description ? <span>{example.description}</span> : null}</figcaption></figure>)}</div> : null}
+      {examples.length ? <div className={styles.dressExamples}>{examples.map(example => <figure key={`${example.label}-${example.image}`}><div data-boda-motion="dress-photo" data-boda-motion-group="dress-examples"><Image src={example.image!} alt={example.imageAlt ?? example.label} fill sizes="(max-width: 699px) 50vw, 280px" /></div><figcaption data-boda-motion="rise" data-boda-motion-group="dress-examples"><strong>{example.label}</strong>{example.description ? <span>{example.description}</span> : null}</figcaption></figure>)}</div> : null}
     </section>
   );
 }

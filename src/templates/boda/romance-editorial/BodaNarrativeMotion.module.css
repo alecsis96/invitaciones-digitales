@@ -1,0 +1,245 @@
+.scope {
+  display: contents;
+}
+
+.scope [data-boda-motion-frame="closing"] {
+  overflow: hidden;
+  overflow: clip;
+}
+
+.closingSoft {
+  --boda-motion-distance: 16px;
+}
+
+.closingDate {
+  --boda-motion-distance: 12px;
+}
+
+.pending.closingLandscape {
+  transform: scale(1.02);
+}
+
+.pending.closingNames {
+  transform: translateY(24px) scale(.98);
+}
+
+.revealing.closingLandscape, .revealing.closingNames {
+  animation: closingLandscapeIn 1100ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+.revealing.closingNames {
+  animation-name: closingNamesIn;
+}
+
+.revealing.closingSoft, .revealing.closingDate {
+  animation: rise 900ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+@keyframes closingLandscapeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes closingNamesIn {
+  from { opacity: 0; transform: translateY(24px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Hidden states are attached only by the initialized client controller. */
+.rise, .photo, .left, .right, .heroText, .heroNames, .heroMessage, .itinerary {
+  --boda-motion-distance: 32px;
+}
+
+.heroNames {
+  --boda-motion-distance: 48px;
+  transform-origin: center;
+}
+
+.heroMessage {
+  --boda-motion-distance: 12px;
+}
+
+.pending {
+  opacity: 0;
+  transform: translateY(var(--boda-motion-distance, 32px));
+  pointer-events: none;
+}
+
+.pending.left {
+  transform: translate(calc(-1 * var(--boda-motion-x, 32px)), 32px);
+}
+
+.pending.right {
+  transform: translate(var(--boda-motion-x, 32px), 32px);
+}
+
+.pending.heroPhoto, .pending.photo, .pending.countdown {
+  transform: none;
+}
+
+.pending.photo {
+  clip-path: inset(0 0 100% 0);
+}
+
+.revealing.rise, .revealing.photo, .revealing.left, .revealing.right,
+.revealing.heroText, .revealing.heroNames, .revealing.heroMessage, .revealing.heroPhoto {
+  animation: rise 1000ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+.revealing.photo {
+  animation-name: photoMask;
+  animation-duration: 1100ms;
+}
+
+.revealing.heroNames {
+  animation-name: namesIn;
+  animation-duration: 1100ms;
+}
+
+.revealing.heroMessage {
+  animation-duration: 900ms;
+}
+
+.pending.gift {
+  transform: scale(.94);
+}
+
+.pending.botanicalFade {
+  transform: none;
+}
+
+.revealing.gift {
+  animation: giftIn 1000ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+.revealing.botanicalFade {
+  animation: blockIn 900ms ease-out backwards;
+}
+
+/* The arrow remains interactive after the one-shot reveal classes are released. */
+.scope [data-boda-motion="rsvp-action"] > span {
+  display: inline-block;
+  transition: transform 180ms ease-out;
+}
+
+.scope [data-boda-motion="rsvp-action"]:focus-visible > span {
+  transform: translateX(3px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scope [data-boda-motion="rsvp-action"]:hover > span {
+    transform: translateX(3px);
+  }
+}
+
+/* Animate the existing units, never their changing text or grid dimensions. */
+.revealing.countdown {
+  animation: blockIn 900ms ease-out backwards;
+}
+
+.revealing.countdown :global(.countdown-unit) {
+  animation: rise 950ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: calc(var(--boda-motion-delay, 0ms) + var(--boda-unit-delay, 0ms));
+}
+
+.revealing.countdown :global(.countdown-unit:nth-child(2)) { --boda-unit-delay: 160ms; }
+.revealing.countdown :global(.countdown-unit:nth-child(3)) { --boda-unit-delay: 320ms; }
+.revealing.countdown :global(.countdown-unit:nth-child(4)) { --boda-unit-delay: 480ms; }
+
+.revealing.left {
+  animation-name: fromLeft;
+  animation-duration: 1050ms;
+}
+
+.revealing.right {
+  animation-name: fromRight;
+  animation-duration: 1050ms;
+}
+
+.revealing.heroPhoto {
+  animation-name: photoIn;
+}
+
+.revealing.itinerary > :not(i) {
+  animation: rise 1000ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+.revealing.itinerary > i {
+  transform-origin: top;
+  animation: connector 1100ms cubic-bezier(.2, .65, .3, 1) backwards;
+  animation-delay: var(--boda-motion-delay, 0ms);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(var(--boda-motion-distance, 32px)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes namesIn {
+  from { opacity: 0; transform: translateY(48px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes photoMask {
+  from { opacity: 0.1; clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes blockIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes giftIn {
+  from { opacity: 0; transform: scale(.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fromLeft {
+  from { opacity: 0; transform: translate(calc(-1 * var(--boda-motion-x, 32px)), 32px); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes fromRight {
+  from { opacity: 0; transform: translate(var(--boda-motion-x, 32px), 32px); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes photoIn {
+  from { opacity: 0.85; }
+  to { opacity: 1; }
+}
+
+@keyframes connector {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.pending:focus-within, .revealing:focus-within,
+.revealing.itinerary:focus-within > *, .revealing.countdown:focus-within :global(.countdown-unit) {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto;
+  animation: none !important;
+  clip-path: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scope [data-boda-motion="rsvp-action"] > span {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .pending, .revealing, .revealing.itinerary > *, .revealing.countdown :global(.countdown-unit) {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+    animation: none !important;
+    clip-path: none !important;
+  }
+}
