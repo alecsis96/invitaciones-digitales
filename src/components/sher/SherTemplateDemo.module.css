@@ -80,3 +80,31 @@
   outline: 3px solid var(--sher-charcoal);
   outline-offset: 4px;
 }
+
+.replayAction {
+  display: block;
+  min-height: 44px;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sher-charcoal);
+  font: 600 14px/1.4 var(--font-sans), Arial, sans-serif;
+  cursor: pointer;
+}
+
+.replayAction:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.replayAction:focus-visible {
+  outline: 3px solid var(--sher-charcoal);
+  outline-offset: 4px;
+}
+
+.replayAction:disabled {
+  opacity: .6;
+  cursor: default;
+}

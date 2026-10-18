@@ -2,20 +2,21 @@
 
 ## Stack
 
-- **Framework:** Next.js `14.2.31` con React `18.3.1` y TypeScript `5.8.3`.
+- **Framework:** Next.js `15.5.24` con React `19.0.9` y TypeScript `5.8.3`.
 - **Routing:** App Router de Next.js, basado en directorios bajo `src/app`.
-- **Estilos:** CSS global en `src/app/globals.css`; no se detectó una biblioteca de UI en uso.
+- **Estilos:** CSS global para las XV y componentes compartidos; CSS Modules locales para el Home comercial y BODA-01. Sin biblioteca de UI adicional.
 - **Imágenes:** `next/image` en las plantillas; `next.config.mjs` permite formatos AVIF y WebP.
-- **Fuentes:** `next/font/google` se carga desde `src/app/layout.tsx` (Cormorant Garamond, Montserrat y Pinyon Script).
+- **Fuentes:** `next/font/google` en `src/app/layout.tsx` (Cormorant Garamond, Montserrat y Pinyon Script); el Home carga además su configuración propia de Cormorant Garamond y Manrope.
 
 ## Rutas públicas
 
 | Ruta | Comportamiento |
 | --- | --- |
-| `/` | Placeholder temporal de SHER |
+| `/` | Home comercial de SHER y catálogo |
 | `/plantillas/xv/elegancia-contemporanea` | XV-01 · Elegancia Contemporánea |
 | `/plantillas/xv/glam-nocturna` | XV-02 · Glam Nocturna |
 | `/plantillas/xv/jardin-editorial` | XV-03 · Jardín Editorial |
+| `/plantillas/boda/romance-editorial` | BODA-01 · Romance Editorial |
 | `/xv-02` | Redirect permanente a Glam Nocturna |
 | `/xv-03` | Redirect permanente a Jardín Editorial |
 
@@ -26,24 +27,24 @@ No existe una ruta legacy independiente para XV-01: antes ocupaba `/`, que ahora
 ```text
 src/
 ├─ app/
-│  ├─ page.tsx                         # Placeholder SHER con logo de marca
+│  ├─ page.tsx                         # Home comercial SHER
 │  ├─ layout.tsx                       # Fuentes, metadata e iconos globales
 │  ├─ manifest.ts                       # Manifest web de SHER
 │  ├─ xv-02/page.tsx                   # Redirect legacy
 │  ├─ xv-03/page.tsx                   # Redirect legacy
-│  └─ plantillas/xv/*/page.tsx         # Adaptadores de rutas canónicas
+│  └─ plantillas/{xv,boda}/*/page.tsx  # Adaptadores de rutas canónicas
 ├─ components/
 │  ├─ invitation/                      # Calendario, countdown, música, RSVP, galería…
+│  ├─ sher/                            # Home, catálogo y wrapper comercial de demos
 │  └─ motion/ScrollReveal.tsx
 ├─ data/
 │  ├─ catalog.ts                       # Catálogo central de rutas disponibles
 │  └─ events/                          # Datos demo por plantilla
 ├─ hooks/useOpeningSession.ts
 ├─ lib/invitation/                     # Helpers de familia y RSVP
-├─ templates/xv/
-│  ├─ elegance-01/
-│  ├─ glam-02/
-│  └─ garden-03/
+├─ templates/
+│  ├─ xv/{elegance-01,glam-02,garden-03}/
+│  └─ boda/romance-editorial/
 └─ types/invitation.ts
 
 public/
@@ -59,8 +60,17 @@ Cada página canónica importa una plantilla visual y sus datos demo correspondi
 - XV-01: `src/templates/xv/elegance-01/` + `src/data/events/ana-sofia.demo.ts`.
 - XV-02: `src/templates/xv/glam-02/` + `src/data/events/camila.glam.demo.ts`.
 - XV-03: `src/templates/xv/garden-03/` + `src/data/events/raquel.garden.demo.ts`.
+- BODA-01: `src/templates/boda/romance-editorial/` + `src/data/events/sofia-daniel.boda.demo.ts`, con tipos propios en `types.ts`.
 
 Las rutas son adaptadores delgados: no duplican componentes ni assets. `src/data/catalog.ts` registra las plantillas expuestas y sus rutas canónicas.
+
+El Home muestra las cuatro plantillas disponibles con `SherTemplateCollection` y `SherTemplateCard`. Bodas enlaza a su tarjeta; Infantiles permanece como próxima categoría. Las demos incorporan `SherTemplateDemo` desde su ruta, sin introducir el bloque comercial en la invitación reutilizable.
+
+BODA-01 compone `BodaMusic` → `BodaNarrativeMotion` → `BodaLinenOpening` → `SherTemplateDemo` → invitación. La apertura protege el contenido y el bloque comercial mediante `inert`, restaura foco y scroll y registra la sesión. La animación narrativa usa atributos `data-boda-motion`, CSS Modules y recuperación ante movimiento reducido u observadores no disponibles. La música se inicia por interacción y usa `/audio/boda-01-romance-editorial.mp3`; sus tipos de volumen y bucle permanecen locales a BODA.
+
+`SherTemplateDemo` sigue siendo Server Component y acepta `demoActions?: ReactNode`. El control cliente compartido `SherDemoReplayButton` recibe `onReplayOpening?: () => void`; sin función no presenta botón. Cada adaptador demo es responsable de su propio reinicio, sin controlador global de aperturas.
+
+La ruta BODA compone el contenido de servidor mediante `children` dentro de `BodaDemoExperience`; `BodaDemoReplayAction` conecta el botón con su contexto cliente local. Repetir vuelve al inicio, elimina solo el fragmento de URL y remonta música, narrativa y apertura para ejecutar sus limpiezas. `forceOpening` es opcional y falso por defecto; se activa únicamente en una repetición explícita de la demo, sin borrar `sessionStorage`. El nuevo audio permanece pausado hasta tocar el sobre. Las XV no incorporan esta acción todavía.
 
 ## Componentes compartidos
 
@@ -74,7 +84,7 @@ Los assets se sirven desde `public/` mediante rutas absolutas como `/images/...`
 
 El kit maestro de SHER vive en `brand/SHER-brand-kit-v1/` y permanece fuera del control de versiones como fuente original. Solo sus derivados aprobados para producción se copian de forma explícita a `public/brand/`: variantes SVG de logo y wordmark, monograma, avatar e iconos PWA. `src/app/favicon.ico`, `src/app/apple-icon.png` y `src/app/manifest.ts` integran esos recursos con las convenciones de metadata de Next.js.
 
-Los tokens `--sher-*` en `src/app/globals.css` expresan la paleta de SHER sin sustituir ni alterar las variables visuales de las plantillas existentes. Las fuentes actuales se conservan aisladas; la posible incorporación de Manrope para una futura landing se decidirá junto con esa interfaz, no desde la integración del kit.
+Los tokens `--sher-*` en `src/app/globals.css` expresan la paleta de SHER sin sustituir ni alterar las variables visuales de las plantillas existentes. Las fuentes del Home comercial permanecen aisladas de las invitaciones.
 
 Scripts disponibles en `package.json`:
 

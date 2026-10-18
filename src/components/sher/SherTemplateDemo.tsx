@@ -7,7 +7,7 @@ import styles from "./SherTemplateDemo.module.css";
 type TemplateId = (typeof invitationCatalog)[number]["id"];
 
 // Opt in only from commercial demo routes, never from reusable invitations.
-export function SherTemplateDemo({ templateId, children }: { templateId: TemplateId; children: ReactNode }) {
+export function SherTemplateDemo({ templateId, children, demoActions }: { templateId: TemplateId; children: ReactNode; demoActions?: ReactNode }) {
   const template = invitationCatalog.find((entry) => entry.id === templateId && entry.available);
   if (!template) return <>{children}</>;
 
@@ -24,6 +24,7 @@ export function SherTemplateDemo({ templateId, children }: { templateId: Templat
           <h2 className={styles.heading} id={headingId}>¿Te gustaría esta invitación para tu celebración?</h2>
           <p className={styles.description}>Personalizamos esta plantilla con los datos y fotografías de tu evento</p>
           {href && <a className={styles.action} href={href} target="_blank" rel="noopener noreferrer">Solicitar esta plantilla</a>}
+          {demoActions}
         </div>
       </aside>
       <SherDemoMusicVisibility commercialId={commercialId} />

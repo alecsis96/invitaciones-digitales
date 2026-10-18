@@ -32,6 +32,17 @@ export const invitationCatalog = [
     route: "/plantillas/xv/jardin-editorial",
     available: true,
   },
+  {
+    id: "boda-01",
+    slug: "romance-editorial",
+    category: "bodas",
+    name: "Romance Editorial",
+    description: "Una invitación de boda cálida y editorial, con detalles de lino y una narrativa romántica.",
+    cover: "/images/boda-01/sofia-daniel/sofia-daniel-hero.jpg",
+    coverAlt: "Sofía y Daniel en un jardín italiano al atardecer el día de su boda",
+    route: "/plantillas/boda/romance-editorial",
+    available: true,
+  },
 ] as const;
 
 export type CatalogCategory = {
@@ -40,6 +51,7 @@ export type CatalogCategory = {
   available: boolean;
   cover?: string;
   coverAlt?: string;
+  href?: string;
 };
 
 export const catalogCategories = [
@@ -60,7 +72,8 @@ export const catalogCategories = [
   {
     id: "bodas",
     label: "Bodas",
-    available: false,
+    available: true,
+    href: "#template-boda-01",
     cover: "/images/sher/categories/bodas.jpg",
     coverAlt: "Pareja de boda con ramo en una celebración al aire libre",
   },

@@ -16,8 +16,9 @@
 | XV-01 · Elegancia Contemporánea | `/plantillas/xv/elegancia-contemporanea` |
 | XV-02 · Glam Nocturna | `/plantillas/xv/glam-nocturna` |
 | XV-03 · Jardín Editorial | `/plantillas/xv/jardin-editorial` |
+| BODA-01 · Romance Editorial | `/plantillas/boda/romance-editorial` |
 
-Categorías futuras, todavía no disponibles: infantiles, bodas y otros eventos. No deben presentarse como productos activos hasta que existan.
+Categorías disponibles: XV años y bodas. Infantiles y otros eventos siguen pendientes; no deben presentarse como productos activos hasta que existan.
 
 ## Productos y precios de lanzamiento
 
@@ -50,4 +51,4 @@ El Home presenta únicamente Interactiva, Cinemática y A Medida; no presenta el
 | Rose gold | `#B98272` |
 | Taupe | `#81746C` |
 
-Tipografías previstas para SHER: **Cormorant Garamond** para títulos y **Manrope** para UI/texto. Esta es una dirección para la futura presencia comercial; las plantillas actuales conservan sus decisiones tipográficas propias.
+Tipografías del Home comercial: **Cormorant Garamond** para títulos y **Manrope** para UI/texto. Las plantillas conservan sus decisiones tipográficas propias.

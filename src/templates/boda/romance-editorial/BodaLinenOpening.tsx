@@ -7,12 +7,12 @@ import styles from "./BodaLinenOpening.module.css";
 import { useBodaOpeningMotion, type BodaOpeningOutcome } from "./BodaNarrativeMotion";
 import { useBodaMusic } from "./BodaMusic";
 
-export function BodaLinenOpening({ children, config }: { children: ReactNode; config?: Partial<BodaLinenOpeningConfig> }) {
+export function BodaLinenOpening({ children, config, forceOpening = false }: { children: ReactNode; config?: Partial<BodaLinenOpeningConfig>; forceOpening?: boolean }) {
   const options = { ...bodaLinenOpeningConfig, ...config };
   const reportOpening = useBodaOpeningMotion();
   const music = useBodaMusic();
   const openingOutcome = useRef<BodaOpeningOutcome>("interrupted");
-  const [phase, setPhase] = useState<"pending" | "closed" | "opening" | "open">("pending");
+  const [phase, setPhase] = useState<"pending" | "closed" | "opening" | "open">(() => forceOpening && options.enabled ? "closed" : "pending");
   const contentRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const envelopeRef = useRef<HTMLButtonElement>(null);
@@ -21,7 +21,7 @@ export function BodaLinenOpening({ children, config }: { children: ReactNode; co
   const sealRef = useRef<HTMLSpanElement>(null);
   const surfaceRef = useRef<HTMLDivElement>(null);
   const animations = useRef<Animation[]>([]);
-  const watchdog = useRef<ReturnType<typeof setTimeout>>();
+  const watchdog = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const run = useRef(0);
   const busy = useRef(false);
   const promptId = useId();
@@ -72,12 +72,17 @@ export function BodaLinenOpening({ children, config }: { children: ReactNode; co
   }, []);
 
   useEffect(() => {
+    if (forceOpening && options.enabled) {
+      openingOutcome.current = "interrupted";
+      setPhase("closed");
+      return cancel;
+    }
     let seen = false;
     try { seen = Boolean(window.sessionStorage.getItem(options.sessionKey)); } catch { /* Continue without persistence. */ }
     openingOutcome.current = !options.enabled ? "disabled" : window.location.hash || window.scrollY > 0 ? "bypassed" : seen ? "session" : "interrupted";
     setPhase(!options.enabled || seen || window.location.hash || window.scrollY > 0 ? "open" : "closed");
     return cancel;
-  }, [cancel, options.enabled, options.sessionKey]);
+  }, [cancel, forceOpening, options.enabled, options.sessionKey]);
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") return;

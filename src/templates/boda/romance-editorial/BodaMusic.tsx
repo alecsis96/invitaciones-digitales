@@ -18,7 +18,7 @@ export function BodaMusic({ music, children }: { music?: BodaMusicConfig; childr
   const attempted = useRef(false);
   const visitorPaused = useRef(false);
   const request = useRef(0);
-  const frame = useRef<number>();
+  const frame = useRef<number | undefined>(undefined);
   const [invitationOpen, setInvitationOpen] = useState(false);
   const [state, setState] = useState<"idle" | "starting" | "playing" | "paused" | "error">("idle");
 
@@ -47,6 +47,8 @@ export function BodaMusic({ music, children }: { music?: BodaMusicConfig; childr
   const play = useCallback(() => {
     const audio = audioRef.current;
     if (!enabled || !audio || desired.current) return;
+    // A failed media source must be reloaded before a user-triggered retry.
+    if (audio.error) audio.load();
     desired.current = true;
     const token = ++request.current;
     cancelFade();
