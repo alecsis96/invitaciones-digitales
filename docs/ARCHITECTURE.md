@@ -1,5 +1,7 @@
 # Arquitectura actual
 
+El flujo de producción de nuevas plantillas se define en [SHER_TEMPLATE_CONTRACT.md](../SHER_TEMPLATE_CONTRACT.md); este documento describe la implementación existente, no una identidad visual obligatoria.
+
 ## Stack
 
 - **Framework:** Next.js `15.5.24` con React `19.0.9` y TypeScript `5.8.3`.
@@ -64,6 +66,8 @@ Cada página canónica importa una plantilla visual y sus datos demo correspondi
 
 Las rutas son adaptadores delgados: no duplican componentes ni assets. `src/data/catalog.ts` registra las plantillas expuestas y sus rutas canónicas.
 
+El identificador comercial, el directorio interno y el slug público son distintos: XV-01 usa `elegance-01` internamente y `elegancia-contemporanea` en su ruta; BODA-01 usa categoría de catálogo `bodas` y segmento de ruta `boda`. Las XV consumen `InvitationEvent`; BODA define su modelo local reutilizando tipos pequeños, sin un esquema universal obligatorio.
+
 El Home muestra las cuatro plantillas disponibles con `SherTemplateCollection` y `SherTemplateCard`. Bodas enlaza a su tarjeta; Infantiles permanece como próxima categoría. Las demos incorporan `SherTemplateDemo` desde su ruta, sin introducir el bloque comercial en la invitación reutilizable.
 
 BODA-01 compone `BodaMusic` → `BodaNarrativeMotion` → `BodaLinenOpening` → `SherTemplateDemo` → invitación. La apertura protege el contenido y el bloque comercial mediante `inert`, restaura foco y scroll y registra la sesión. La animación narrativa usa atributos `data-boda-motion`, CSS Modules y recuperación ante movimiento reducido u observadores no disponibles. La música se inicia por interacción y usa `/audio/boda-01-romance-editorial.mp3`; sus tipos de volumen y bucle permanecen locales a BODA.
@@ -72,11 +76,15 @@ BODA-01 compone `BodaMusic` → `BodaNarrativeMotion` → `BodaLinenOpening` →
 
 La ruta BODA compone el contenido de servidor mediante `children` dentro de `BodaDemoExperience`; `BodaDemoReplayAction` conecta el botón con su contexto cliente local. Repetir vuelve al inicio, elimina solo el fragmento de URL y remonta música, narrativa y apertura para ejecutar sus limpiezas. `forceOpening` es opcional y falso por defecto; se activa únicamente en una repetición explícita de la demo, sin borrar `sessionStorage`. El nuevo audio permanece pausado hasta tocar el sobre. Las XV no incorporan esta acción todavía.
 
+La composición ocurre en `page.tsx`: el adaptador cliente no importa `SherTemplateDemo` y el callback de repetición permanece en el ámbito cliente. Una demo sin apertura puede componer directamente el wrapper de servidor y la invitación, sin adaptador de repetición ni `demoActions`.
+
 ## Componentes compartidos
 
 `src/components/invitation/` concentra comportamiento reutilizable: `AddToCalendar`, `Countdown`, `DressCode`, `EventLocation`, `EventMusic`, `FamilyDetails`, `Gallery`, `GiftRegistry`, `OpeningExperience`, `RSVP`, `Timeline` y `VisualEventCalendar`.
 
-La apertura usa `src/hooks/useOpeningSession.ts`; la normalización de familia y la URL de WhatsApp viven en `src/lib/invitation/`.
+Las aperturas XV usan `src/hooks/useOpeningSession.ts`; BODA gestiona su sesión y efectos localmente. La normalización de familia y la construcción de la URL de WhatsApp viven en `src/lib/invitation/`; construir la URL no valida por sí solo el teléfono.
+
+Estos componentes no son todos visualmente neutrales: `Countdown` y `ScrollReveal` dependen de clases globales; `EventMusic` escucha `invitation:play-music`. BODA adapta el countdown con overrides bajo un contenedor de CSS Module y mantiene música y animaciones propias. Reutilizar exige revisar esos acoplamientos, no copiar la apariencia ni modificar las XV.
 
 ## Assets, marca y ejecución
 
