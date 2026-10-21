@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="t"><title id="t">Huella de dinosaurio de tres dedos</title><defs><linearGradient id="dino" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#729674"/><stop offset="1" stop-color="#365e49"/></linearGradient></defs>
+<!-- Three long distinct clawed toes of a theropod, NOT round cat/dog pads -->
+<g fill="url(#dino)" stroke="#355c47" stroke-width="1.7" stroke-linejoin="round">
+<path d="M34 52C25 50 19 43 15 33L9 17L22 26C29 32 34 38 41 48Z"/>
+<path d="M42 47C41 34 42 21 47 9L51 3L55 15C58 28 56 39 55 49Z"/>
+<path d="M55 49C62 38 70 31 81 27L90 27L82 39C74 48 65 53 61 56Z"/>
+<path d="M36 51C32 57 30 64 33 70C35 77 43 84 49 91C55 82 66 77 67 68C69 59 64 52 58 49C52 44 42 46 36 51Z"/>
+</g>
+<path d="M40 58Q50 54 59 59" stroke="#9db49b" stroke-width="2" fill="none" stroke-linecap="round" opacity=".66"/>
+<g fill="#dae0b1" opacity=".55"><ellipse cx="29" cy="39" rx="2" ry="4" transform="rotate(-30 29 39)"/><ellipse cx="50" cy="25" rx="2" ry="4"/><ellipse cx="71" cy="42" rx="2" ry="3" transform="rotate(45 71 42)"/></g>
+</svg>

@@ -33,6 +33,17 @@ export const invitationCatalog = [
     available: true,
   },
   {
+    id: "infantil-01",
+    slug: "pequena-aventura-dino",
+    category: "infantiles",
+    name: "Mi Pequeña Aventura Dino",
+    description: "Una invitación infantil de dinosaurios con una apertura interactiva y una celebración llena de aventura.",
+    cover: "/images/infantil-01/photos/baby-birthday.webp",
+    coverAlt: "Mateo junto a su pastel de primer cumpleaños",
+    route: "/plantillas/infantil/pequena-aventura-dino",
+    available: true,
+  },
+  {
     id: "boda-01",
     slug: "romance-editorial",
     category: "bodas",
@@ -65,9 +76,10 @@ export const catalogCategories = [
   {
     id: "infantiles",
     label: "Infantiles",
-    available: false,
-    cover: "/images/sher/categories/infantiles.jpg",
-    coverAlt: "Celebración infantil con vestido lila, globos y castillo al fondo",
+    available: true,
+    href: "#template-infantil-01",
+    cover: "/images/infantil-01/photos/baby-birthday.webp",
+    coverAlt: "Mateo junto a su pastel de primer cumpleaños",
   },
   {
     id: "bodas",

@@ -1,0 +1,271 @@
+/* SHER · INFANTIL-01. Todos los tokens se limitan a la plantilla. */
+.invitation, .demoExperience, .openingOverlay {
+  --dino-forest: #2f593f;
+  --dino-sage: #8ca786;
+  --dino-ink: #493421;
+  --dino-paper: #f9edd2;
+  --dino-honey: #e8b767;
+  --dino-peach: #d9917b;
+  --dino-font: var(--dino-body, system-ui), sans-serif;
+  color: var(--dino-ink);
+  font-family: var(--dino-font);
+}
+.invitation { width: 100%; min-width: 0; background: #f8ecd0; isolation: isolate; container: dino / inline-size; }
+.invitation *, .demoExperience * { box-sizing: border-box; }
+.invitation section { overflow: hidden; position: relative; scroll-margin-top:4rem; }
+.invitation section:not(:last-of-type)::after { content:'';position:absolute;z-index:5;bottom:-1px;left:0;right:0;height:58px;background:linear-gradient(transparent,#8f9b6580 60%,#e9d4a8);clip-path:polygon(0 22%,8% 43%,16% 25%,25% 48%,34% 33%,43% 53%,52% 31%,62% 48%,72% 20%,83% 43%,92% 27%,100% 44%,100% 100%,0 100%);pointer-events:none; }
+.invitation section:not(:first-of-type)::before {content:'';position:absolute;z-index:0;inset:0 0 auto;height:80px;background:linear-gradient(#e9d4a8,transparent);pointer-events:none;}
+.invitation :is(h1,h2,h3), .openingHeading {font-family:var(--dino-heading, system-ui),sans-serif;font-weight:600;}
+.invitation h1, .invitation h2, .invitation h3, .invitation p { margin-top: 0; }
+.invitation a, .invitation button, .demoExperience button { -webkit-tap-highlight-color: transparent; }
+.invitation :is(a, button):focus-visible, .demoExperience button:focus-visible { outline: 3px solid #165839; outline-offset: 4px; }
+.invitation a { color: inherit; }
+.quickNav { position: sticky; top: 0; z-index: 15; display:none; align-items:center; justify-content:center; flex-wrap:nowrap; gap:.75rem; padding:.5rem 1rem; background:rgba(254,246,228,.96); border-bottom:1px solid #73532d38; font-size:.84rem; font-weight:800; }
+@container dino (min-width:900px) { .quickNav {display:flex;} }
+.quickNav a { padding:.42rem .5rem; border-radius:.5rem; text-decoration:none; }
+.quickNav a:hover { background:#e5d6b3; }
+/* Hero, con fotografías como capa no destructiva y recorte fallback. */
+.hero { min-height:760px; background: #f4dea5 url('/images/infantil-01/backgrounds/hero-mobile.webp') center 60%/cover no-repeat; }
+.heroSky { position:absolute; inset:0; background:linear-gradient(180deg,rgba(252,239,207,.15) 0%,transparent 32%,rgba(22,55,31,.06) 100%); }
+.heroCanopy { position:absolute; inset:-1rem -1.5rem auto; height:30%; pointer-events:none; background:url('/images/infantil-01/decor/celebration-bunting.webp') center top/100% auto no-repeat; transform-origin:top center; animation:dinoLeafSway 7s ease-in-out infinite alternate; }
+.heroGrid { position:relative; z-index:1; width:min(100%,1300px); min-height:760px; margin:auto; display:flex; flex-direction:column; }
+.heroMessage { position:relative; z-index:4; text-align:center; padding:4.5rem 1.25rem 0; text-shadow:0 2px 10px #fff3ce,0 1px 0 #fff9d6; }
+.heroMessage::before {content:'';position:absolute;inset:3rem 7% -1.5rem;z-index:-1;background:radial-gradient(ellipse,#fff2d9ed 30%,#fff2d9b0 55%,transparent 74%);pointer-events:none;}
+.heroAdventure {font:500 clamp(1.7rem,7.5vw,2.5rem)/1.03 var(--dino-heading),sans-serif;color:#315e3c;margin:0 auto 1rem;letter-spacing:-.025em;}
+.kicker { font-size:clamp(.9rem,3vw,1.12rem); font-weight:700; margin-bottom:.15rem; }
+.invitation .heroName {font-weight:600;letter-spacing:-.025em;color:#285436;font-size:clamp(3.2rem,13vw,5rem);line-height:1.05;overflow-wrap:anywhere;margin:0 auto .6rem;text-shadow:1px 2px 0 #ffeec5;}
+.ageRibbon { display:inline-block; font-family:var(--dino-heading),sans-serif;font-size:1.2rem; font-weight:500; background:linear-gradient(100deg,#f9ca85,#f3ac5f); border:1px solid #9e632e; border-radius:45% 14px 45% 14px / 19px 35% 19px 35%; padding:.34rem 1.25rem; box-shadow:0 3px 6px #50351b30; transform:rotate(-2deg);margin-bottom:.65rem; }
+.heroSlogan { font-size:clamp(.92rem,3vw,1.12rem); font-weight:800; max-width:32ch; margin:.5rem auto; }
+.heroCTA { display:inline-flex; min-height:44px; align-items:center; justify-content:center; gap:.5rem; border-radius:24px; text-decoration:underline;text-underline-offset:4px;font-size:.85rem;font-weight:700;color:#34543a!important;background:#fff4dcb8;padding:.25rem .8rem;transition:transform .22s ease; }
+.heroCTA:hover { transform:translateY(-3px); }
+.heroPeople { position:relative; flex:1; min-height:350px; width:100%; }
+.babyContainer { position:absolute; z-index:2; left:6%; bottom:8%; width:min(65%,345px); }
+.babyPhoto { display:block; width:100%; height:auto; object-fit:contain; filter:drop-shadow(0 8px 12px #2e372d55); }
+.babyFramed { width:min(55%,300px); bottom:15%; left:9%; aspect-ratio: .68; }
+.babyFramedPhoto { width:79%; height:75%; object-fit:cover; position:absolute; top:13%; left:10%; border-radius:12px; }
+.babyFrameImage { position:absolute; inset:0; width:100%;height:100%;object-fit:contain;pointer-events:none; }
+.heroDino { position:absolute; width:min(45%,310px); height:auto; right:3%; bottom:12%; z-index:3; filter:drop-shadow(0 12px 10px #3f442a58); transform-origin: 50% 86%; animation:dinoHeroSway 5s ease-in-out infinite; }
+.heroDinoSolo { width:min(65%,430px); right:17%; bottom:9%; }
+.heroForeground {position:absolute;width:110%;height:clamp(220px,32vw,380px);object-fit:fill;max-width:none;bottom:-2rem;left:-5%;z-index:4;pointer-events:none;transform-origin:50% 100%;animation:dinoLeafSway 9s ease-in-out infinite alternate;}
+/* Estaciones narrativas: paneles de pergamino y mapas ilustrativos. */
+.station { min-height:800px; display:flex; flex-direction:column; justify-content:center; padding:5rem 1rem 9rem; background-size:cover; background-position:center; }
+.when { background-image:url('/images/infantil-01/backgrounds/details-mobile.webp'); }
+.where {background-color:#ead5a5;background-image:linear-gradient(#f9e6bc20,#f9e6bc40),url('/images/infantil-01/backgrounds/hero-mobile.webp');justify-content:flex-start;min-height:0;padding-top:4rem;padding-bottom:4rem;}
+.stationContent { position:relative; z-index:2; width:min(100%,680px); margin-inline:auto; padding:1rem 1rem 3rem; }
+.stationTitle { display:flex; flex-direction:column; gap:.2rem; align-items:center; justify-content:center; text-align:center; color:#553821; margin:0 auto 1.6rem; }
+.stationTitle h2 { font-weight:600; font-size:clamp(1.65rem,5.2vw,2.7rem); line-height:1.12; max-width:18ch; text-shadow:0 2px 0 #fdefd1,0 2px 13px #fff; }
+.whenDetails { display:grid; grid-template-columns:1fr; gap:.7rem; margin:1rem auto 1.5rem; max-width:425px; }
+.whenDetails>div { display:flex; align-items:center; gap:.8rem; padding:.7rem .9rem; background:rgba(255,245,221,.85); border-radius:15px; border:1px solid #b38d5f; box-shadow:0 3px 7px #6d4a2730; }
+.whenDetails img { flex:none; }
+.whenDetails p { display:flex; flex-direction:column; gap:.18rem; font-size:.94rem; margin:0; }
+.whenDetails strong { font-size:.83rem; }
+.countdownBoard { width:min(100%,425px); margin:1rem auto; padding:.9rem 1rem 1.1rem; color:#fff2d5; text-align:center; border-radius:20px; border:4px solid #92643b; background:linear-gradient(160deg,#90613b,#604328); box-shadow:0 9px 16px #573c285a,inset 0 0 0 2px #b98a56; }
+.countdownTitle { font-weight:900; margin:0 0 .65rem; font-size:1.04rem; }
+.countdownValues { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.45rem; }
+.countdownCell { background:linear-gradient(150deg,#fff0cd,#e9ca93); border:2px solid #aa7844; border-bottom-width:4px; border-radius:11px; display:flex; flex-direction:column; min-width:0; padding:.4rem .1rem; color:#573921; }
+.countdownCell strong { font-size:clamp(1.15rem,5vw,1.65rem); font-weight:900; line-height:1.1; font-variant-numeric:tabular-nums; }
+.countdownCell span { font-size:.68rem; font-weight:800; text-transform:uppercase; }
+.calendarActions { display:flex; flex-direction:column; gap:.25rem; align-items:center; margin:1rem auto; }
+.smallAction { display:inline-flex;justify-content:center;text-decoration:none;align-items:center;gap:.65rem;cursor:pointer;min-height:48px;background:linear-gradient(160deg,#fff7e6,#eacc9d);color:#513b28;padding:.35rem 1.3rem;border-radius:14px;border:2px solid #976b42;border-bottom-width:4px;font-family:inherit;font-weight:800; }
+.smallAction:hover { filter:brightness(1.05); }
+.note { font-size:.83rem; text-align:center; line-height:1.55; color:#6d5741; max-width:40ch; margin:.65rem auto; }
+.footprintTrail { display:flex; align-items:center; justify-content:center; gap:1.25rem;opacity:.65;margin:1.5rem auto 0; }
+.footprintTrail img:nth-child(even) { transform:rotate(24deg) translateY(7px); }
+.whenDino { position:absolute;z-index:1;width:clamp(115px,23vw,230px);height:auto;bottom:3.5rem;left:2%;transform-origin:bottom center;animation:dinoBreathe 5s ease-in-out infinite; }
+.label { font-size:.78rem; font-weight:900; text-transform:uppercase; letter-spacing:.06em; }
+.action { display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:180px;gap:.4rem;padding:.4rem .85rem;text-decoration:none;font-family:inherit;font-size:.94rem;font-weight:800;border:2px solid #a77b4b;border-bottom-width:4px;border-radius:15px;background:linear-gradient(140deg,#fff8e9,#efd9b7);color:#4d3424;box-shadow:0 3px 9px #60432833;cursor:pointer; }
+.action:hover { filter:brightness(1.04); }
+.actionGreen { color:#fff!important; background:linear-gradient(150deg,#3b8759,#1c5b3d); border-color:#27583d; border-bottom-color:#17422b; }
+.actionDisabled { opacity:.59;cursor:not-allowed; }
+.whereDino {position:absolute;right:2%;bottom:3.5rem;width:clamp(105px,21vw,230px);height:auto;z-index:1;transform-origin:50% 85%;animation:dinoBreathe 4.8s ease-in-out infinite;}
+/* Galería: foto real detrás de marco decorativo independiente. */
+.gallery {min-height:740px;padding:4rem 1rem 5rem;background:linear-gradient(#fff1d440,#fff1d440),#f6e3b4 url('/images/infantil-01/backgrounds/gallery-mobile.webp') center/cover no-repeat;}
+.galleryHeading {max-width:650px;margin:0 auto 1.5rem;padding:1rem .5rem;background:radial-gradient(ellipse,#fff2d9f2 30%,#fff2d9a6 60%,transparent 75%);}
+.galleryHeading h2 {margin-bottom:.25rem;}
+.galleryContent { position:relative;z-index:1;width:min(100%,850px);margin:auto;text-align:center; }
+.sectionOverline { font-size:.95rem;font-weight:850; }
+.scriptHeading { font-size:clamp(2.2rem,7vw,3.5rem);color:#573c22;line-height:1.08;font-weight:600;letter-spacing:-.025em;text-shadow:0 2px 1px #fff1ce; }
+.galleryStage { display:flex;align-items:center;justify-content:center;gap:.4rem;max-width:620px;margin:auto; }
+.galleryArrow { flex:none; width:48px;height:48px;display:grid;place-items:center;cursor:pointer;background:linear-gradient(#fff3d5,#dfbb81);border:2px solid #90633d;border-radius:50%;box-shadow:0 4px 9px #56351d46; }
+.galleryArrow img { width:34px;height:34px; }
+.photoButton { display:block;position:relative;width:min(66vw,360px);max-width:100%;padding:0;cursor:zoom-in;background:none;border:0;transform:rotate(-2deg);transition:transform .25s; }
+.photoButton:hover { transform:rotate(0deg) scale(1.025); }
+.memoryFrame { width:100%;aspect-ratio: 1086/1448;position:relative;filter:drop-shadow(0 9px 12px #58412a70); }
+.galleryPhoto {position:absolute;left:15%;top:11%;width:70%;height:71%;object-fit:cover;object-position:center;border-radius:4px;}
+.memoryFrameOverlay {position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;}
+.galleryCaption {font-size:.95rem;font-weight:800;max-width:35ch;margin:.65rem auto .8rem;min-height:1.6em;background:#fff3dcf2;border-radius:12px;padding:.5rem .75rem;}
+.galleryThumbs {display:flex;justify-content:center;align-items:center;gap:.45rem;max-width:100%;flex-wrap:wrap;margin:1rem auto;}
+.thumb {width:58px;height:58px;border:3px solid #eed5ab;background:#fff5df;border-radius:9px;padding:2px;overflow:hidden;cursor:pointer;transform:rotate(0deg);transition:transform .2s;}
+.thumb img {width:100%;height:100%;object-fit:cover;border-radius:3px;}
+.thumbSelected {outline:3px solid #326443;outline-offset:2px;transform:rotate(-4deg);}
+.lightbox {position:fixed;inset:0;z-index:1300;background:rgba(24,28,21,.96);color:#fff9e6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:4rem .8rem 1.2rem;}
+.lightboxPhoto {flex:1;min-height:0;max-width:90vw;display:grid;place-items:center;}
+.lightboxPhoto img {max-width:min(80vw,750px);max-height:68svh;width:auto;height:auto;object-fit:contain;}
+.lightboxClose {position:absolute;top:1rem;right:1rem;min-width:88px;min-height:44px;border:2px solid #eee5cf;border-radius:9px;cursor:pointer;font:800 1rem var(--dino-font);background:#f4e4c4;color:#35271b;}
+.lightboxNav {display:flex;gap:1rem;}
+.lightboxNav button {min-height:44px;border-radius:9px;border:1px solid #fff2dc;font:800 .9rem var(--dino-font);background:#d8c49e;color:#322a1e;padding:.3rem 1rem;cursor:pointer;}
+/* Cierre V2: escena y tarjeta en flujo; efectos gestionados solo por su leaf cliente. */
+.closing {display:flex;flex-direction:column;align-items:center;gap:.75rem;padding:3.5rem 1rem 3rem;background:#f1dca5 url('/images/infantil-01/backgrounds/closing-mobile.webp') center bottom/cover no-repeat;}
+.closingScene {position:relative;isolation:isolate;width:min(100%,900px);aspect-ratio:1.08;}
+.closingCard {position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;padding:1.75rem 1rem;width:min(100%,450px);margin:0 auto;background:#fff0d7ed;border-radius:42% 14px 30% 16px / 20px 30px 16px 35px;box-shadow:0 8px 20px #57402428;border:1px solid #c6a274;}
+.closingCard h2 {margin-bottom:0;}
+.closingCard p {margin:0;font-size:1rem;font-weight:700;max-width:30ch;}
+.closingCard .note {font-size:.8rem;line-height:1.5;font-weight:600;}
+.closingScene .closingBunting {position:absolute;top:-5%;width:110%;max-width:none;height:auto;left:-5%;z-index:1;transform-origin:top center;animation:dinoLeafSway 5s ease-in-out infinite alternate;animation-play-state:paused;pointer-events:none;}
+.closingScene .closingBalloons {position:absolute;width:24%;height:auto;left:0;top:4%;z-index:2;transform-origin:50% 100%;animation:balloonFloat 6s ease-in-out infinite;animation-play-state:paused;pointer-events:none;}
+.closingCharacter {position:absolute;z-index:2;transform-origin:50% 90%;animation:dinoBreath 5s ease-in-out infinite;animation-play-state:paused;}
+.closingCharacter img {display:block;width:100%;height:auto;}
+.closingSauropod {width:34%;left:-1%;bottom:1%;animation-delay:-1.5s;}
+.closingMaster {width:41%;left:30%;bottom:23%;animation-delay:-3s;}
+.closingTriceratops {width:38%;right:-1%;bottom:0;}
+.closingTriceratops img {transform:scaleX(-1);}
+.closingCharacter .closingEyes {position:absolute;inset:0;width:100%;max-width:none;height:auto;opacity:0;}
+.closingMaster .closingEyes {mask-image:radial-gradient(ellipse 9% 8% at 49% 34%,#000 80%,transparent),radial-gradient(ellipse 7% 8% at 71% 25%,#000 80%,transparent);}
+.closingTriceratops .closingEyes {mask-image:radial-gradient(ellipse 9% 7% at 59% 43%,#000 80%,transparent),radial-gradient(ellipse 7% 7% at 82.5% 38%,#000 80%,transparent);}
+.closingSauropod .closingEyes {inset:-1.9528% auto auto 0;width:108.4775%;mask-image:radial-gradient(ellipse 9% 8% at 57.5% 24%,#000 76%,transparent),radial-gradient(ellipse 8% 8% at 75% 15%,#000 80%,transparent);}
+.closingCharacter[data-blink='true'] .closingEyes {opacity:1;}
+.closingScene .closingCake {position:absolute;width:45%;height:auto;bottom:0;left:27.5%;z-index:3;}
+.closingConfetti {position:absolute;z-index:5;inset:6% 2% auto;pointer-events:none;display:flex;justify-content:space-between;}
+.closingConfetti i {display:block;width:7px;height:15px;border-radius:2px;background:#de9178;opacity:0;}
+.closingScene[data-party='true'] .closingConfetti i {animation:confettiFall 2s ease-in-out both;animation-play-state:paused;}
+.closingScene[data-active='true'] .closingBunting,.closingScene[data-active='true'] .closingBalloons,.closingScene[data-active='true'] .closingCharacter,.closingScene[data-active='true'] .closingConfetti i {animation-play-state:running;}
+.closingConfetti i:nth-child(2n) {background:#88a683;animation-delay:.15s;}
+.closingConfetti i:nth-child(3n) {background:#e6ba71;animation-delay:.3s;}
+/* Apertura: sobreponer sin introducir assets de gran tamaño extra. */
+.motionRoot, .coveredContent, .demoExperience {position:relative;min-width:0;}
+.openingOverlay { position:fixed;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;padding:1rem;background:#efd4a0 url('/images/infantil-01/backgrounds/hero-mobile.webp') center/cover no-repeat; }
+.openingCanopy {position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,58,29,.24),transparent 35%,rgba(19,58,29,.35));pointer-events:none;}
+.openingInner {position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.7rem;max-width:480px;width:100%;text-align:center;}
+.openingOverline {color:#fff8e4;text-shadow:0 3px 6px #1d402a;font-weight:900;letter-spacing:.04em;}
+.openingHeading {font-size:clamp(1.6rem,6vw,2.55rem);line-height:1.2;font-weight:900;max-width:19ch;color:#432c18;text-shadow:0 2px 0 #fff2cb,0 3px 20px #fffbec;}
+.eggButton {position:relative;display:grid;place-items:center;isolation:isolate;background:transparent;border:0;width:min(78vw,400px);aspect-ratio:1;cursor:pointer;padding:0;}
+.eggButton:disabled {cursor:default;}
+.eggImage {width:100%;height:auto;filter:drop-shadow(0 12px 12px #3f3b2359);}
+.eggIdle {animation:eggWiggle 3.7s ease-in-out infinite;transform-origin:50% 85%;}
+.hatchDino {position:absolute;z-index:-1;width:43%;height:auto;bottom:36%;left:28%;animation:dinoHatch .8s ease-out both;}
+.eggHint {color:#fffbed;font-weight:900;text-shadow:0 3px 8px #244528,0 3px 2px #244528;font-size:1.08rem;}
+.openingExit {animation:openingReveal .6s ease forwards;pointer-events:none;}
+.musicToggle {position:fixed;z-index:900;right:max(1rem,env(safe-area-inset-right));bottom:max(1.1rem,env(safe-area-inset-bottom));display:flex;align-items:center;gap:.3rem;background:#fff0d4e8;border:2px solid #b18b5d;border-radius:30px;padding:.3rem .85rem .3rem .3rem;min-height:48px;cursor:pointer;font:800 .85rem var(--dino-font);color:#4a3724;box-shadow:0 3px 12px #47321b55;}
+.musicToggle img {width:36px;height:36px;}
+/* Progressive enhancement: sin JS los elementos están visibles. */
+.motionRoot[data-js='true'] [data-dino-reveal]:not([data-visible='true']) {opacity:0;transform:translateY(34px) scale(.97);}
+.motionRoot[data-js='true'] [data-dino-reveal] {transition:opacity .8s ease,transform .8s cubic-bezier(.19,.74,.31,1);}
+.motionRoot[data-js='true'] .stationTitle:not([data-visible='true']) {transform:translateY(-28px) rotate(-3deg) scale(.94);}
+.whenDetails > :nth-child(2) {transition-delay:.15s!important;}
+.footprintTrail[data-visible='true'] img {animation:footprintStep .65s ease both;}
+.footprintTrail img:nth-child(2) {animation-delay:.25s;}
+.footprintTrail img:nth-child(3) {animation-delay:.5s;}
+.galleryStage[data-visible='true'] .memoryFrame {animation:albumPhoto .7s cubic-bezier(.2,.7,.3,1) both;}
+.galleryThumbs[data-visible='true'] .thumb {animation:albumPhoto .6s ease both;}
+.galleryThumbs .thumb:nth-child(2) {animation-delay:.12s;}
+.galleryThumbs .thumb:nth-child(3) {animation-delay:.24s;}
+.galleryThumbs .thumb:nth-child(4) {animation-delay:.36s;}
+.galleryThumbs .thumb:nth-child(5) {animation-delay:.48s;}
+.motionRoot [data-dino-ambient] {animation-play-state:paused;}
+.motionRoot [data-dino-ambient][data-ambient-visible='true'] {animation-play-state:running;}
+@keyframes eggWiggle {0%,83%,100%{transform:rotate(0)}86%{transform:rotate(-3deg)}91%{transform:rotate(3deg)}96%{transform:rotate(-1.5deg)}}
+@keyframes dinoBreathe {0%,100%{transform:scale(1) rotate(-1deg)}50%{transform:scale(1.045) rotate(1deg)}}
+@keyframes dinoHeroSway {0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg) scale(1.035)}}
+@keyframes dinoWave {0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+@keyframes dinoLeafSway {from{transform:rotate(-2deg) translateX(-3px)}to{transform:rotate(2deg) translateX(3px)}}
+@keyframes footprintStep {from{opacity:0;transform:translateY(-12px) scale(1.25)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes albumPhoto {from{opacity:0;transform:translateY(26px) rotate(6deg) scale(.93)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}
+@keyframes balloonFloat {0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+@keyframes dinoHatch {from{transform:translateY(40%) scale(.65);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+@keyframes openingReveal {0%{opacity:1;filter:blur(0)}100%{opacity:0;filter:blur(8px)}}
+@keyframes confettiFall {0%{opacity:0;transform:translateY(-55px) rotate(-40deg)}60%{opacity:1}100%{opacity:0;transform:translateY(90px) rotate(85deg)}}
+@media (min-width:760px) {
+  .hero {background-image:url('/images/infantil-01/backgrounds/hero-desktop.webp');min-height:780px;}
+  .heroGrid {min-height:780px;display:grid;grid-template-areas:'visual text';grid-template-columns:55% 45%;align-items:center;}
+  .heroPeople {grid-area:visual;min-height:740px;align-self:stretch;}
+  .heroMessage {grid-area:text;padding:4rem 2.5rem 2rem 1rem;align-self:center;}
+  .babyContainer {width:61%;max-width:455px;bottom:8%;left:6%;}
+  .heroDino {width:46%;max-width:365px;bottom:8%;right:0;}
+  .station {min-height:800px;padding:5rem 2rem 10rem;background-position:center 40%;}
+  .stationContent {width:min(100%,740px);}
+  .whenDetails {grid-template-columns:repeat(2,minmax(0,1fr));max-width:610px;}
+  .countdownBoard {max-width:480px;}
+  .gallery {min-height:760px;}
+  .closingCard {max-width:450px;padding:2rem 2.5rem;}
+  .closingScene {aspect-ratio:1.6;}
+}
+@media (min-width:1150px) {
+  .invitation .heroName {font-size:5.5rem;}
+  .heroAdventure {font-size:3rem;}
+  .station {background-size:cover;}
+}
+@media (max-width:390px) {
+  .heroMessage {padding-top:4rem;}
+  .heroSlogan {font-size:.85rem;}
+  .station {padding-inline:.4rem;}
+  .stationContent {padding-inline:.5rem;}
+}
+.rsvpDialog {width:min(92vw,440px);max-height:85svh;overflow:auto;border:2px solid #a77b4b;border-radius:24px;padding:1.75rem;color:var(--dino-ink);background:#fff1d5;font-family:var(--dino-font);box-shadow:0 18px 60px #182c2260;}
+.rsvpDialog::backdrop {background:#192f26b3;}
+.rsvpDialog h3 {font-size:1.75rem;line-height:1.15;}
+.rsvpDialog p {line-height:1.6;}
+.rsvpActions {display:flex;flex-direction:column;gap:.75rem;}
+/* Dónde V2. Un solo recurso repartido por zonas, sin deformar ni repetir adornos. */
+.where .whereContent {position:relative;z-index:2;width:min(100%,1100px);margin:auto;padding:0;}
+.whereHeading {max-width:18ch;margin:0 auto .9rem;text-align:center;font-size:clamp(1.9rem,5.2vw,2.7rem);line-height:1.12;color:#493421;text-shadow:0 2px 0 #fff3d9,0 2px 16px #fff0d4;}
+.explorer {position:relative;width:100%;max-width:1000px;margin:auto;padding-bottom:135px;}
+.explorerFold {position:relative;min-height:50px;}
+.explorerReveal {display:grid;grid-template-rows:1fr;}
+.explorerRevealInner {min-height:0;overflow:hidden;}
+/* El remate viaja en el borde inferior visible mientras el papel se despliega. */
+/* Recurso original del rollo: acompaña el borde inferior del papel durante el despliegue. */
+.explorerRoll {position:absolute;z-index:6;left:50%;top:0;transform:translateX(-50%);width:min(100%,500px);height:auto;opacity:0;pointer-events:none;filter:drop-shadow(0 8px 8px #3f2b2240);}
+.explorerRoll img {display:block;width:100%;height:auto;}
+.explorerPaper {position:relative;isolation:isolate;container-type:inline-size;width:min(100%,500px);margin:auto;filter:drop-shadow(0 6px 9px #3c261e40);}
+.explorerPaper::before {content:'';position:absolute;z-index:0;top:80.2407cqw;bottom:8cqw;left:5.9%;right:5.5%;background:linear-gradient(90deg,#e7b36b,#f8d69b 20%,#f9e3b2 50%,#f8d99f 80%,#e8b66d);border-inline:1px solid #bd874d;pointer-events:none;}
+.explorerArt {position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;pointer-events:none;}
+.explorerArtTop {position:relative;flex:none;height:calc(80.2407cqw + 12px);overflow:hidden;}
+.explorerArtTop img,.explorerArtBottom img {position:absolute;display:block;width:100%;height:auto;max-width:none;left:0;}
+.explorerArtTop img {top:0;}
+.explorerArtBody {position:relative;flex:1;min-height:0;}
+.explorerArtBottom {position:absolute;inset:auto 0 0;height:calc(78.0341cqw + 24px);overflow:hidden;}
+.explorerArtBottom img {bottom:0;}
+/* Solapar y difuminar solamente papel en las juntas; mapa, flores y base se muestran una vez. */
+.explorerArtTop {mask-image:linear-gradient(#000 calc(100% - 12px),transparent);}
+.explorerArtBottom {mask-image:linear-gradient(transparent,#000 12px);}
+.explorerHeader {aspect-ratio:997/680;}
+.explorerDetails {position:relative;z-index:2;min-height:78.0341cqw;padding:1.05rem 12% max(3rem,11cqw);display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:.65rem;text-align:center;color:#493421;}
+.explorerDetails h3 {width:100%;margin:0;font-size:clamp(1.25rem,5vw,1.85rem);line-height:1.15;overflow-wrap:anywhere;}
+.explorerAddress {width:100%;margin:0;font-size:.93rem;line-height:1.5;font-weight:650;overflow-wrap:anywhere;}
+.explorerActions {display:flex;justify-content:center;align-items:stretch;width:100%;margin-top:.4rem;}
+.explorerActions .action {min-width:0;min-height:48px;width:min(100%,230px);padding:.6rem .85rem;gap:.35rem;border-radius:12px;font-size:clamp(.82rem,2.8vw,.95rem);line-height:1.25;}
+.explorerUnavailable {display:grid;place-items:center;font-size:.75rem;line-height:1.4;color:#604c35;}
+.explorerSr {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
+.explorer .whereDino {position:absolute;z-index:3;left:0;bottom:1.75rem;width:min(44%,150px);height:auto;aspect-ratio:1156/1229;transform-origin:50% 90%;animation:whereDinoSway 5s ease-in-out infinite;animation-play-state:paused;}
+.explorer .whereTriceratops {left:auto;right:0;aspect-ratio:1;animation-delay:-2s;}
+.whereDino img {display:block;width:100%;height:auto;}
+.whereTriceratops img {transform:scaleX(-1);}
+/* Registro por píxeles: el original es 1156×1229; la variante conserva lienzo 1254² y 24px extra arriba. */
+.whereDino .whereClosedEyes {position:absolute;left:0;top:-1.9528%;width:108.4775%;max-width:none;height:auto;opacity:0;mask-image:radial-gradient(ellipse 9% 8% at 57.5% 24%,#000 76%,transparent 100%),radial-gradient(ellipse 8% 8% at 75% 15%,#000 80%,transparent 100%);}
+.whereTriceratops .whereClosedEyes {top:0;width:100%;mask-image:radial-gradient(ellipse 9% 7% at 59% 43%,#000 80%,transparent),radial-gradient(ellipse 7% 7% at 82.5% 38%,#000 80%,transparent);}
+.whereDino[data-blink='true'] .whereClosedEyes {opacity:1;}
+.explorer .whereDino[data-active='true'] {animation-play-state:running;}
+.whereFoliage {position:absolute;z-index:4;right:-1rem;bottom:-.25rem;width:230px;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(#000 75%,transparent);mask-composite:intersect;}
+.whereFoliage img {display:block;width:100%;height:auto;}
+@media (min-width:1100px) {
+  .explorer {padding-bottom:2rem;}
+  .explorer .whereDino {left:calc(50% - 480px);right:auto;bottom:1rem;width:230px;height:auto;}
+  .explorer .whereTriceratops {left:calc(50% + 250px);}
+  .whereFoliage {left:calc(50% + 200px);right:auto;bottom:-1.5rem;width:340px;}
+}
+@media (prefers-reduced-motion:no-preference) {
+  .explorer[data-opening='armed'] .explorerReveal {clip-path:inset(0 0 100%);}
+  .explorer[data-opening='opening'] .explorerReveal {animation:wherePaperUnroll 2.2s cubic-bezier(.35,0,.25,1) both;}
+  .explorer[data-opening='armed'] .explorerRoll,
+  .explorer[data-opening='opening'] .explorerRoll {opacity:1;}
+  .explorer[data-opening='opening'] .explorerRoll {animation:whereRollUnroll 2.2s cubic-bezier(.35,0,.25,1) both,whereRollFade 2.2s linear both;}
+}
+@keyframes wherePaperUnroll {from{clip-path:inset(0 0 100%);}to{clip-path:inset(0);}}
+@keyframes whereRollUnroll {from{top:0;transform:translate(-50%,0);}to{top:100%;transform:translate(-50%,-100%);}}
+@keyframes whereRollFade {0%,82%{opacity:1;}100%{opacity:0;}}
+@keyframes whereDinoSway {0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-4px) rotate(1deg);}}
+@media (prefers-reduced-motion:reduce) {
+  .invitation *, .demoExperience *, .openingOverlay *, .invitation *::before, .invitation *::after {animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+  .motionRoot [data-dino-reveal] {opacity:1!important;transform:none!important;}
+  .closingScene .closingConfetti i {opacity:0!important;}
+}
